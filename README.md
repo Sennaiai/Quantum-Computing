@@ -33,7 +33,7 @@ Curated materials for continued learning:
 - Earning a **project management certification**  
 - Sharing progress through **GitHub**, **LinkedIn**, and **personal blog platforms**  
 ## 🔗 Connect With Me
-- 🌐 [LinkedIn](www.linkedin.com/in/senay-kahsay)  
+- 🌐 [LinkedIn](https://www.linkedin.com/in/senay-kahsay) 
 - ✍️ [Website & Portfolio](https://sennai_web_URL.com)
 - 📬 [Medium/Substack](https://YOUR_MEDIUM_OR_SUBSTACK.com) 
 
