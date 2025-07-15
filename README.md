@@ -65,7 +65,7 @@ Profiles of leading and emerging companies working at the intersection of:
 
 Research papers, curated tools, datasets, and reading lists to support continued exploration and reproducible workflows.
  
- # LICENSE
+ # License
 
 MIT License — feel free to use, learn, and adapt with attribution. 
 
