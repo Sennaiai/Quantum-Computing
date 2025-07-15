@@ -78,9 +78,10 @@ MIT License — feel free to use, learn, and adapt with attribution.
 - Sharing progress through **GitHub**, **LinkedIn**, and **personal blog platforms**  
 
 
-## 🔗 Connect With Me
-- 🌐 [LinkedIn](https://www.linkedin.com/in/senay-kahsay) 
-- ✍️ [Website & Portfolio](https://sennai_web_URL.com)
-- 📬 [Medium/Substack](https://YOUR_MEDIUM_OR_SUBSTACK.com) 
+## Connect With Me
+- [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
+- [Website & Portfolio](https://sennai_web_URL.com)
+- [Medium](https://medium.com/@kahssai.sen)
+- [Substack](https://sennai.substack.com)
 
 > “We are the music while the music lasts.” — *T. S. Eliot*
