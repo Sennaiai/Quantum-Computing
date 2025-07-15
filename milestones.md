@@ -24,7 +24,7 @@ A living timeline of my quantum computing + biology learning journey, with key a
     - 🔄 Created projects for Qiskit notebook demos, applied projects and more
     - 🧪 Planned projects: Quantum simulation of small molecules, protein classification and simplified mRNA/protein folding and            simplified conceptual modeling of biological Redox reaction 
 
-## 🚀 What’s Coming Next
+## What’s Coming Next
 
 - 📘 Publish first article: *Why I’m Pursuing Quantum Computing in Biology*
 - 📂 Launch blog (Medium/Substack)
