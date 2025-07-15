@@ -1,1 +1,24 @@
-notebook/potential-ideas.md
+##Projects
+
+A collection of concept-driven and exploratory projects at the intersection of quantum computing and biology.
+
+### 🔹 Quantum Simulation of Small Molecules
+Modeling simple molecular structures using Variational Quantum Eigensolver (VQE) or similar methods.  
+[View project →](./Projects/quantum-molecule-simulation)
+
+---
+
+### 🔹 Protein Classification with Quantum ML
+Building a prototype classifier using quantum kernels or hybrid QML models to distinguish protein families.  
+[View project →](./Projects/qml-protein-classifier)
+
+---
+
+### 🔹 Simplified mRNA / Protein Folding
+Early exploration of folding mechanisms using basic energy landscape models and quantum-inspired logic.  
+[View project →](./Projects/folding-simulation)
+
+---
+
+### 🔹 Conceptual Modeling of Biological Redox Reactions
+[View project →](./Projects/cytochrome-c-redox)
