@@ -10,40 +10,33 @@ This repository serves as both a **learning journal** and a **project hub**, whe
 ## Learning-Journey
 A reflective narrative capturing the personal and academic origins of this journey.
 ## milestones.md
-A living timeline of progress:
+A timeline of progress:
 Key learning milestones
-Completed certifications
+Completed certifications / projects
 Upcoming and in-progress projects
 Community traction (clones, views)
 ## Key-concepts_theory_code/
 Core learning notes and code organized by theme:
 - Quantum computing principles (qubits, gates, Qiskit)
 -  Quantum ML demos and theory
-## Projects/ (To Be Populated)
+## Projects/
 Hands-on applications and simulation projects:
-- Single molecule modeling (planned)
+- Single molecule modeling
 - Protein classification
 - Simplified mRNA/protein folding
 - Simplified conceptual simulation of Biological Redox reaction 
 ## QBio_applications/
-Exploring existing & emerging use-cases of quantum computing in biology:
+Exploring existing & emerging use-cases of quantum computing in biology
 ## QBio_G-programms_conferences/
-Curated global programs, academic labs, and relevant conferences focused on:
-- Quantum computing
-- Quantum biology
-- Quantum in life Sciences
-- Quantum education & outreach
+Curated global programs, academic labs, and relevant conferences focused on
 ## QBio_companies/
-Profiles of leading and emerging companies working at the intersection of:
-- Quantum hardware and algorithms
-- Drug discovery and computational biology
-- AI-enhanced quantum applications
+Profiles of leading and emerging companies
 ## Resources/
-Research papers, curated tools, datasets, and reading lists to support continued exploration and reproducible workflows.
+Research papers,tools, datasets, and reading lists.
 ## License
 MIT License — feel free to use, learn, and adapt with attribution. 
 ## Current Focus Areas
-- Mastering quantum computing — hardware, algorithms, and platforms like **Qiskit** and **PennyLane**  
+- Mastering quantum computing  
 - Integrating machine learning frameworks with quantum backends  
 - Exploring the philosophical implications of quantum information in relation to **biological systems**, **consciousness**, and **real-world applications**  
 - Earning a **project management certification**  
