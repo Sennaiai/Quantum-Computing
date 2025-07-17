@@ -10,11 +10,11 @@ This repository serves as both a **learning journal** and a **project hub**, whe
 ## Learning-Journey
 A reflective narrative capturing the personal and academic origins of this journey.
 ## milestones.md
-A timeline of progress:
-Key learning milestones
-Completed certifications / projects
-Upcoming and in-progress projects
-Community traction (clones, views)
+A timeline of progress
+  - Key learning milestones
+  - Completed certifications / projects
+  - Upcoming and in-progress projects
+  - Community traction (clones, views)
 ## Key-concepts_theory_code/
 Core learning notes and code organized by theme:
 - Quantum computing principles (qubits, gates, Qiskit)
