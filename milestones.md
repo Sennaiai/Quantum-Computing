@@ -4,7 +4,7 @@
 A living timeline of my quantum computing + biology learning journey, with key achievements and upcoming goals.  
 ⭐️ *If you find this repository helpful, consider starring it to show support and follow along!*
 ## Community Traction
-- **July 2025** — Reached **98 views**, **72 clones**, and **48 unique cloners** on GitHub  
+- **July 2025** — Reached **200 views**, **131 clones**, and **79 unique cloners** on GitHub  
   > Huge thanks to everyone exploring this repo! Your engagement means a lot.
 ## Learning Milestones
 - ✅ Completed: **Intro to Quantum Computing** (Coursera, 3 modules)
