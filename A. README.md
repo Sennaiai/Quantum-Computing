@@ -5,46 +5,10 @@ Welcome!
 This repository chronicles my journey into **Quantum Computing**, where I explore its intersections with **Machine Learning/AI**, **Cellular & Molecular Biology**, and **Philosophy**.
 ## About Me
 I'm currently pursuing a **Master’s in Quantum Computing** at the **University of Calgary**, with an academic background in **Molecular & Cellular Biology** and **Philosophy**. My focus is on applying quantum technologies to real-world challenges in **molecular biology**, **systems biology**, and **medicine**, guided by philosophical insight.
-This repository serves as both a **learning journal** and a **project hub**, where I share tutorials, medium-scale projects, and interdisciplinary reflections as I build a career at the crossroads of **science**, **systems**, and **emerging technologies**.
-### Repository Structure
-## Learning-Journey
-A reflective narrative capturing the personal and academic origins of this journey.
-## milestones.md
-A timeline of progress
-  - Key learning milestones
-  - Completed certifications / projects
-  - Upcoming and in-progress projects
-  - Community traction (clones, views)
-## Key-concepts_theory_code/
-Core learning notes and code organized by theme:
-- Quantum computing principles (qubits, gates, Qiskit)
--  Quantum ML demos and theory
-## Projects/
-Hands-on applications and simulation projects:
-- Single molecule modeling
-- Protein classification
-- Simplified mRNA/protein folding
-- Simplified conceptual simulation of Biological Redox reaction 
-## QBio_applications/
-Exploring existing & emerging use-cases of quantum computing in biology
-## QBio_G-programms_conferences/
-Curated global programs, academic labs, and relevant conferences focused on
-## QBio_companies/
-Profiles of leading and emerging companies
-## Resources/
-Research papers,tools, datasets, and reading lists.
-## License
-MIT License — feel free to use, learn, and adapt with attribution. 
-## Current Focus Areas
-- Mastering quantum computing  
-- Integrating machine learning frameworks with quantum backends  
-- Exploring the philosophical implications of quantum information in relation to **biological systems**, **consciousness**, and **real-world applications**  
-- Earning a **project management certification**  
-- Sharing progress through **GitHub**, **LinkedIn**, and **personal blog platforms**  
+This repository serves as both a **learning journal** and a **project hub**, where I share concept maps, medium-scale projects, and interdisciplinary reflections as I build my career in the intersecrtion of life scinces and emerging technologies in quantum computing.
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
 - [Website & Portfolio](https://sennai_web_URL.com)
 - [Medium](https://medium.com/@kahssai.sen)
-- [Substack](https://sennai.substack.com)
 
 > “We are the music while the music lasts.” — *T. S. Eliot*
