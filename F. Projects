@@ -1,5 +1,16 @@
 ##Projects
-A collection of concept-driven and exploratory projects at the intersection of quantum computing and biology.
+A collection of concept-driven and exploratory projects.
+
+1.
+### Modular arithmetic
+- Implementation of "Efficient Quantum Modular Arithmetics for the ISQ Era" in Qiskit
+ (Atchade-Adelomou 2023 et al.)
+The project, focuses on implementation of the efficinet Qauntum Modular Arithmetics methods demonstarted in Pennylane (by the authors) in Qiskit.
+
+2.
+### H(2) molecule ground energy simulation
+
+
 
 ### Quantum Simulation of Small Molecules
 Modeling simple [cellular] molecule structures using (VQE).
