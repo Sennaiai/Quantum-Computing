@@ -8,7 +8,7 @@ I'm currently pursuing a **Master’s in Quantum Computing** at the **University
 This repository serves as both a **learning journal** and a **project hub**, where I share concept maps, medium-scale projects, and interdisciplinary reflections as I build my career in the intersecrtion of life scinces and emerging technologies in quantum computing.
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
-- [Website & Portfolio](https://sennai_web_URL.com)
+- [Website](https://sennai_web_URL.com)
 - [Medium](https://medium.com/@kahssai.sen)
 
 > “We are the music while the music lasts.” — *T. S. Eliot*
