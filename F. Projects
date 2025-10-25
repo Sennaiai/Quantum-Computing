@@ -9,19 +9,18 @@ A collection of concept-driven and exploratory projects.
 
 3.
 ### Quantum Simulation of Small Molecules
-Modeling simple [cellular] molecule structures using (VQE).
-[View project →](./quantum-molecule-simulation)
+Modeling simple [cellular] molecule structures using (VQE)]
 
 4.
 ### Protein Classification with Quantum ML
 Building protein-family protype classifier using kernels and Q-ML models  
-[View project →](./protein-classifier)
+
 
 5.
 ### Simplified mRNA / Protein Folding
 Folding mechanisms
-[View project →](./folding-simulation)
+
 
 6.
 ### Conceptual Modeling of Redox Reactions
-[View project →](/model-redox)
+
