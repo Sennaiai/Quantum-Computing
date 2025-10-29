@@ -2,7 +2,7 @@
 
 # 1. Linear lagebra 
           # a. operations - 
-                    - inner product - multiplication of 2 vectors reulting in a scalar. Measures the overlap between the                                      vectors.
+                    - inner product - multiplication of 2 vectors reulting in a scalar. Measures the overlap between the vectors.
                     - outer product - combines two vectors forming a matrix. 
                     - Vector space - a set of vectors.
                     - Tenrsor product - a process of jining vecotr spaces into a larger joint space.
