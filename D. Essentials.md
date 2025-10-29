@@ -1,18 +1,31 @@
-#1 Qaunatum Computing Essentials
-          i. Linear lagebra operations - inner product, tenrsor product, outer product
+## Qaunatum Computing Essentials
+
+# 1. Linear lagebra 
+          # a. operations - 
+                    - inner product - multiplication of 2 vectors reulting in a scalar. Measures the overlap between the                                      vectors.
+                    - outer product - combines two vectors forming a matrix. 
+                    - Vector space - a set of vectors.
+                    - Tenrsor product - a process of jining vecotr spaces into a larger joint space.
+                                      - represent composite quantum states, xpanding the hilbert space. 
+          
  
-    A - Quantum mechanics
-a. Wave function interpretation
-b. Dirac notation
-c. Probablity amplitudes
-d. Measurement 
-e. Vector space
-f. Bloch sphere
-g. Operators 
-e. Expectation value 
-f. Basis States
-g. Hermitian and unitary operators
-h. commutators
+# 2. Quantum mechanics
+          a. Wave function interpretation - a mathematical decription of the quantum state of a particle, describing the                                             probability ampltudes of all possible states.
+          b. Qauntum state - the complete description of a sysytem's physical (observableor measureable) conditions.
+          c. Dirac notation - mathematical notation of a quantum state. 
+          d. Probablity amplitudes - a complex number whose magnitude squared gives the probability of a specific                                            quantum outcome. 
+          e. Hilbert space - a complete vector space used to describe all possible quantum states.
+          f. Bloch sphere - geometric represenation of a quanutm state
+          g. Basis States - a set of fundamental qauntum states spanning a Hilbert space.
+                          - Any stae can be expressed as a linear combination of the basis states.
+          h. Measurement - an interactive process with a quantum state to observe its behaviour and causing it to                                   colapse into one definite outcome of all possible quantum states reprsented by its wave                                  function.
+          i. Expectation value - the avergae utcome of measuring an observable quantum state
+          j. Operators - matehamtical objects that act on qauntum states producing new measurable quantum states.
+                       - represent observable quantum states, evolutions f qauntum states and transformations of quantum                          states.
+          k. Hermitian operators - represent observable quantum states
+          l. Unitary operators - represent reversible quanutm evolution of a given quantum state
+          m. Uncertainity principle - a principle defining the limitation on certain observables that cannot be                                                precisely determined simultaneously. 
+          n. Commutators - mathematical operation measuring how two operators fail to be measured simultaneously.
 i.  Schroedinger equation
   1. Stationary sttaes 
   2. energy levels 
@@ -37,7 +50,7 @@ d. Unitarity operators
 
     D - Circuits 
 a. Teleportation  
-b.  Deustch
+b. Deustch
 c. Deustch-Josza 
 d. QFT
 e. Phase Estimation
