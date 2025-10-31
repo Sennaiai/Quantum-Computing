@@ -81,12 +81,14 @@
  **Gate** - basic operation in quantum computing that chnages the stae of a single or multiple qubits.
 
  **Phase** - change of amplitude or orientation of the quantum state.
-     **Changes the way qubits interact or interefere with one another**
+         
+         **Changes the way qubits interact or interefere with one another**
 
  **Rotation** - change of the actual position of quanutm state of a qubit
-     **Changes the weight or probability of a given state**
+         **Changes the weight or probability of a given state**
  
 **Single gate** - acts on single qubit at a time 
+
     **Pauli X** - Bit flip (like NOT gate)
     **Pauli Z** - Phase flip 
     **Pauli Y** - Bit and Phase flip 
@@ -94,6 +96,7 @@
     **Hadamard** - Creates superposition 
 
 **Multi-qubit gates** act on multiple qubits at a time 
+   
     **CX** - Controlled X (Conditional NOT)
     **CZ** - Conditional Z (phase flip)
     **CCX (Toffolli)** - 2x Conditional NOT (Similar to CCNOT in classical) 
