@@ -82,25 +82,25 @@
 
  **Phase** - change of amplitude or orientation of the quantum state.
          
-         **Changes the way qubits interact or interefere with one another**
+         Changes the way qubits interact or interefere with one another
 
  **Rotation** - change of the actual position of quanutm state of a qubit
          **Changes the weight or probability of a given state**
  
 **Single gate** - acts on single qubit at a time 
 
-    **Pauli X** - Bit flip (like NOT gate)
-    **Pauli Z** - Phase flip 
-    **Pauli Y** - Bit and Phase flip 
-    **R(x/y/z)** - Rotation around x/y/z
-    **Hadamard** - Creates superposition 
+    Pauli X - Bit flip (like NOT gate)
+    Pauli Z - Phase flip 
+    Pauli Y - Bit and Phase flip 
+    R(x/y/z) - Rotation around x/y/z
+    Hadamard - Creates superposition 
 
 **Multi-qubit gates** act on multiple qubits at a time 
    
-    **CX** - Controlled X (Conditional NOT)
-    **CZ** - Conditional Z (phase flip)
-    **CCX (Toffolli)** - 2x Conditional NOT (Similar to CCNOT in classical) 
-    **SWAP** - exchanges the qubit states of 2 qubits at a time
+    CX - Controlled X (Conditional NOT)
+    CZ - Conditional Z (phase flip)
+    CCX (Toffolli) - 2x Conditional NOT (Similar to CCNOT in classical) 
+    SWAP - exchanges the qubit states of 2 qubits at a time
 
 **Combination** - more gates can be created by combining the above single and/or multi qubit gates.
 ---
@@ -110,17 +110,24 @@
 **No-Cloning thereom** - A qauntum state can not be completle copied or cloned, due to the linearity of the state.
         - cloning is non-lnear whereas Quanutm is linear.
 
-**Teleportation** - the trasnfer of qauntum state from one entanged pair to its other entangled pair instantaneously regardelss to distance. But requires exchage of classical infomration, thus no information echange faster then the speed of light keeping Einstein happy! 
+**Teleportation** - the trasnfer of qauntum state from one entanged pair to its other entangled pair instantaneously regardelss to distance. But requires exchage of classical infomration, thus no information echange faster then the speed of light, keeps Einstein happy! 
 
 **Deustch** - a quantum algorithm that demonstrates quantum parallelism, capable of determining whether a given function is constant or balanced in a single evaluation.
 
-**Deustch-Josza** - 
+**Deustch-Josza** - Generalization of Deutsch, determines if a given function of multiple input bits is constant or balanced in a single shot.
 
-**QFT** -
+**QFT** - quantum analogue of classical discrete fourier transform, and is used to transform quantum states in computational basis into frequency basis.
+    
+    Frequency → encoded in phase → affects amplitude → determines measurement probability.
 
-**Phase Estimation** -
+**Phase Estimation** - an algorithm that estimates a phase associated with a given quantum state.
 
-**Parallelism** - 
+      Phase is the eigen-value associated with the eigenstate of a given operator.
+      Core algorithm enabling multiple applications (Shors, simulation, Chemistry) 
+
+**Quantum Parallelism** - ability of a quantum computing to evaluate multiple input of a given function simultaneously through superposition.
+
+    All **f(x)* values are evaluated on the Amplitudes of the quantum state all at once. 
 ---
 
 ### 6. Schroedinger equation
