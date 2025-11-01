@@ -170,9 +170,13 @@ Hailtonian - is the energy operator of a quanutm systems representing the total 
 
 **Time evolution** - describes how a quantum state changes with time according to the Schrodinger equation. Is determined by the system’s Hamiltonian.
 
-**Ising model** - statistical model used for optimaizaion problems 
+**Ising model** - statistical model used for optimaizaion problems. 
 
-**Trotter's rule** - 
+    Is a mathematical model used to desribe interacting spin systems 
+
+**Trotter's rule** - a way of approximating the time evolution of a complex hamiltonian.
+
+    Breaks the complex operation into simpler, sequential opertions that can be implemente ona quantum computer.
 
 
 
