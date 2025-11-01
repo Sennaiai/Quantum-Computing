@@ -132,26 +132,48 @@
 
 ### 6. Schroedinger equation
 
-**Stationary states** - 
+**Stationary states** - Are time independent in measurement outcomes. Although their phase evolves, their probabilty distrubitions do not chnage. 
 
-**Energy levels** -
+    Eigenstates of the Hamiltonian , with eigenvalue E equivalent to the Energy of the quantum system.
 
-**Infinite square well potential** -
+Hailtonian - is the energy operator of a quanutm systems representing the total energy of the system.
 
-**Energy** -
+**Energy** - is the quantum observable corresponding to the Hamiltonian, and its eigenvalues represent the allowed energy levels of a system.
 
-**PE and KE** - 
+**Energy levels** - the discrete values of energy that a quantum state can possess when measured. 
+    
+    The discrete values of energy are the eigenvalues of the Hamiltonian operator eigenstate, and each corresponds to the eigenstate of the system. Combination of all possible eigenstates of the system forms the complete set of basis states spanning the system's Hilbert space, whereby any possible state of the system can be represented as a superposition of these eigenstates.
 
-**Heisenberg picture** -
+**PE** - reresents the influence of internal or external forces acting on the systems (or particle) 
+
+**KE** - Kinetic energy representing the energy of the system (or particle) related to motion, and depends on the momentum operator. 
+
+      Hamiltonian combines both KE and PE to give the total energy of the system. 
+
+**Infinite square well potential** - a model where an elctron s traped in a well. 
+
+    Its potential energy is zero inside the box and infinite outside
+    Its total energy is equal to its kinetic energy, and is qauntized due tot he boundary confinement. 
+    Demonstrates the effect of boundry conditions in quantum mechanics on quantization of energy.
+
+**Heisenberg picture** - formalism of quantum mchanics equivalent to Schroedinger's 
+
+      Operators evolve in time while states remain static, oposite to Schrodinger picture, where states evolve and operators stay fixed.
+
+**Uncertainty principle** - Quantum structure and nature limits measurement precision. 
+
+      The more precisely you know a particle’s position, the less precisely you can know its momentum — and vice versa
+      As such, certain pairs of physical properties can not be measured exactly and simultaneously. 
 ---
 
-### 7. Time evolution
+### 7. Evolution 
 
-**Quantum Simulation** - 
+**Time evolution** - describes how a quantum state changes with time according to the Schrodinger equation. Is determined by the system’s Hamiltonian.
+
+**Ising model** - statistical model used for optimaizaion problems 
 
 **Trotter's rule** - 
 
-**Ising model** -
 
 
 
