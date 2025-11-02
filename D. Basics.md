@@ -1,5 +1,9 @@
 ## Quantum Computing Essentials
 
+---
+### Overview
+This document summarizes the core foundational concepts in quantum computing and quantum mechanics, organized for quick reference and conceptual clarity. It serves as a concise conceptual handbook, linking the physics and mathematics behind quantum computation.
+
 ### 1. Linear Algebra
 
 
