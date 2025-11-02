@@ -9,7 +9,7 @@
 
 **Orthonormal** - a set of normalized and orthogonal vectors.
   
-**Tensor product** – a process of joining vector spaces into a larger joint space; represents composite quantum states, expanding the Hilbert space.
+**Tensor product** – a process of joining vector spaces into a larger joint space; represents composite quantum states,                      expanding the Hilbert space.
   
 **Eigen vector** - non-zero vector, whose direction remains unchanged under a given linear tasnformation
   
