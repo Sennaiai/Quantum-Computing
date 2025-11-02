@@ -66,6 +66,7 @@
                 - definite value is the eigen value and the obsrvable is the operator.
                 
 **Observable** - a measurable physical quantity like energy, momentum, position ...etc
+
 ---
 
 ### 3. Density Matrix
@@ -112,6 +113,7 @@
     SWAP - exchanges the qubit states of 2 qubits at a time
 
 **Combination** - more gates can be created by combining the above single and/or multi qubit gates.
+
 ---
 
 ### 5. Circuits
@@ -142,6 +144,7 @@
 **Quantum Parallelism** - ability of quantum computer to evaluate multiple inputs of a given function simultaneously through superposition.
 
     All **f(x)* values are evaluated on the Amplitudes of the quantum state all at once. 
+    
 ---
 
 ### 6. Schroedinger equation
@@ -179,6 +182,7 @@
 
       The more precisely you know a particle’s position, the less precisely you can know its momentum — and vice versa
       As such, certain pairs of physical properties can not be measured exactly and simultaneously. 
+      
 ---
 
 ### 7. Evolution 
