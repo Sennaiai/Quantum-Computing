@@ -1,6 +1,8 @@
 ## Quantum Computing Essentials
 
-### 1. Linear Algebra  
+### 1. Linear Algebra
+
+
 **Inner product** – multiplication of two vectors resulting in a scalar; measures the overlap between the vectors.
   
 **Outer product** – combines two vectors to form a matrix.
@@ -17,7 +19,9 @@
   
 ---
 
-### 2. Quantum Mechanics  
+### 2. Quantum Mechanics
+
+
 **Wave function interpretation** – a mathematical description of the quantum state of a particle, expressing the probability amplitudes of all possible states.  
 
 **Quantum state** – the complete description of a system’s physical (observable or measurable) conditions.  
@@ -66,6 +70,7 @@
 
 ### 3. Density Matrix
 
+
 **Matrix represenation** - a way of mathematical expression of quantum states and operators as matrices and vectors
 
 **Density matrix** - mathematical representation of a quantum system's state. Useful for describing mixed states.
@@ -79,6 +84,7 @@
 ---
 
 ### 4. Gates
+
 
  **Gate** - basic operation in quantum computing that chnages the stae of a single or multiple qubits.
 
@@ -110,6 +116,7 @@
 
 ### 5. Circuits
 
+
 **No-Cloning thereom** - A qauntum state can not be completle copied or cloned, due to the linearity of the state.
        
          Cloning is non-lnear whereas Quanutm is linear.
@@ -138,6 +145,7 @@
 ---
 
 ### 6. Schroedinger equation
+
 
 **Stationary states** - Are time independent in measurement outcomes. Although their phase evolves, their probabilty distrubitions do not chnage. 
 
@@ -174,6 +182,7 @@
 ---
 
 ### 7. Evolution 
+
 
 **Time evolution** - describes how a quantum state changes with time according to the Schrodinger equation. Is determined by the system’s Hamiltonian.
 
