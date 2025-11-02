@@ -1,17 +1,19 @@
 ## Quantum Computing Essentials
 
 ### 1. Linear Algebra  
-- **Inner product** – multiplication of two vectors resulting in a scalar; measures the overlap between the vectors.
+**Inner product** – multiplication of two vectors resulting in a scalar; measures the overlap between the vectors.
   
-- **Outer product** – combines two vectors to form a matrix.
+**Outer product** – combines two vectors to form a matrix.
   
-- **Vector space** – a set of vectors.
+**Vector space** – a set of vectors.
+
+**Orthonormal** - a set of normalized and orthogonal vectors.
   
-- **Tensor product** – a process of joining vector spaces into a larger joint space; represents composite quantum states, expanding the Hilbert space.
+**Tensor product** – a process of joining vector spaces into a larger joint space; represents composite quantum states, expanding the Hilbert space.
   
-- **Eigen vector** - non-zero vector, whose diection remains unchanged under a given linear tasnformation
+**Eigen vector** - non-zero vector, whose direction remains unchanged under a given linear tasnformation
   
-- **Eigen value** - a scalar factor that represents a linear transformation of an eigen-vector.
+**Eigen value** - a scalar factor that represents a linear transformation of an eigen-vector.
   
 ---
 
@@ -30,6 +32,8 @@
 
 **Basis states** – a set of fundamental quantum states spanning a Hilbert space; any state can be expressed as a linear combination of the basis states.  
 
+    Orthonormal reference states. Eg |1> and |0>
+    
 **Measurement** – an interactive process with a quantum system that causes it to collapse into one definite outcome among all possible states represented by its wave function. 
 
 **Expectation value** – the average outcome of measuring an observable on a quantum state.  
@@ -46,7 +50,7 @@
 
 **Superpositions** - a linear composition of linear basis states representing a system existing in multiple possible states simultaneously until measuremnt collapses it into one definite state.
 
-**Enatngleemtn** - a unique quantum state shared between two or more states that exist in sync with one another regardless of distancea. 
+**Entanglement** - a unique quantum state shared between two or more states that exist in sync with one another regardless of distancea. 
 
 **Bell-state** - a maximally entangled quantum state of two qubits, where the systems remain perfectly correlated.
 
@@ -54,7 +58,7 @@
 
 **Initialization** - process of preparing a qubit in a known starting state.
 
-**Eigen state** - qauntum state with a definite value for a given observable.
+**Eigen-state** - qauntum state with a definite value for a given observable.
                 - definite value is the eigen value and the obsrvable is the operator.
                 
 **Observable** - a measurable physical quantity like energy, momentum, position ...etc
@@ -72,8 +76,6 @@
 
 **Ensemble** - the physical or conceptual collection of quantum states, statisticaly represented by mixed state.
 
-
-**Outer product (description)**
 ---
 
 ### 4. Gates
@@ -85,6 +87,7 @@
          Changes the way qubits interact or interefere with one another
 
  **Rotation** - change of the actual position of quanutm state of a qubit
+         
          **Changes the weight or probability of a given state**
  
 **Single gate** - acts on single qubit at a time 
@@ -108,9 +111,13 @@
 ### 5. Circuits
 
 **No-Cloning thereom** - A qauntum state can not be completle copied or cloned, due to the linearity of the state.
-        - cloning is non-lnear whereas Quanutm is linear.
+       
+         Cloning is non-lnear whereas Quanutm is linear.
 
-**Teleportation** - the trasnfer of qauntum state from one entanged pair to its other entangled pair instantaneously regardelss to distance. But requires exchage of classical infomration, thus no information echange faster then the speed of light, keeps Einstein happy! 
+**Teleportation** - the trasnfer of qauntum state from one entangled pair to its other entangled pair instantaneously regardelss to distance. 
+    
+    Requires exchage of classical infomration, as infomration can not travel faster than light.
+    Happy Einstein! 
 
 **Deustch** - a quantum algorithm that demonstrates quantum parallelism, capable of determining whether a given function is constant or balanced in a single evaluation.
 
@@ -125,7 +132,7 @@
       Phase is the eigen-value associated with the eigenstate of a given operator.
       Core algorithm enabling multiple applications (Shors, simulation, Chemistry) 
 
-**Quantum Parallelism** - ability of a quantum computing to evaluate multiple input of a given function simultaneously through superposition.
+**Quantum Parallelism** - ability of quantum computer to evaluate multiple inputs of a given function simultaneously through superposition.
 
     All **f(x)* values are evaluated on the Amplitudes of the quantum state all at once. 
 ---
@@ -136,7 +143,7 @@
 
     Eigenstates of the Hamiltonian , with eigenvalue E equivalent to the Energy of the quantum system.
 
-Hailtonian - is the energy operator of a quanutm systems representing the total energy of the system.
+**Hamiltonian** - is the energy operator of a quanutm systems representing the total energy of the system.
 
 **Energy** - is the quantum observable corresponding to the Hamiltonian, and its eigenvalues represent the allowed energy levels of a system.
 
@@ -144,21 +151,21 @@ Hailtonian - is the energy operator of a quanutm systems representing the total 
     
     The discrete values of energy are the eigenvalues of the Hamiltonian operator eigenstate, and each corresponds to the eigenstate of the system. Combination of all possible eigenstates of the system forms the complete set of basis states spanning the system's Hilbert space, whereby any possible state of the system can be represented as a superposition of these eigenstates.
 
-**PE** - reresents the influence of internal or external forces acting on the systems (or particle) 
+**PE** - represents the influence of internal or external forces acting on a system (or particle) 
 
-**KE** - Kinetic energy representing the energy of the system (or particle) related to motion, and depends on the momentum operator. 
+**KE** - represents the energy of a system (or particle) related to motion, and depends on the momentum operator. 
 
       Hamiltonian combines both KE and PE to give the total energy of the system. 
 
-**Infinite square well potential** - a model where an elctron s traped in a well. 
+**Infinite square well potential** - a model where an elctron is trapped in a well. 
 
     Its potential energy is zero inside the box and infinite outside
-    Its total energy is equal to its kinetic energy, and is qauntized due tot he boundary confinement. 
+    Its total energy is equal to its kinetic energy, and is qauntized due to the boundary confinement. 
     Demonstrates the effect of boundry conditions in quantum mechanics on quantization of energy.
 
 **Heisenberg picture** - formalism of quantum mchanics equivalent to Schroedinger's 
 
-      Operators evolve in time while states remain static, oposite to Schrodinger picture, where states evolve and operators stay fixed.
+      Operators evolve in time while states remain static, opposite to Schrodinger picture, where states evolve and operators stay fixed.
 
 **Uncertainty principle** - Quantum structure and nature limits measurement precision. 
 
@@ -176,7 +183,7 @@ Hailtonian - is the energy operator of a quanutm systems representing the total 
 
 **Trotter's rule** - a way of approximating the time evolution of a complex hamiltonian.
 
-    Breaks the complex operation into simpler, sequential opertions that can be implemente ona quantum computer.
+    Breaks the complex operation into simpler, sequential opertions that can be implemented on a quantum computer.
 
 
 
