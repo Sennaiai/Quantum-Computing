@@ -7,14 +7,14 @@
 ### 2. Grover's search    
     a. N queens problem in N by N chess board
 
-### 2. Quantum Chemistry 
+### 3. Quantum Chemistry 
     a. VQE for H(2) ground energy
 
-### 3. Quantum simulation 
+### 4. Quantum simulation 
     a. Small and simple cellualr molecules
     b. Proof of concept for modeling Redox reactions
 
-### 4. Quantum machine learning 
+### 5. Quantum machine learning 
     a. Electric grid load prediction [Switzerland]
     b. Protein Classification
     c. Protein folding mechaism 
