@@ -14,7 +14,7 @@
     - imaging 
     - diagnostics 
     - research 
-## Crystaization 
+## Crystalization 
 ## Algorithm enhancement
 
 ***for the right and relevant problems***
