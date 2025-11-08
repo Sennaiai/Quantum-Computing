@@ -1,4 +1,4 @@
-##Projects
+##
 A collection of concept-driven and exploratory projects.
 
 1.
