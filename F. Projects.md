@@ -1,5 +1,5 @@
 ##
-A collection of concept-driven and exploratory projects.
+A collection of concept-driven and exploratory projects applying differetn quantum algorithms.
 
 1.
 ### Modular arithmetic
