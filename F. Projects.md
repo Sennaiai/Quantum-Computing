@@ -1,26 +1,21 @@
-##
-A collection of concept-driven and exploratory projects applying differetn quantum algorithms.
+### A collection of concept-driven and exploratory projects applying quantum algorithms.
 
-1.
-### Modular arithmetic
+### 1. Arithemtic and Factorization 
+    a. Modular arithmetic
+    b. Shor's factorization 
 
-2.
-### H(2) molecule ground energy simulation
+### 2. Grover's search    
+    a. N queens problem in N by N chess board
 
-3.
-### Quantum Simulation of Small Molecules
-Modeling simple [cellular] molecule structures using (VQE)]
+### 2. Quantum Chemistry 
+    a. VQE for H(2) ground energy
 
-4.
-### Protein Classification with Quantum ML
-Building protein-family protype classifier using kernels and Q-ML models  
+### 3. Quantum simulation 
+    a. Small and simple cellualr molecules
+    b. Proof of concept for modeling Redox reactions
 
-
-5.
-### Simplified mRNA / Protein Folding
-Folding mechanisms
-
-
-6.
-### Conceptual Modeling of Redox Reactions
-
+### 4. Quantum machine learning 
+    a. Electric grid load prediction [Switzerland]
+    b. Protein Classification
+    c. Protein folding mechaism 
+    d. mRNA folding mechanism 
