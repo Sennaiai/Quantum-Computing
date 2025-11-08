@@ -6,7 +6,7 @@
 * Berkley - Lanzara group
 * Japan - Institute for Quantum Life Sciences 
 * UBC
-* Serbrooke
+* Sherbrooke
 * Waterloo
 * UofT
 * UOttawa
