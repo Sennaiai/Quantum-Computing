@@ -1,20 +1,32 @@
 Qiskit Composer
 Ansatz 
 ---
-Languages 
+## Languages 
+
 Qiskit
+
 PennyLane
+
 ClassiQ
 ---
-Algorithms 
+
+## Algorithms 
+
 QFT
+
 QPE
+
 VQA
-  QAOA
-  VQE
-  VQC
+  
+    QAOA
+    VQE
+    VQC
+
 Simulation 
+
 Non-QFT based arithmetic 
+
   a. Modular arithemtic 
 ---
+
 Encoding 
