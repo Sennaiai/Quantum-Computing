@@ -15,7 +15,7 @@
     b. Proof of concept for modeling Redox reactions
 
 ### 5. Quantum machine learning 
-    a. Electric grid load prediction [Switzerland]
+    a. Electric grid load prediction [UK]
     b. Protein Classification
     c. Protein folding mechaism 
     d. mRNA folding mechanism 
