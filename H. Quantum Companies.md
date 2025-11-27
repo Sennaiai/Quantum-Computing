@@ -1,4 +1,3 @@
-# Company Watchlist
 
 ## Algorithmiq , (partnered with IBM)
 Q-algorithms for life sciences
