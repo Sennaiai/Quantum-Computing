@@ -1,5 +1,7 @@
 Qiskit Composer
+
 Ansatz 
+
 ---
 ## Languages 
 
@@ -8,6 +10,7 @@ Qiskit
 PennyLane
 
 ClassiQ
+
 ---
 
 ## Algorithms 
@@ -24,9 +27,20 @@ VQA
 
 Simulation 
 
-Non-QFT based arithmetic 
+HHL
 
-  a. Modular arithemtic 
+Grover's search
+
+Shor's
+
+QML
+
 ---
 
-Encoding 
+## Encoding 
+
+Phase
+
+Amplitude 
+
+CV 
