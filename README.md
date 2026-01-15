@@ -1,23 +1,81 @@
-# Quantum Computing  
-by **Sennai Kahssai**
+# Quantum Computing Portfolio
 
-Welcome! 
-This repository chronicles my journey into **Quantum Computing**, where I explore its intersections with **Machine Learning/AI**, **Cellular & Molecular Biology**, and **Philosophy**.
-## About Me
-I'm currently pursuing a **Master’s in Quantum Computing** at the **University of Calgary**, with an academic background in **Molecular & Cellular Biology** and **Philosophy**. My focus is on applying quantum technologies to real-world challenges in **molecular biology**, **systems biology**, and **medicine**, guided by philosophical insight.
-This repository serves as both a **learning journal** and a **project hub**, where I share concept maps, medium-scale projects, and interdisciplinary reflections as I build my career in the intersecrtion of life scinces and emerging technologies in quantum computing.
+**Sennai Kahssai**  
+*Quantum Computing · Molecular & Cellular Biology · Computational Drug Discovery*
+
+---
+
+## Overview
+
+This repository contains my technical portfolio in **quantum computing for the life sciences**, focused on **computational drug discovery and molecular-scale modeling**.
+
+Quantum technology is a broad field. My work is centered on three pillars that are directly relevant to biological and chemical systems:
+
+- **Quantum Machine Learning (QML)**
+- **Quantum Optimization**
+- **Quantum Molecular Simulation**
+
+Together, these form a unified framework for learning, simulating, and optimizing molecular systems — from binding energies to reaction pathways and biological function.
+
+---
+
+## Background and Focus
+
+My training spans **Molecular & Cellular Biology, Physics, Chemistry, and Computation**.
+
+I bring wet-lab experience in molecular biology, enzymology, genetics, and biochemistry together with classical and quantum computing, numerical modeling, and machine learning. I am currently completing a **Master’s degree in Quantum Computing**, alongside advanced training in **ML/AI**, with the objective of applying quantum-enabled methods to biological and chemical problems.
+
+The guiding aim of this work is simple:
+
+> **Use quantum and hybrid quantum–classical algorithms to model, simulate, and optimize molecular systems relevant to drug discovery and biological function.**
+
+---
+
+## Repository Structure
+
+This repository is organized the way a computational molecular lab works.
+
+### `notebooks/`
+Executable Jupyter notebooks implementing:
+- Quantum machine-learning models  
+- Quantum optimization pipelines  
+- Molecular Hamiltonians and variational solvers  
+- Hybrid quantum–classical workflows  
+
+Each notebook is self-documented via Markdown cells at the top of the file.
+
+---
+
+### `theory/`
+Mathematical and physical foundations:
+- **`basics.md`** — qubits, states, operators, measurement  
+- **`algorithms.md`** — VQE, QAOA, QRC, and related methods  
+- **`models.md`** — Hamiltonians, encodings, ansätze, cost functions  
+
+---
+
+### `resources/`
+Curated references for working in quantum life-science modeling:
+- **`conferences.md`** — major research and industry venues  
+- **`reading.md`** — key books, journals, and papers  
+- **`tools.md`** — quantum and molecular modeling frameworks  
+
+---
+
+## Scientific Orientation
+
+The work here sits at the intersection of:
+
+- Quantum computation  
+- Molecular physics and chemistry  
+- Machine learning  
+- Biological systems  
+
+The three pillars — **QML, Optimization, and Molecular Simulation** — are treated as components of a single computational stack for understanding and designing molecular systems in biology and medicine.
+
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
 - [Website](https://sennai_web_URL.com)
 - [Medium](https://medium.com/@kahssai.sen)
 
 > “We are the music while the music lasts.” — *T. S. Eliot*
-
-## Interest
-My interest in quantum biology began with my studies in molecular biology and readings such as *What Is Life?* by Schrödinger, *Life on the Edge*, *Physics in Mind*, and *Quantum Supremacy*. These works, together with my background in physics, biology, and philosophy, shaped my curiosity about the quantum nature of living systems. Guided by mentors and philosophical reflection, this curiosity evolved into a focused pursuit of quantum computing.
-
-## Life Sciences & Quantum Computing
-Quantum computing is not a departure from biology but a way to expand it — a bridge linking molecular science, computation, and technology. I see it as a natural continuation of my interest in understanding life through the principles of information and coherence. This journey now continues as I work to integrate quantum computation with biology to explore the fundamental nature of living systems.
-
-## Training
-I began formal training in quantum computing as a Masters student in Quantum Computing at the **University of Calgary**. My work spans quantum software, hardware, and applications, with projects focusing on applying quantum technologies to industry problems. In parallel, I am completing an **IBM certification in Machine Learning and Artificial Intelligence**, aiming to merge ML/AI with quantum computing for biological and industry modeling and discovery.
