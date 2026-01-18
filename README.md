@@ -75,7 +75,6 @@ The three pillars — **QML, Optimization, and Molecular Simulation** — are tr
 
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
-- [Website](https://sennai_web_URL.com)
 - [Medium](https://medium.com/@kahssai.sen)
 
 > “We are the music while the music lasts.” — *T. S. Eliot*
