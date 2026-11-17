@@ -1,0 +1,14 @@
+name: Notebook structure checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notebooks:
+    uses: Sennaiai/Quality-Control-/.github/workflows/notebook-ci.yml@f39e3a601fac9890ef214b58ad02794745f2e54f
