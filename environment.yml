@@ -11,6 +11,7 @@ dependencies:
   - numpy
   - pandas
   - pennylane
+  - autoray=0.6.11
   - pylatexenc
   - qiskit
   - qiskit-aer

@@ -2,7 +2,7 @@
 
 This project implements an end-to-end workflow for constructing and executing an ADMET counterdiabatic Hamiltonian with LCU qubitization and QSVT on TripleAlpha. Molecular data is curated classically, converted into a runtime Hamiltonian, validated, serialized for the compiled Beryllium circuit, and sent to the selected quantum backend through the Triple Alpha API.
 
-##
+## Run the end-to-end workflow
 
 1. From this project directory, create and activate the Conda environment:
 
@@ -76,15 +76,16 @@ At runtime, `main.qbe` extracts coefficient signs, calculates `lambda = sum(abs(
 ## Project layout
 
 ```text
-Modular_QEML_Modular_Pipeline/
+Modular_QEML_admet_Pipeline_Senay Kahsay/
 ├── ADMET_Triple_Alpha_End_to_End.ipynb
 ├── README.md
 ├── requirements.txt
+├── artifacts/         # generated handoff artifacts
 ├── pipeline/          # canonical curation and CD derivations
 ├── src/               # preprocessing, serialization, and validation helpers
 ├── python_classes/    # validated Hamiltonian and QSVT helpers
 ├── qbe_modules/       # compiler-validated Beryllium source
-└── data/              # local ADMET dataset snapshots
+└── data/              # optional local inputs; not included in this checkout
 ```
 
 `runtime_inputs.json` and `runtime_manifest.json` are generated runtime
