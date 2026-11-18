@@ -12,3 +12,21 @@ permissions:
 jobs:
   notebooks:
     uses: Sennaiai/Quality-Control-/.github/workflows/notebook-ci.yml@f39e3a601fac9890ef214b58ad02794745f2e54f
+
+  execute-notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up notebook environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: environment.yml
+          cache-environment: true
+      - name: Execute offline notebooks
+        shell: bash -el {0}
+        env:
+          NOTEBOOK_CI: "1"
+        run: python .github/scripts/execute_notebooks.py

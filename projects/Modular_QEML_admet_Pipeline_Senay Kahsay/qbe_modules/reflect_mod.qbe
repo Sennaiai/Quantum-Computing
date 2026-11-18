@@ -1,0 +1,33 @@
+module reflect_mod {
+    func reflect_zero(qusys(2)[] idx, num n_index){
+        for {1 -> num i}{i <= n_index}{i + 1 -> i}{ x[idx.[i]] }
+        if {n_index == 1} {
+            z[idx.[1]]
+        } elif {n_index == 2} {
+            if {idx.[1]} { z[idx.[2]] }
+        } else {
+            qusys(2)[] work
+            n_index - 2 -> num n_work
+            for {1 -> num i}{i <= n_work}{i + 1 -> i}{ qubit -> work.[i] }
+            toffoli[idx.[1], idx.[2], work.[1]]
+            for {1 -> num i}{i <= (n_work - 1)}{i + 1 -> i}{
+                toffoli[idx.[i + 2], work.[i], work.[i + 1]]
+            }
+            if {work.[n_work]} { z[idx.[n_index]] }
+            for {1 -> num k}{k <= (n_work - 1)}{k + 1 -> k}{
+                n_work - k -> num i
+                toffoli[idx.[i + 2], work.[i], work.[i + 1]]
+            }
+            toffoli[idx.[1], idx.[2], work.[1]]
+        }
+        for {1 -> num k}{k <= n_index}{k + 1 -> k}{
+            n_index - k + 1 -> num i
+            x[idx.[i]]
+        }
+
+        # Convert I - 2|0><0| into the validated Low-Chuang
+        # reflection 2|0><0| - I.
+        3.141592653589793 -> num pi
+        globalphase(pi)[idx.[1]]
+    }
+}

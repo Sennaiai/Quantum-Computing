@@ -35,7 +35,7 @@ The guiding aim of this work is simple:
 
 This repository is organized the way a computational molecular lab works.
 
-### `notebooks/`
+### `projects/`
 Executable Jupyter notebooks implementing:
 - Quantum machine-learning models  
 - Quantum optimization pipelines  
@@ -43,6 +43,7 @@ Executable Jupyter notebooks implementing:
 - Hybrid quantum–classical workflows  
 
 Each notebook is self-documented via Markdown cells at the top of the file.
+Project-specific dependencies and input requirements are documented alongside each project.
 
 ---
 
@@ -72,6 +73,31 @@ The work here sits at the intersection of:
 - Biological systems  
 
 The three pillars — **QML, Optimization, and Molecular Simulation** — are treated as components of a single computational stack for understanding and designing molecular systems in biology and medicine.
+
+## Reproducibility and notebook checks
+
+Create the shared environment for offline notebooks from the repository root:
+
+```bash
+conda env create -f environment.yml
+conda activate quantum-projects
+python .github/scripts/execute_notebooks.py
+```
+
+GitHub Actions also executes the offline notebooks on pushes and pull requests. The runner uses short smoke configurations for VQE optimizations; open those notebooks in Jupyter to run their full iteration counts. The large active-space scaling study and notebooks requiring Colab uploads, local forecasting spreadsheets, ADMET datasets, or Triple Alpha credentials are not run in CI.
+
+Coursework notebooks are kept separately in the legacy-named `Assignemnts/`
+directory; the project runner discovers notebooks under `projects/` only.
+
+For the ADMET project, create its environment from that project directory so its existing `requirements.txt` is found:
+
+```bash
+cd "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
+conda env create -f environment.yml
+conda activate admet-triplealpha
+```
+
+Set `TRIPLE_ALPHA_API_KEY` and `TRIPLE_ALPHA_RUN_URL` in your local environment before running the end-to-end notebook. Never store API credentials in a notebook or commit them.
 
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
