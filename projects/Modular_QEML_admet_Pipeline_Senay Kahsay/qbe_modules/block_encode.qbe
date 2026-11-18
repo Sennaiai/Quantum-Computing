@@ -1,0 +1,33 @@
+import "prep_mod.qbe" as prep_mod
+import "sel_mod.qbe" as sel_mod
+
+module block_encode {
+    class BlockEncode {
+        properties {
+            num num_coefs
+            num num_ancillas
+            num num_qubits
+        }
+        methods {
+            func BlockEncode(BlockEncode self, num num_coefs, num num_ancillas, num num_qubits){
+                num_coefs -> self.num_coefs
+                num_ancillas -> self.num_ancillas
+                num_qubits -> self.num_qubits
+            }
+            func apply(BlockEncode self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
+                Prep(self.num_coefs, self.num_ancillas) -> Prep preparator
+                Sel(self.num_coefs, self.num_ancillas, self.num_qubits) -> Sel selector
+                preparator.prepare(ancillas, coefs)
+                selector.select(ancillas, qubits, pauli_strings, sign)
+                preparator.prepare_inverse(ancillas, coefs)
+            }
+            func apply_inverse(BlockEncode self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
+                Prep(self.num_coefs, self.num_ancillas) -> Prep preparator
+                Sel(self.num_coefs, self.num_ancillas, self.num_qubits) -> Sel selector
+                preparator.prepare_inverse(ancillas, coefs)
+                selector.select(ancillas, qubits, pauli_strings, sign)
+                preparator.prepare(ancillas, coefs)
+            }
+        }
+    }
+}

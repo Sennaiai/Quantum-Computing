@@ -1,0 +1,29 @@
+import "block_encode.qbe" as block_encode
+import "reflect_mod.qbe" as reflect_mod
+
+module walk_mod {
+    class Walk {
+        properties {
+            num num_coefs
+            num num_ancillas
+            num num_qubits
+        }
+        methods {
+            func Walk(Walk self, num num_coefs, num num_ancillas, num num_qubits){
+                num_coefs -> self.num_coefs
+                num_ancillas -> self.num_ancillas
+                num_qubits -> self.num_qubits
+            }
+            func apply(Walk self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
+                BlockEncode(self.num_coefs, self.num_ancillas, self.num_qubits) -> BlockEncode block
+                block.apply(ancillas, qubits, coefs, pauli_strings, sign)
+                reflect_mod.reflect_zero(ancillas, self.num_ancillas)
+            }
+            func apply_inverse(Walk self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
+                BlockEncode(self.num_coefs, self.num_ancillas, self.num_qubits) -> BlockEncode block
+                reflect_mod.reflect_zero(ancillas, self.num_ancillas)
+                block.apply_inverse(ancillas, qubits, coefs, pauli_strings, sign)
+            }
+        }
+    }
+}

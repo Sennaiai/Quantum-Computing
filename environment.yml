@@ -1,0 +1,20 @@
+name: quantum-projects
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - ipykernel
+  - jupyterlab
+  - nbclient
+  - nbformat
+  - matplotlib
+  - numpy
+  - pandas
+  - pennylane
+  - pylatexenc
+  - qiskit
+  - qiskit-aer
+  - qiskit-algorithms
+  - rdkit
+  - scikit-learn
+  - scipy
