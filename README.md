@@ -86,6 +86,9 @@ python .github/scripts/execute_notebooks.py
 
 GitHub Actions also executes the offline notebooks on pushes and pull requests. The runner uses short smoke configurations for VQE optimizations; open those notebooks in Jupyter to run their full iteration counts. The large active-space scaling study and notebooks requiring Colab uploads, local forecasting spreadsheets, ADMET datasets, or Triple Alpha credentials are not run in CI.
 
+Coursework notebooks are kept separately in the legacy-named `Assignemnts/`
+directory; the project runner discovers notebooks under `projects/` only.
+
 For the ADMET project, create its environment from that project directory so its existing `requirements.txt` is found:
 
 ```bash
