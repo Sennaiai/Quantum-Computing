@@ -1,0 +1,97 @@
+import "math.qbe" as math
+
+module prep_mod {
+    class Prep {
+        properties {
+            num dimension
+            num num_coefs
+            num num_ancillas
+        }
+        methods {
+            func Prep(Prep self, num num_coefs, num num_ancillas){
+                num_ancillas -> self.num_ancillas
+                num_coefs -> self.num_coefs
+                2^(num_ancillas) -> self.dimension
+            }
+            func prepare(Prep self, qusys(2)[] ancillas, num[] coefs){
+                num[] control_qubits
+                num[] control_values
+                self.build(ancillas, coefs, 1, 1, self.dimension, control_qubits, control_values)
+            }
+            func prepare_inverse(Prep self, qusys(2)[] ancillas, num[] coefs){
+                num[] control_qubits
+                num[] control_values
+                self.build_inverse(ancillas, coefs, 1, 1, self.dimension, control_qubits, control_values)
+            }
+            func build(Prep self, qusys(2)[] ancillas, num[] coefs, num level, num offset, num dimension, num[] control_qubits, num[] control_values){
+                if {dimension == 1}{ return }
+                dimension / 2 -> num half
+                self.compute_probability(coefs, offset, half) -> num p_left
+                self.compute_probability(coefs, offset + half, half) -> num p_right
+                self.compute_angle(p_left, p_right) -> num theta
+                self.arb_seq_multi_controlled_ry(ancillas, control_values, level - 1, level, theta)
+                0 -> control_values.[level]
+                self.build(ancillas, coefs, level + 1, offset, half, control_qubits, control_values)
+                1 -> control_values.[level]
+                self.build(ancillas, coefs, level + 1, offset + half, half, control_qubits, control_values)
+            }
+            func build_inverse(Prep self, qusys(2)[] ancillas, num[] coefs, num level, num offset, num dimension, num[] control_qubits, num[] control_values){
+                if {dimension == 1}{ return }
+                dimension / 2 -> num half
+                0 -> control_values.[level]
+                self.build_inverse(ancillas, coefs, level + 1, offset, half, control_qubits, control_values)
+                1 -> control_values.[level]
+                self.build_inverse(ancillas, coefs, level + 1, offset + half, half, control_qubits, control_values)
+                self.compute_probability(coefs, offset, half) -> num p_left
+                self.compute_probability(coefs, offset + half, half) -> num p_right
+                self.compute_angle(p_left, p_right) -> num theta
+                self.arb_seq_multi_controlled_ry(ancillas, control_values, level - 1, level, -theta)
+            }
+            func compute_probability(Prep self, num[] coefs, num offset, num dimension) -> (num probability){
+                0 -> probability
+                for {offset -> num i}{i <= (offset + dimension - 1)}{i + 1 -> i}{
+                    if {i <= self.num_coefs}{ probability + coefs.[i]^2 -> probability }
+                }
+            }
+            func compute_angle(Prep self, num p_left, num p_right) -> (num theta) {
+                p_left + p_right -> num total
+                if {total == 0}{ 0 -> theta } else {
+                    math.sqrt(p_left / total) -> num argument
+                    math.arccos(argument) -> theta
+                }
+            }
+            func arb_seq_multi_controlled_ry(Prep self, qusys(2)[] ancillas, num[] control_values, num n_controls, num target, num theta){
+                for {1 -> num i}{i <= n_controls}{i + 1 -> i}{
+                    if {control_values.[i] == 0}{ x[ancillas.[i]] }
+                }
+                self.multi_controlled_ry(ancillas, n_controls, target, theta)
+                for {1 -> num i}{i <= n_controls}{i + 1 -> i}{
+                    if {control_values.[i] == 0}{ x[ancillas.[i]] }
+                }
+            }
+            func multi_controlled_ry(Prep self, qusys(2)[] controls, num num_controls, num target, num theta){
+                if {num_controls <= 0}{
+                    ry(theta)[controls.[target]]
+                } elif {num_controls == 1} {
+                    if {controls.[1]} { ry(theta)[controls.[target]] }
+                } elif {num_controls == 2} {
+                    if {controls.[1]} { if {controls.[2]} { ry(theta)[controls.[target]] } }
+                } else {
+                    qusys(2)[] work
+                    num_controls - 2 -> num num_work
+                    for {1 -> num i}{i <= num_work}{i + 1 -> i}{ qubit -> work.[i] }
+                    toffoli[controls.[1], controls.[2], work.[1]]
+                    for {1 -> num i}{i <= (num_work - 1)}{i + 1 -> i}{
+                        toffoli[controls.[i + 2], work.[i], work.[i + 1]]
+                    }
+                    if {work.[num_work]} { if {controls.[num_controls]} { ry(theta)[controls.[target]] } }
+                    for {1 -> num k}{k <= (num_work - 1)}{k + 1 -> k}{
+                        num_work - k -> num i
+                        toffoli[controls.[i + 2], work.[i], work.[i + 1]]
+                    }
+                    toffoli[controls.[1], controls.[2], work.[1]]
+                }
+            }
+        }
+    }
+}

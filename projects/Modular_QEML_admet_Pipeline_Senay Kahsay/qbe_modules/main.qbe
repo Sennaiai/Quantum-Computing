@@ -1,0 +1,174 @@
+import "math.qbe" as math
+import "qsvt_mod.qbe" as qsvt_mod
+
+func main(){
+
+    #
+    # Runtime metadata
+    #
+
+    input -> num num_coefs
+    input -> num num_qubits
+    input -> num num_ancillas
+    input -> num num_phases
+
+    #
+    # Reusable input buffers
+    #
+
+    num angle_value
+    num coefficient_value
+    num pauli_code
+    num phase_value
+
+    #
+    # Runtime arrays
+    #
+
+    num[] angles
+    num[] coefs
+    num[] sign
+    num[] pauli_strings
+    num[] phases
+
+    #
+    # Quantum registers
+    #
+
+    qusys(2)[] qubits
+    qusys(2)[] ancillas
+
+    #
+    # System-register allocation and initialization
+    #
+
+    for {1 -> num i}{i <= num_qubits}{i + 1 -> i}{
+
+        qubit -> qubits.[i]
+
+        input -> angle_value
+        angle_value -> angles.[i]
+
+        ry(3.141592653589793 * angle_value)[qubits.[i]]
+    }
+
+    #
+    # Ancilla-register allocation
+    #
+
+    for {1 -> num i}{i <= num_ancillas}{i + 1 -> i}{
+        qubit -> ancillas.[i]
+    }
+
+    #
+    # Runtime Hamiltonian loading
+    #
+    # Pauli strings use a flattened row-major 1D representation.
+    #
+
+    1 -> num flat_index
+
+    for {1 -> num i}{i <= num_coefs}{i + 1 -> i}{
+
+        input -> coefficient_value
+        coefficient_value -> coefs.[i]
+
+        for {1 -> num j}{j <= num_qubits}{j + 1 -> j}{
+
+            input -> pauli_code
+            pauli_code -> pauli_strings.[flat_index]
+
+            flat_index + 1 -> flat_index
+        }
+    }
+
+    #
+    # Runtime QSVT phases
+    #
+
+    for {1 -> num i}{i <= num_phases}{i + 1 -> i}{
+        input -> phase_value
+        phase_value -> phases.[i]
+    }
+
+    #
+    # Inline sign extraction and lambda calculation
+    #
+
+    0 -> num lambda
+
+    for {1 -> num i}{i <= num_coefs}{i + 1 -> i}{
+
+        if {coefs.[i] < 0}{
+            1 -> sign.[i]
+            -1 * coefs.[i] -> coefs.[i]
+        } else {
+            0 -> sign.[i]
+        }
+
+        lambda + coefs.[i] -> lambda
+    }
+
+    #
+    # Runtime PREPARE-amplitude normalization
+    #
+
+    if {lambda > 0}{
+
+        for {1 -> num i}{i <= num_coefs}{i + 1 -> i}{
+
+            coefs.[i] / lambda -> num normalized_weight
+            math.sqrt(normalized_weight) -> num amplitude_value
+            amplitude_value -> coefs.[i]
+        }
+    }
+
+    #
+    # Complete QSVT execution
+    #
+
+    if {lambda > 0}{
+
+        QSVT(
+            num_coefs,
+            num_ancillas,
+            num_qubits,
+            num_phases
+        ) -> QSVT qsvt
+
+        qsvt.apply(
+            ancillas,
+            qubits,
+            coefs,
+            pauli_strings,
+            sign,
+            phases
+        )
+    }
+
+    #
+    # Lambda output
+    #
+
+    lambda -> output
+
+    #
+    # Ancilla measurements
+    #
+
+    for {1 -> num i}{i <= num_ancillas}{i + 1 -> i}{
+
+        measure[ancillas.[i]] -> num ancilla_result
+        ancilla_result -> output
+    }
+
+    #
+    # System-register measurements
+    #
+
+    for {1 -> num i}{i <= num_qubits}{i + 1 -> i}{
+
+        measure[qubits.[i]] -> num qubit_result
+        qubit_result -> output
+    }
+}

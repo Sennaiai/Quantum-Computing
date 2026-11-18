@@ -1,0 +1,10 @@
+numpy
+scipy
+pyqsp
+requests
+pandas
+scikit-learn
+rdkit
+pytdc
+npeet-plus
+pennylane #for generating symbolic Pauli operators and commutation evaluation in Counter-diabatic generation

@@ -1,0 +1,194 @@
+module math {
+
+    #
+    # Absolute value
+    #
+
+    func abs(num value) -> (num result){
+
+        if {value < 0}{
+            value * -1 -> result
+        } else {
+            value -> result
+        }
+    }
+
+    #
+    # Integer factorial
+    #
+
+    func factorial(num value) -> (num result){
+
+        1 -> result
+
+        for {2 -> num i}{i <= value}{i + 1 -> i}{
+            result * i -> result
+        }
+    }
+
+    #
+    # Non-negative integer power
+    #
+
+    func power(num base, num exponent) -> (num result){
+
+        1 -> result
+
+        for {0 -> num i}{i < exponent}{i + 1 -> i}{
+            result * base -> result
+        }
+    }
+
+    #
+    # Normalize an angle into [-pi, pi]
+    #
+
+    func normalize_angle(num value) -> (num result){
+
+        3.141592653589793 -> num pi_value
+        2 * pi_value -> num two_pi
+
+        value mod two_pi -> result
+
+        if {result > pi_value}{
+            result - two_pi -> result
+        } elif {result < -pi_value}{
+            result + two_pi -> result
+        }
+    }
+
+    #
+    # Sine using a range-reduced Taylor expansion
+    #
+
+    func sin(num value) -> (num result){
+
+        normalize_angle(value) -> num reduced_value
+
+        0 -> result
+        -1 -> num negative_one
+
+        for {0 -> num i}{i <= 15}{i + 1 -> i}{
+
+            2 * i + 1 -> num exponent
+
+            power(negative_one, i) -> num sign_value
+            power(reduced_value, exponent) -> num numerator
+            factorial(exponent) -> num denominator
+
+            result + sign_value * numerator / denominator -> result
+        }
+    }
+
+    #
+    # Cosine using a range-reduced Taylor expansion
+    #
+
+    func cos(num value) -> (num result){
+
+        normalize_angle(value) -> num reduced_value
+
+        0 -> result
+        -1 -> num negative_one
+
+        for {0 -> num i}{i <= 15}{i + 1 -> i}{
+
+            2 * i -> num exponent
+
+            power(negative_one, i) -> num sign_value
+            power(reduced_value, exponent) -> num numerator
+            factorial(exponent) -> num denominator
+
+            result + sign_value * numerator / denominator -> result
+        }
+    }
+
+    #
+    # Restrict a value to the valid arccos domain
+    #
+
+    func clip_unit(num value) -> (num result){
+
+        if {value > 1}{
+            1 -> result
+        } elif {value < -1}{
+            -1 -> result
+        } else {
+            value -> result
+        }
+    }
+
+    #
+    # Arccos using Newton iteration
+    #
+
+    func arccos(num value) -> (num result){
+
+        clip_unit(value) -> num target_value
+        3.141592653589793 -> num pi_value
+
+        if {target_value == 1}{
+
+            0 -> result
+
+        } elif {target_value == -1}{
+
+            pi_value -> result
+
+        } else {
+
+            pi_value / 2 -> num guess_value
+
+
+
+            for {1 -> num i}{i <= 15}{i + 1 -> i}{
+
+                cos(guess_value) -> num cosine_value
+                sin(guess_value) -> num sine_value
+                abs(sine_value) -> num sine_magnitude
+
+                if {sine_magnitude > 0.000001}{
+                    guess_value - (cosine_value - target_value) / (-1 * sine_value) -> guess_value
+                }
+            }
+
+            if {guess_value < 0}{
+                0 -> result
+            } elif {guess_value > pi_value}{
+                pi_value -> result
+            } else {
+                guess_value -> result
+            }
+        }
+    }
+
+    #
+    # Square root using Newton iteration
+    #
+
+    func sqrt(num value) -> (num result){
+
+        if {value < 0}{
+
+            -999999 -> result
+
+        } elif {value == 0}{
+
+            0 -> result
+
+        } else {
+
+            value / 2 -> num guess_value
+
+            if {guess_value < 0.000001}{
+                1 -> guess_value
+            }
+
+            for {1 -> num i}{i <= 50}{i + 1 -> i}{
+                ((value / guess_value) + guess_value) / 2 -> guess_value
+            }
+
+            guess_value -> result
+        }
+    }
+}

@@ -1,0 +1,73 @@
+module sel_mod {
+    class Sel {
+        properties {
+            num num_paulis
+            num num_ancillas
+            num max_pauli
+        }
+        methods {
+            func Sel(Sel self, num num_paulis, num num_ancillas, num max_pauli) {
+                num_paulis -> self.num_paulis
+                num_ancillas -> self.num_ancillas
+                max_pauli -> self.max_pauli
+            }
+            func select(Sel self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] pauli_strings, num[] sign) {
+                num[] prov
+                for {1 -> num i}{i <= self.num_paulis}{i + 1 -> i} {
+                    for {1 -> num j}{j <= self.max_pauli}{j + 1 -> j} {
+                        (i - 1) * self.max_pauli + j -> num flat_index
+                        pauli_strings.[flat_index] -> prov.[j]
+                    }
+                    self.controlled_paulis(ancillas, qubits, prov, sign, i)
+                }
+            }
+            func controlled_paulis(Sel self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] pauli_string, num[] sign, num index) {
+                self.i_x(index, ancillas, self.num_ancillas)
+                if {sign.[index] == 1} { self.multi_controlled_gate(ancillas, self.num_ancillas, qubits, 1, 4) }
+                for {1 -> num i}{i <= self.max_pauli}{i + 1 -> i} {
+                    if {pauli_string.[i] > 0}{ self.multi_controlled_gate(ancillas, self.num_ancillas, qubits, i, pauli_string.[i]) }
+                }
+                self.i_x(index, ancillas, self.num_ancillas)
+            }
+            func i_x(Sel self, num ind, qusys(2)[] ancillas, num num_ancillas){
+                (2^num_ancillas) - ind -> num mask
+                for {1 -> num i}{i <= num_ancillas}{i + 1 -> i}{
+                    if {mask % 2}{
+                        num_ancillas - i + 1 -> num q
+                        x[ancillas.[q]]
+                    }
+                    (mask - (mask % 2)) / 2 -> mask
+                }
+            }
+            func apply_gate(Sel self, qusys(2)[] qubits, num target, num code){
+                switch(code) {
+                    case(1){ x[qubits.[target]] }
+                    case(2){ y[qubits.[target]] }
+                    case(3){ z[qubits.[target]] }
+                    case(4){ globalphase(3.141592653589793)[qubits.[1]] }
+                }
+            }
+            func multi_controlled_gate(Sel self, qusys(2)[] controls, num num_controls, qusys(2)[] qubits, num target, num code){
+                if {num_controls == 1} {
+                    if {controls.[1]} { self.apply_gate(qubits, target, code) }
+                } elif {num_controls == 2} {
+                    if {controls.[1]} { if {controls.[2]} { self.apply_gate(qubits, target, code) } }
+                } else {
+                    qusys(2)[] work
+                    num_controls - 2 -> num num_work
+                    for {1 -> num i}{i <= num_work}{i + 1 -> i}{ qubit -> work.[i] }
+                    toffoli[controls.[1], controls.[2], work.[1]]
+                    for {1 -> num i}{i <= (num_work - 1)}{i + 1 -> i}{
+                        toffoli[controls.[i + 2], work.[i], work.[i + 1]]
+                    }
+                    if {work.[num_work]} { if {controls.[num_controls]} { self.apply_gate(qubits, target, code) } }
+                    for {1 -> num k}{k <= (num_work - 1)}{k + 1 -> k}{
+                        num_work - k -> num i
+                        toffoli[controls.[i + 2], work.[i], work.[i + 1]]
+                    }
+                    toffoli[controls.[1], controls.[2], work.[1]]
+                }
+            }
+        }
+    }
+}
