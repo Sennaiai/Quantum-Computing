@@ -30,6 +30,19 @@ LOCAL_INPUTS = {
         Path("projects/Electicty load prediction forecasting ")
         / "QUAC 605 Project Data.xlsx",
     ),
+    Path("Electicty load prediction forecasting ") / "cv_6_QRC.ipynb": (
+        Path("projects/Electicty load prediction forecasting ")
+        / "Electric grid project"
+        / "cv_QRC"
+        / "QUAC 605 Project Data_processed.xlsx - 3 month_processed.csv",
+    ),
+    Path("Electicty load prediction forecasting ")
+    / "Hybrid_CV_Kerr_Quantum_Reservoir_Computing_for_Electricity_Grid_Load_Forecasting.ipynb": (
+        Path("projects/Electicty load prediction forecasting ")
+        / "Electric grid project"
+        / "cv_QRC"
+        / "QUAC 605 Project Data_processed.xlsx - 3 month_processed.csv",
+    ),
     Path("Electicty load prediction forecasting ") / "Kerr_CV_QRC.ipynb": (
         Path("projects/Electicty load prediction forecasting ")
         / "Electric grid project"
