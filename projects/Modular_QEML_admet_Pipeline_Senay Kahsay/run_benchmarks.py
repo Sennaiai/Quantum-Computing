@@ -50,11 +50,22 @@ def main(argv=None):
     transport = run_transport_benchmark(adapter, FIXTURE_NAME, theta)
     transport["curation_provenance"] = provenance
     data = {"status": "not_run", "reason": "Supply --bbb-file or explicitly --download-bbb"}
+    learning = {"status": "not_run", "reason": "Supply the pinned BBB artifact"}
     if bbb_file is not None:
         from data_benchmark import run_data_benchmark
         data = run_data_benchmark(bbb_file, output_dir=output / ".benchmark-work" / "real_data")
         if data["status"] != "passed":
             raise ValueError("No fixed real-data profile reached the complete runtime handoff; inspect the diagnostic report")
+        import io
+        import pandas as pd
+        from data_benchmark import verify_bbb_file, BBB_SHA256
+        from learning_workflow import prepare_learning_workflow
+        raw = verify_bbb_file(bbb_file).read_bytes()
+        if hashlib.sha256(raw).hexdigest() != BBB_SHA256:
+            raise ValueError("BBB bytes changed before supervised preparation")
+        _, learning = prepare_learning_workflow(pd.read_csv(io.BytesIO(raw),sep="\t"),
+            "BBB_Martins",output/".benchmark-work"/"learning")
+        learning["data_source_sha256"] = BBB_SHA256
     if source_hashes() != before:
         raise RuntimeError("Project sources changed during the experiment; rerun on a stable source tree")
     source_digest = hashlib.sha256(canonical_json(before).encode()).hexdigest()
@@ -64,10 +75,10 @@ def main(argv=None):
         "environment": {**environment_versions(), "matplotlib": version("matplotlib")},
         "units": "chosen dimensionless energy/time scale, hbar=1; no physical ADMET calibration",
         "encoding": "data-derived information/feature Ising model; not an electronic-structure Hamiltonian",
-        "transport": transport, "real_data": data,
+        "transport": transport, "real_data": data, "supervised_learning": learning,
         "network_policy": "explicit optional public data acquisition, then denied experiment connections",
         "native_compilation": "unverified", "triple_alpha_calls": 0,
-        "interpretation": "bounded numerical experiment and sensitivity study; no predictive accuracy, universal CD improvement, hardware, or speedup claim",
+        "interpretation": "bounded numerical experiments and measured classical held-out baselines; quantum readout awaits results, without universal CD improvement, hardware accuracy, or speedup claims",
     }
     plot_transport(transport, output / "transport.svg")
     files = ["benchmark_summary.json", "transport.svg"]

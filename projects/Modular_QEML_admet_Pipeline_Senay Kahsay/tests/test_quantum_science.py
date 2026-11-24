@@ -125,6 +125,51 @@ class PauliAGPTests(unittest.TestCase):
 
 
 class QuantumCircuitTests(unittest.TestCase):
+    def test_candidate_sqrt_arithmetic_transcription_covers_float64_range(self):
+        # This is an arithmetic transcription plus a source-contract check,
+        # not Beryllium execution or proof of native numeric semantics.
+        source = (ROOT/'qbe_modules'/'math.qbe').read_text()
+        sqrt_source = source.split('func sqrt(num value)', 1)[1]
+        for statement in (
+                'i <= 600', 'reduced_value < 0.25', 'reduced_value > 4',
+                'reduced_value * 4 -> reduced_value',
+                'scale_value / 2 -> scale_value',
+                'reduced_value / 4 -> reduced_value',
+                'scale_value * 2 -> scale_value', 'i <= 24',
+                '((reduced_value / guess_value) + guess_value) / 2 -> guess_value',
+                'guess_value * scale_value -> result'):
+            self.assertIn(statement, sqrt_source)
+
+        def arithmetic_transcription(value):
+            if value == 0:
+                return 0.
+            reduced, scale = value, 1.
+            for _ in range(600):
+                if reduced < .25:
+                    reduced *= 4
+                    scale /= 2
+                elif reduced > 4:
+                    reduced /= 4
+                    scale *= 2
+            self.assertGreaterEqual(reduced, .25)
+            self.assertLessEqual(reduced, 4.)
+            guess = 1.
+            for _ in range(24):
+                guess = (reduced/guess+guess)/2
+            return guess*scale
+
+        values = [0., np.nextafter(0., 1.), np.finfo(float).tiny,
+                  1e-300, 1e-200, 1e-100, 1e-30, 1e-24, 1e-12,
+                  .25, .5, 1., 2., 4., 1e100, 1e200, 1e308,
+                  np.finfo(float).max]
+        values.extend(float(x) for x in np.logspace(-320, 308, 129))
+        for value in values:
+            with self.subTest(value=value):
+                actual, expected = arithmetic_transcription(value), math.sqrt(value)
+                self.assertTrue(math.isfinite(actual))
+                self.assertTrue(math.isclose(actual, expected,
+                    rel_tol=4*np.finfo(float).eps, abs_tol=0.))
+
     def test_prepare_tree_for_zero_padded_skewed_distributions_and_inverse(self):
         for weights,ni in [([1.],1),([.2,.8],1),([0.,.3,.7],2),([1e-24,0.,.2,.8-1e-24],2),([.1,.2,.3,.4],3)]:
             a=np.sqrt(weights);P=prepare_matrix(a,ni)

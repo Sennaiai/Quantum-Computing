@@ -78,7 +78,9 @@ def source_hashes():
         paths.extend((ROOT / directory).glob(pattern))
     paths.extend(p for p in (ROOT / "ADMET_Triple_Alpha_End_to_End.ipynb",
                              ROOT / "requirements.txt", ROOT / "environment.yml",
-                             ROOT / "run_checks.py", ROOT / "run_benchmarks.py") if p.is_file())
+                             ROOT / "run_checks.py", ROOT / "run_benchmarks.py",
+                             ROOT / "run_learning_pipeline.py", ROOT / "verify_sdk_contract.py",
+                             ROOT / "requirements-sdk.txt") if p.is_file())
     return {str(p.relative_to(ROOT)): sha256_bytes(p.read_bytes()) for p in sorted(paths)}
 
 

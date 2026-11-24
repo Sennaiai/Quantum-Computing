@@ -88,3 +88,33 @@ class PublishedEvidenceTests(unittest.TestCase):
             reference = row["reference"]
             self.assertLessEqual(reference["recovered_evolution_error"], reference["certified_recovered_evolution_error_bound"]+1e-11)
             self.assertLessEqual(reference["certified_recovered_evolution_error_bound"], row["epsilon"])
+
+    def test_supervised_cleaning_all_molecule_physics_and_unfitted_readout(self):
+        learning=self.report["supervised_learning"]
+        self.assertEqual(learning["data_source_sha256"],BBB_SHA256)
+        self.assertEqual(learning["source_hashes"],source_hashes())
+        self.assertEqual(learning["raw_rows"],2039)
+        self.assertEqual(learning["cleaned_labelled_identities"],1965)
+        self.assertEqual(learning["all_valid_inference_identities"],1975)
+        self.assertEqual(learning["prepared_molecules"],1975)
+        self.assertEqual(learning["concordant_duplicate_rows_collapsed"],54)
+        self.assertEqual(learning["quarantined_label_identities"],10)
+        self.assertEqual(learning["quarantined_labelled_rows"],20)
+        self.assertTrue(learning["scaffold_groups_disjoint"])
+        self.assertEqual(sum(learning["split_sizes"].values()),1965)
+        self.assertEqual(learning["unique_physics"]+learning["physics_reuse_count"],1975)
+        self.assertEqual(learning["source_named_input_roundtrips"],learning["unique_physics"])
+        self.assertLessEqual(learning["maximum_recovered_operator_error"],learning["maximum_recovered_error_bound"]+1e-11)
+        self.assertLessEqual(learning["maximum_recovered_error_bound"],1e-6)
+        self.assertEqual(learning["status"],"awaiting_api_results")
+        self.assertFalse(learning["quantum_model_fitted"])
+        self.assertIsNone(learning["quantum_prediction_metrics"])
+        self.assertIsNone(learning["readout_spec"]["fitted_coefficients"])
+        for name,result in learning["classical_test_results"].items():
+            self.assertIn(name,{"theta","full_counts"})
+            self.assertEqual(result["evaluation_split"],"untouched_test")
+            self.assertEqual(result["metrics"]["samples"],learning["split_sizes"]["test"])
+            self.assertTrue(0<=result["metrics"]["roc_auc"]<=1)
+        for flag in ("native_compiler_verified","native_input_binding_verified","native_output_mapping_verified"):
+            self.assertIs(learning[flag],False)
+        self.assertEqual(learning["triple_alpha_calls"],0)

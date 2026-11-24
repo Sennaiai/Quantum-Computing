@@ -18,7 +18,7 @@ permissions:
 jobs:
   admet:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     defaults:
       run:
         working-directory: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
@@ -60,3 +60,25 @@ jobs:
             projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/benchmark_summary.json
             projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/manifest.json
             projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/*.svg
+
+  sdk-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay/requirements-sdk.txt"
+      - name: Install isolated pinned SDK environment
+        run: |
+          python -m venv .venv-sdk
+          .venv-sdk/bin/python -m pip install -r requirements-sdk.txt
+      - name: Compare actual SDK models with socket-blocked mocked transports
+        run: .venv-sdk/bin/python verify_sdk_contract.py
