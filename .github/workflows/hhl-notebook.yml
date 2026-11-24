@@ -1,0 +1,33 @@
+name: HHL notebook checks
+
+on:
+  pull_request:
+    paths:
+      - "projects/HHL/**"
+      - ".github/workflows/hhl-notebook.yml"
+  push:
+    branches: [main]
+    paths:
+      - "projects/HHL/**"
+      - ".github/workflows/hhl-notebook.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hhl-notebook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up HHL environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: projects/HHL/environment.yml
+          cache-environment: true
+      - name: Validate and execute HHL notebook
+        shell: bash -el {0}
+        run: python projects/HHL/run_notebook_checks.py

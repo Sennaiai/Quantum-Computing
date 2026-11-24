@@ -8,25 +8,25 @@ The notebook:
 - Simulates QPE, the HHL controlled rotation, and ancilla post-selection.
 - Compares the HHL estimate and a VQE nullspace solution with the classical reference.
 - Includes one-layer QAOA as a shallow variational baseline.
-- Uses seeded simulations and numerical assertions for key results.
+- Uses seeded simulations and numerical assertions for key results, including a comparison of the observed HHL post-selection rate with its analytic probability within a five-standard-error binomial tolerance.
 
 ## Run
 
-From the repository root, create and activate the shared environment, then launch the notebook:
+From the repository root, create and activate the HHL environment, then launch the notebook:
 
 ```bash
-conda env create -f environment.yml
-conda activate quantum-projects
+conda env create -f projects/HHL/environment.yml
+conda activate hhl-linear-solvers
 jupyter lab projects/HHL/Quantum_Algorithms_for_Solving_Linear_Systems_HHL_and_Variational_Methods.ipynb
 ```
 
-The repository's notebook CI runner can be run from the root with:
+Run the same schema check and notebook execution used by HHL CI with:
 
 ```bash
-python .github/scripts/execute_notebooks.py
+python projects/HHL/run_notebook_checks.py
 ```
 
-This command executes all eligible project notebooks, not only HHL; it skips notebooks with documented unavailable inputs, plugins, services, or resource requirements.
+The dedicated GitHub Actions workflow runs these checks when HHL files change.
 
 ## Scope and limitations
 
