@@ -32,12 +32,12 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_previous_offline_and_resource_policies_are_preserved(self):
         self.assertIsNone(self.reason('Optimization/Unit_Commitment_MOPSO.ipynb'))
-        self.assertIn('resource-intensive', self.reason(
+        self.assertIn('dedicated scaling', self.reason(
             'Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb'))
         self.assertIn('external data', self.reason('Modular_QEML_admet_Pipeline/example.ipynb'))
 
     def test_workflow_directories_survive_actions_whitespace_trimming(self):
-        for name in ['h2-notebook.yml', 'hcn-notebook.yml']:
+        for name in ['h2-notebook.yml', 'hcn-notebook.yml', 'scaling-notebook.yml']:
             text = (policy.ROOT / '.github/workflows' / name).read_text()
             directories = re.findall(r'working-directory:\s*"([^"]+)"', text)
             self.assertTrue(directories, f'No working directory in {name}')

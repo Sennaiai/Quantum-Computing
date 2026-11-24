@@ -25,6 +25,16 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def real_pauli_hamiltonian(operator):
+    """Normalize a Hermitian Pauli expansion without silently dropping phases."""
+    coefficients, terms = operator.terms()
+    coefficients = np.asarray(coefficients, dtype=complex)
+    require(np.all(np.isfinite(coefficients)), 'Nonfinite Pauli coefficients')
+    require(np.max(np.abs(coefficients.imag), initial=0) < 1e-12,
+            'A Hermitian Pauli expansion must have real coefficients')
+    return qml.Hamiltonian(coefficients.real.copy(), terms)
+
+
 def coordinates_bohr(distance):
     """Two hydrogen nuclei on z; public bond-length input is in angstrom."""
     if not np.isfinite(distance) or distance <= 0:

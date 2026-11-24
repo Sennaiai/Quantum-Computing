@@ -124,7 +124,7 @@
           0.05752565578988478
         ],
         "pauli_terms": 185,
-        "construction_seconds": 0.451858791988343
+        "construction_seconds": 0.47714774985797703
       },
       "active_integrals": {
         "core_energy_hartree": -86.51558200437415,
@@ -1198,7 +1198,7 @@
             }
           ],
           "reference_energy_hartree": -91.72979422768763,
-          "elapsed_seconds": 3.598605625098571,
+          "elapsed_seconds": 3.7032791669480503,
           "best_energy_hartree": -91.72979422755154,
           "gap_hartree": 1.360973556074896e-10,
           "energy_variance_hartree2": 1.5632579924752406e-10,
@@ -1736,7 +1736,7 @@
             }
           ],
           "reference_energy_hartree": -91.72979422768763,
-          "elapsed_seconds": 3.19857658399269,
+          "elapsed_seconds": 3.1372694578021765,
           "best_energy_hartree": -91.7297942275784,
           "gap_hartree": 1.092388401957578e-10,
           "energy_variance_hartree2": 1.503569793577694e-10,
@@ -2159,7 +2159,7 @@
             }
           ],
           "reference_energy_hartree": -91.72979422768763,
-          "elapsed_seconds": 2.2276477909181267,
+          "elapsed_seconds": 2.325749833136797,
           "best_energy_hartree": -91.72979422753,
           "gap_hartree": 1.5764101135573583e-10,
           "energy_variance_hartree2": 1.8771439710654793e-10,
@@ -2258,7 +2258,7 @@
           0.08063455526132901
         ],
         "pauli_terms": 185,
-        "construction_seconds": 0.444693457800895
+        "construction_seconds": 0.4368147498462349
       },
       "active_integrals": {
         "core_energy_hartree": -86.83116333561954,
@@ -3297,7 +3297,7 @@
             }
           ],
           "reference_energy_hartree": -91.77508487838232,
-          "elapsed_seconds": 3.56480749999173,
+          "elapsed_seconds": 3.499724542023614,
           "best_energy_hartree": -91.77508487804816,
           "gap_hartree": 3.341540377732599e-10,
           "energy_variance_hartree2": 2.82227287452959e-10,
@@ -3905,7 +3905,7 @@
             }
           ],
           "reference_energy_hartree": -91.77508487838232,
-          "elapsed_seconds": 3.786430250154808,
+          "elapsed_seconds": 3.7870358750224113,
           "best_energy_hartree": -91.77508487832255,
           "gap_hartree": 5.977085493213963e-11,
           "energy_variance_hartree2": 8.328638978506583e-11,
@@ -4488,7 +4488,7 @@
             }
           ],
           "reference_energy_hartree": -91.77508487838232,
-          "elapsed_seconds": 3.6973642921075225,
+          "elapsed_seconds": 3.52931149979122,
           "best_energy_hartree": -91.77508487808055,
           "gap_hartree": 3.0176749987731455e-10,
           "energy_variance_hartree2": 2.573650860636431e-10,
@@ -4587,7 +4587,7 @@
           0.11249690241846375
         ],
         "pauli_terms": 185,
-        "construction_seconds": 0.48753045802004635
+        "construction_seconds": 0.4663690000306815
       },
       "active_integrals": {
         "core_energy_hartree": -87.05165124647576,
@@ -5451,7 +5451,7 @@
             }
           ],
           "reference_energy_hartree": -91.76491686105757,
-          "elapsed_seconds": 2.286825583083555,
+          "elapsed_seconds": 2.2829828748945147,
           "best_energy_hartree": -91.76491686097711,
           "gap_hartree": 8.046185939747375e-11,
           "energy_variance_hartree2": 4.423630583722659e-11,
@@ -5969,7 +5969,7 @@
             }
           ],
           "reference_energy_hartree": -91.76491686105757,
-          "elapsed_seconds": 3.1998743331059813,
+          "elapsed_seconds": 3.102891917107627,
           "best_energy_hartree": -91.76491686088345,
           "gap_hartree": 1.7412560282537015e-10,
           "energy_variance_hartree2": 1.1714797468686773e-10,
@@ -6412,7 +6412,7 @@
             }
           ],
           "reference_energy_hartree": -91.76491686105757,
-          "elapsed_seconds": 2.509433167055249,
+          "elapsed_seconds": 2.497625624993816,
           "best_energy_hartree": -91.76491686091421,
           "gap_hartree": 1.4335910236695781e-10,
           "energy_variance_hartree2": 1.1456680464206586e-10,
@@ -6441,7 +6441,7 @@
     "casci_minus_full_fci_hartree": 0.06884275932091555,
     "rhf_hartree": -91.67459259588719,
     "rks_pbe_hartree": -92.09749120250225,
-    "elapsed_seconds": 0.10583308315835893,
+    "elapsed_seconds": 0.10305000003427267,
     "resource_limits": {
       "requested_memory_mb": 1000,
       "max_cycle": 100,
