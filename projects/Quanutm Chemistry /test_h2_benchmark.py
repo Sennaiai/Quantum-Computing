@@ -9,7 +9,7 @@ import pennylane as qml
 from scipy.linalg import expm
 from h2_benchmark import (COEFFICIENTS, WIRE_ORDER, classical_point,
                           coordinates_bohr, historical_analysis, historical_operator,
-                          quantum_point, run_scan, validate_row)
+                          quantum_point, real_pauli_hamiltonian, run_scan, validate_row)
 
 
 class H2Tests(unittest.TestCase):
@@ -69,6 +69,22 @@ class H2Tests(unittest.TestCase):
                                self.reference_rows[0]['fci_hartree'], delta=2e-7)
         self.assertAlmostEqual(mapped[12, 12].real,
                                self.reference_rows[0]['rhf_hartree'], delta=2e-7)
+
+    def test_checked_real_coefficients_preserve_complex_typed_hermitian_operator(self):
+        import warnings
+        raw = qml.Hamiltonian(np.array([.25+0j, .5+0j]), [qml.PauliZ(0), qml.PauliX(0)])
+        normalized = real_pauli_hamiltonian(raw)
+        np.testing.assert_allclose(qml.matrix(raw), qml.matrix(normalized), atol=1e-14, rtol=0)
+        device = qml.device('default.qubit', wires=1)
+        @qml.qnode(device)
+        def expectation():
+            return qml.expval(normalized)
+        with warnings.catch_warnings():
+            warnings.simplefilter('error', np.ComplexWarning)
+            self.assertAlmostEqual(float(expectation()), .25)
+        for coefficient in [1j, np.nan]:
+            with self.assertRaises(ValueError):
+                real_pauli_hamiltonian(qml.Hamiltonian([coefficient], [qml.PauliX(0)]))
 
     def test_invalid_grid_and_empty_scan(self):
         for grid in [-1,10,2.5]:

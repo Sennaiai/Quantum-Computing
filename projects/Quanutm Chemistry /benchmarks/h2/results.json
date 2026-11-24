@@ -29,7 +29,7 @@
     "spin_orbital_order": "alpha,beta interleaved",
     "measurement": "exact analytic expectation, no shots",
     "bohr_angstrom": 0.529177210903,
-    "benchmark_source_sha256": "c4dbc1dc008614757a2f62cc84ed8f127815c863108deb0c0264aa11ca234715"
+    "benchmark_source_sha256": "df7caa20ad3fa2b8221fd88346d6f048d40f68ae369d65f38b918806ef2f5592"
   },
   "scan": [
     {
@@ -60,7 +60,7 @@
       "optimizer_evaluations": 21,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.14208637503907084
+      "elapsed_seconds": 0.1544274170883
     },
     {
       "distance_angstrom": 0.65,
@@ -90,7 +90,7 @@
       "optimizer_evaluations": 20,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.097634166944772
+      "elapsed_seconds": 0.08917791699059308
     },
     {
       "distance_angstrom": 0.74,
@@ -120,7 +120,7 @@
       "optimizer_evaluations": 12,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.0707697500474751
+      "elapsed_seconds": 0.07129458314739168
     },
     {
       "distance_angstrom": 1.0,
@@ -150,7 +150,7 @@
       "optimizer_evaluations": 10,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.06574779190123081
+      "elapsed_seconds": 0.06588258314877748
     },
     {
       "distance_angstrom": 1.5,
@@ -180,7 +180,7 @@
       "optimizer_evaluations": 12,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.07009962503798306
+      "elapsed_seconds": 0.07080666604451835
     },
     {
       "distance_angstrom": 2.0,
@@ -210,7 +210,7 @@
       "optimizer_evaluations": 9,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.06329266703687608
+      "elapsed_seconds": 0.06587924994528294
     },
     {
       "distance_angstrom": 3.0,
@@ -240,7 +240,7 @@
       "optimizer_evaluations": 11,
       "qubits": 4,
       "pauli_terms": 15,
-      "elapsed_seconds": 0.06822458398528397
+      "elapsed_seconds": 0.0691462920513004
     }
   ],
   "basis_controls": [

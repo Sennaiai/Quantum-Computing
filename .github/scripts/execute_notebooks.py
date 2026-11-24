@@ -10,11 +10,6 @@ SKIPPED_PROJECT_PREFIXES = (
     "Electicty load prediction forecasting",
     "Modular_QEML_admet_Pipeline",
 )
-RESOURCE_INTENSIVE_NOTEBOOKS = {
-    "Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb",
-}
-
-
 
 def skip_reason(path):
     relative = path.relative_to(ROOT / "projects")
@@ -26,8 +21,8 @@ def skip_reason(path):
         return "validated by dedicated HCN scientific tests and notebook workflow"
     if relative.parts[0] == "QFT" or relative.as_posix() == "Shor_Senay_Kahsay.ipynb":
         return "relocated coursework; execution refinement pending"
-    if path.name in RESOURCE_INTENSIVE_NOTEBOOKS:
-        return "resource-intensive active-space scaling"
+    if relative.as_posix() == "Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb":
+        return "validated by dedicated scaling scientific tests and notebook workflow"
     if any(parent.startswith(prefix) for parent in relative.parts[:-1]
            for prefix in SKIPPED_PROJECT_PREFIXES):
         return "external data, uploads, or credentials required"
