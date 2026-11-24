@@ -8,7 +8,8 @@ The notebook:
 - Simulates QPE, the HHL controlled rotation, and ancilla post-selection.
 - Compares the HHL estimate and a VQE nullspace solution with the classical reference.
 - Includes one-layer QAOA as a shallow variational baseline.
-- Uses seeded simulations and numerical assertions for key results, including a comparison of the observed HHL post-selection rate with its analytic probability within a five-standard-error binomial tolerance.
+- Checks the observed HHL post-selection rate against \(p_\mathrm{success}=C^2\lVert A^{-1}\lvert b\rangle\rVert^2\) within a five-standard-error binomial tolerance, with \(C=\lambda_{\min}(A)\).
+- Uses seeded simulations and numerical assertions for the key numerical results.
 
 ## Run
 
