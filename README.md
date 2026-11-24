@@ -47,19 +47,11 @@ Project-specific dependencies and input requirements are documented alongside ea
 
 ---
 
-### `theory/`
+### `resources/theory/`
 Mathematical and physical foundations:
-- **`basics.md`** — qubits, states, operators, measurement  
-- **`algorithms.md`** — VQE, QAOA, QRC, and related methods  
-- **`models.md`** — Hamiltonians, encodings, ansätze, cost functions  
-
----
-
-### `resources/`
-Curated references for working in quantum life-science modeling:
-- **`conferences.md`** — major research and industry venues  
-- **`reading.md`** — key books, journals, and papers  
-- **`tools.md`** — quantum and molecular modeling frameworks  
+- **`basics.md`** — qubits, states, operators, measurement
+- **`algorithms.md`** — VQE, QAOA, QRC, and related methods
+- **`models.md`** — reserved for Hamiltonian and encoding notes
 
 ---
 
@@ -86,8 +78,17 @@ python .github/scripts/execute_notebooks.py
 
 GitHub Actions also executes the offline notebooks on pushes and pull requests. The runner uses short smoke configurations for VQE optimizations; open those notebooks in Jupyter to run their full iteration counts. The large active-space scaling study and notebooks requiring Colab uploads, local forecasting spreadsheets, ADMET datasets, or Triple Alpha credentials are not run in CI.
 
-Coursework notebooks are kept separately in the legacy-named `Assignemnts/`
-directory; the project runner discovers notebooks under `projects/` only.
+Coursework has been consolidated under `projects/`, including `QFT/`,
+`Shor_Senay_Kahsay.ipynb`, and `Optimization/Unit_Commitment_MOPSO.ipynb`.
+QFT and Shor retain their coursework implementations and are explicitly excluded
+from automated execution pending their own refinement. A directory move does not
+establish scientific or execution validation.
+
+The [H2 chemistry study](projects/Quanutm%20Chemistry%20/README.md) uses its own
+pinned environment and dedicated scientific tests and notebook CI. Its saved
+notebook outputs and benchmark evidence are available for review. The shared
+runner delegates H2 execution to that dedicated workflow and excludes generated
+artifact notebooks from discovery.
 
 For the ADMET project, create its environment from that project directory so its existing `requirements.txt` is found:
 

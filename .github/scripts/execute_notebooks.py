@@ -15,31 +15,35 @@ RESOURCE_INTENSIVE_NOTEBOOKS = {
 }
 
 
+
+def skip_reason(path):
+    relative = path.relative_to(ROOT / "projects")
+    if any(part in {"artifacts", ".ipynb_checkpoints", "__pycache__"} for part in relative.parts):
+        return "generated artifact, not a source notebook"
+    if relative.as_posix() == "Quanutm Chemistry /Quantum_Simulation_of_the_Hydrogen_Molecule_H2_Hamiltonian.ipynb":
+        return "validated by dedicated H2 scientific tests and notebook workflow"
+    if relative.parts[0] == "QFT" or relative.as_posix() == "Shor_Senay_Kahsay.ipynb":
+        return "relocated coursework; execution refinement pending"
+    if path.name in RESOURCE_INTENSIVE_NOTEBOOKS:
+        return "resource-intensive active-space scaling"
+    if any(parent.startswith(prefix) for parent in relative.parts[:-1]
+           for prefix in SKIPPED_PROJECT_PREFIXES):
+        return "external data, uploads, or credentials required"
+    return None
+
+
 def main():
     os.environ["NOTEBOOK_CI"] = "1"
     project_root = ROOT / "projects"
     notebooks = sorted(project_root.rglob("*.ipynb"))
-    runnable = [
-        path
-        for path in notebooks
-        if path.name not in RESOURCE_INTENSIVE_NOTEBOOKS
-        and not any(
-            parent.startswith(prefix)
-            for parent in path.relative_to(project_root).parts[:-1]
-            for prefix in SKIPPED_PROJECT_PREFIXES
-        )
-    ]
+    runnable = [path for path in notebooks if skip_reason(path) is None]
 
     if not runnable:
         raise SystemExit("No offline Quantum-Computing notebooks were found to execute.")
 
     for path in notebooks:
         if path not in runnable:
-            reason = (
-                "resource-intensive active-space scaling"
-                if path.name in RESOURCE_INTENSIVE_NOTEBOOKS
-                else "external data, uploads, or credentials required"
-            )
+            reason = skip_reason(path)
             print(f"SKIP {path.relative_to(ROOT)}: {reason}", flush=True)
 
     for path in runnable:
