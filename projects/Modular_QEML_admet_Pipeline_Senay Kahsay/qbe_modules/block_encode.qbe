@@ -24,9 +24,11 @@ module block_encode {
             func apply_inverse(BlockEncode self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
                 Prep(self.num_coefs, self.num_ancillas) -> Prep preparator
                 Sel(self.num_coefs, self.num_ancillas, self.num_qubits) -> Sel selector
-                preparator.prepare_inverse(ancillas, coefs)
-                selector.select(ancillas, qubits, pauli_strings, sign)
+                # SELECT is a signed Hermitian Pauli multiplexor. Thus
+                # (P^dagger SELECT P)^dagger = P^dagger SELECT P.
                 preparator.prepare(ancillas, coefs)
+                selector.select(ancillas, qubits, pauli_strings, sign)
+                preparator.prepare_inverse(ancillas, coefs)
             }
         }
     }

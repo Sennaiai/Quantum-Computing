@@ -1,0 +1,6 @@
+# Optional isolated contract-test environment; no deployment call is made.
+triple-alpha==0.2.3
+httpx==0.28.1
+pydantic==2.14.4
+requests==2.34.2
+setuptools==83.0.0

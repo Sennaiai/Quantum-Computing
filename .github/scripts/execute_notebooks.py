@@ -23,6 +23,8 @@ def skip_reason(path):
         return "relocated coursework; execution refinement pending"
     if relative.as_posix() == "Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb":
         return "validated by dedicated scaling scientific tests and notebook workflow"
+    if relative.parts[0] == "Modular_QEML_admet_Pipeline_Senay Kahsay":
+        return "validated by the dedicated ADMET scientific experiment workflow"
     if any(parent.startswith(prefix) for parent in relative.parts[:-1]
            for prefix in SKIPPED_PROJECT_PREFIXES):
         return "external data, uploads, or credentials required"

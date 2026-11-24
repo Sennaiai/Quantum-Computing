@@ -119,51 +119,29 @@ module math {
     }
 
     #
-    # Arccos using Newton iteration
+    # Arccos using bounded bisection. Unlike a fixed Newton count,
+    # convergence does not depend on the derivative near the endpoints.
     #
 
     func arccos(num value) -> (num result){
-
-        clip_unit(value) -> num target_value
+        clip_unit(value) -> num target
         3.141592653589793 -> num pi_value
-
-        if {target_value == 1}{
-
-            0 -> result
-
-        } elif {target_value == -1}{
-
-            pi_value -> result
-
-        } else {
-
-            pi_value / 2 -> num guess_value
-
-
-
-            for {1 -> num i}{i <= 15}{i + 1 -> i}{
-
-                cos(guess_value) -> num cosine_value
-                sin(guess_value) -> num sine_value
-                abs(sine_value) -> num sine_magnitude
-
-                if {sine_magnitude > 0.000001}{
-                    guess_value - (cosine_value - target_value) / (-1 * sine_value) -> guess_value
-                }
+        if {target == 1}{ 0 -> result } elif {target == -1}{ pi_value -> result } else {
+            0 -> num lower
+            pi_value -> num upper
+            for {1 -> num i}{i <= 64}{i + 1 -> i}{
+                (lower + upper) / 2 -> num midpoint
+                cos(midpoint) -> num value_at_midpoint
+                if {value_at_midpoint > target}{ midpoint -> lower } else { midpoint -> upper }
             }
-
-            if {guess_value < 0}{
-                0 -> result
-            } elif {guess_value > pi_value}{
-                pi_value -> result
-            } else {
-                guess_value -> result
-            }
+            (lower + upper) / 2 -> result
         }
     }
 
     #
-    # Square root using Newton iteration
+    # Square root using power-of-four range reduction and Newton iteration.
+    # The bounded reduction covers positive finite float64 inputs, including
+    # subnormals. Native numeric semantics still require compiler validation.
     #
 
     func sqrt(num value) -> (num result){
@@ -178,17 +156,22 @@ module math {
 
         } else {
 
-            value / 2 -> num guess_value
-
-            if {guess_value < 0.000001}{
-                1 -> guess_value
+            value -> num reduced_value
+            1 -> num scale_value
+            for {1 -> num i}{i <= 600}{i + 1 -> i}{
+                if {reduced_value < 0.25}{
+                    reduced_value * 4 -> reduced_value
+                    scale_value / 2 -> scale_value
+                } elif {reduced_value > 4}{
+                    reduced_value / 4 -> reduced_value
+                    scale_value * 2 -> scale_value
+                }
             }
-
-            for {1 -> num i}{i <= 50}{i + 1 -> i}{
-                ((value / guess_value) + guess_value) / 2 -> guess_value
+            1 -> num guess_value
+            for {1 -> num i}{i <= 24}{i + 1 -> i}{
+                ((reduced_value / guess_value) + guess_value) / 2 -> guess_value
             }
-
-            guess_value -> result
+            guess_value * scale_value -> result
         }
     }
 }

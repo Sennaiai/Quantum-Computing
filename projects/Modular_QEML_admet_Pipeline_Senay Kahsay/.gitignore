@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.venv/
+.env
+.env.*
+!.env.example
+ADMET_data/
+artifacts/
+.benchmark-data/
+.benchmark-cache/
+.benchmark-work/
+*.pkl

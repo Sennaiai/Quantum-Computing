@@ -30,6 +30,12 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn('dedicated HCN', self.reason(
             'Quanutm Chemistry /Chemistry_HCN_VQE_Study.ipynb'))
 
+    def test_admet_uses_scientific_workflow_and_excludes_generated_notebooks(self):
+        self.assertIn('dedicated ADMET', self.reason(
+            'Modular_QEML_admet_Pipeline_Senay Kahsay/ADMET_Triple_Alpha_End_to_End.ipynb'))
+        self.assertIn('generated', self.reason(
+            'Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/validation/result.ipynb'))
+
     def test_previous_offline_and_resource_policies_are_preserved(self):
         self.assertIsNone(self.reason('Optimization/Unit_Commitment_MOPSO.ipynb'))
         self.assertIn('dedicated scaling', self.reason(
