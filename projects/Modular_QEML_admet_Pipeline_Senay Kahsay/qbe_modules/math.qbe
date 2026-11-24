@@ -139,7 +139,9 @@ module math {
     }
 
     #
-    # Square root using Newton iteration
+    # Square root using power-of-four range reduction and Newton iteration.
+    # The bounded reduction covers positive finite float64 inputs, including
+    # subnormals. Native numeric semantics still require compiler validation.
     #
 
     func sqrt(num value) -> (num result){
@@ -154,17 +156,22 @@ module math {
 
         } else {
 
-            value / 2 -> num guess_value
-
-            if {guess_value < 0.000001}{
-                1 -> guess_value
+            value -> num reduced_value
+            1 -> num scale_value
+            for {1 -> num i}{i <= 600}{i + 1 -> i}{
+                if {reduced_value < 0.25}{
+                    reduced_value * 4 -> reduced_value
+                    scale_value / 2 -> scale_value
+                } elif {reduced_value > 4}{
+                    reduced_value / 4 -> reduced_value
+                    scale_value * 2 -> scale_value
+                }
             }
-
-            for {1 -> num i}{i <= 50}{i + 1 -> i}{
-                ((value / guess_value) + guess_value) / 2 -> guess_value
+            1 -> num guess_value
+            for {1 -> num i}{i <= 24}{i + 1 -> i}{
+                ((reduced_value / guess_value) + guess_value) / 2 -> guess_value
             }
-
-            guess_value -> result
+            guess_value * scale_value -> result
         }
     }
 }

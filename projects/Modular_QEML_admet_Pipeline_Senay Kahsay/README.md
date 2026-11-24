@@ -1,12 +1,12 @@
 # ADMET feature-Ising quantum-control experiment
 
-A reproducible pipeline from molecular Morgan **counts** to information-screened Ising interactions, a first-order variational counterdiabatic correction, heralded cosine/sine QSVT, and a validated runtime package. Three notebooks expose the chemistry, statistics, Hamiltonian algebra, numerical experiment, and API boundary.
+Molecular Morgan **counts** → information-screened Ising interactions → molecule-specific variational counterdiabatic control → heralded cosine/sine QSVT → validated measurement records → binary ADMET readout. Three independent notebooks expose the chemistry, statistics, Hamiltonian algebra, and runtime boundary.
 
-This is a **dimensionless data-derived encoding**, with a chosen energy scale and ℏ = 1. It is not an electronic-structure Hamiltonian, a calibrated ADMET mechanism, or a trained property predictor. The Python experiment runs end to end without Triple Alpha; native Beryllium source remains a separately identified candidate.
+The Hamiltonian is a **dimensionless data-derived encoding**, with a chosen energy scale and ℏ = 1. It is not an electronic-structure Hamiltonian or a calibrated ADMET mechanism. Offline execution, classical baselines, and a post-API learning implementation are available. Quantum predictive performance awaits measured outputs; native Triple Alpha execution remains blocked.
 
 ## Reproduce
 
-From this directory, with Python 3.11:
+Use Python 3.11 from this directory:
 
 ```bash
 python -m venv .venv
@@ -14,74 +14,69 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 python run_checks.py
 python run_benchmarks.py --download-bbb
-python src/admet_submission_entry.py
 ```
 
-`run_checks.py` runs scientific/adversarial tests and all three notebooks in fresh kernels using the selected interpreter. The default fixture has public structures and invented labels. `run_benchmarks.py --download-bbb` explicitly downloads the pinned public BBB table, then blocks experiment network connections. No credentials or Triple Alpha calls are involved. For fully offline reproduction, use `--bbb-file /path/to/bbb_martins.tab` instead. Conda setup is also available in `environment.yml`.
+The benchmark command explicitly acquires the checksum-pinned public BBB table and runs both the preserved exploratory study and the complete supervised all-molecule preparation/classical baselines. Use `--bbb-file /path/to/bbb_martins.tab` for offline reproduction. To prepare separately, run `python run_learning_pipeline.py prepare --bbb-file /path/to/bbb_martins.tab`, or use `--data-csv /path/to/data.csv --endpoint My_ADMET` with `Drug` SMILES and binary `Y`. Experiment connections are denied. No credentials or Triple Alpha requests are required. Generated preparations, molecular records, fitted models, and caches stay in ignored `artifacts/`.
 
-| Notebook | Reviewable scientific work |
+| Notebook | Scientific work |
 | --- | --- |
-| [Curation](pipeline/ADMET_future_curation_complete.ipynb) | Structure/label validation, count fingerprints, MI/CMI, signed co-information, compact qubits, per-molecule fields, independent classical spin energies |
-| [Counterdiabatic control](pipeline/Counter-diabatic%20hamiltonian_complete.ipynb) | Driver/interpolation, commutators, variational AGP, dense references, duration sweep, exact ground-projector control, convergence and control cost |
-| [End to end](ADMET_Triple_Alpha_End_to_End.ipynb) | Both QSVT branches, numerical error bound, heralding, direct-exponential comparison, strict runtime package, blocked API preflight |
+| [Curation](pipeline/ADMET_future_curation_complete.ipynb) | Count fingerprints, MI/CMI, signed co-information, molecular fields, exact classical spin energies; distinction between exploratory and supervised fitting |
+| [Counterdiabatic control](pipeline/Counter-diabatic%20hamiltonian_complete.ipynb) | Pauli commutators, variational AGP, independent matrix references, transport ablations, convergence and control cost |
+| [End to end](ADMET_Triple_Alpha_End_to_End.ipynb) | Both QSVT branches, numerical bound, heralding, direct-exponential comparison, runtime/result contracts and post-API learning |
 
-Each notebook runs independently, without hidden kernel state, positional cell execution, pickle dependencies, automatic installs, or default downloads.
+Each notebook executes in a fresh kernel. The default structures have invented labels and demonstrate software execution, not predictive accuracy.
 
-## Measured experiment
+## Supervised data and learning
 
-The smooth schedule is `s(u)=3u²−2u³`, with `u=t/T`. A four-qubit fixture starts in the unique driver ground state `|+⟩ⁿ`. Bare annealing and the production first-order CD control are compared with an independent exact **ground-projector** reference. Times and control costs use the chosen dimensionless scale.
+The pinned BBB table has **2,039 rows and 1,975 canonical identities**. The supervised path collapses 54 concordant duplicate rows and quarantines all 20 rows belonging to 10 conflicting-label identities. It retains **1,965 labelled identities** for learning and **all 1,975 valid structures** for measurement/prediction. Conflicting labels are never resolved by majority vote.
 
-| Duration T | Bare ground fidelity | First-order CD | Exact ground-projector CD |
-| ---: | ---: | ---: | ---: |
-| 0.2 | 0.06447 | 0.12004 | ≈1 |
-| 0.5 | 0.07393 | 0.11760 | ≈1 |
-| 1 | 0.09796 | 0.11388 | ≈1 |
-| 2 | 0.13096 | 0.13386 | ≈1 |
-| 5 | 0.25305 | 0.24908 | ≈1 |
+A deterministic strict Murcko-scaffold split keeps molecular identities and scaffold groups disjoint, including one shared group for all acyclic molecules. The source-hashed preparation summary records the resulting train/validation/test sizes. Feature selection, information interactions and min/max scaling fit **training only**. The frozen schema binds training labels, feature/wire mapping and readout supports; out-of-range counts are clipped and flagged. All selected features retain local fields, including those without screened interactions.
 
-First-order CD is **not uniformly better**. The result at T=5 remains visible. The exact reference is state-specific, dense, and more costly; it is a numerical calibration, not an efficient implementation claim. Midpoint-exponential refinement checks the adaptive ODE solution at T=1. Three frozen QSVT snapshots have recovered operator errors below 1.9×10⁻⁸ at requested tolerance 10⁻⁶. These snapshots do not implement a time-ordered QSVT anneal.
+Every canonical molecule receives a task binding its feature vector, CD coefficients, QSVT phases, normalization, shots, source rows and physical settings. Identical fitted feature vectors may reuse immutable physics bundles; molecule/task/job identities remain distinct. Preparation checks every unique Hamiltonian against a direct matrix exponential within the declared bounded profile.
+
+After a verified deployment returns measurements, supply explicitly mapped, normalized result envelopes:
+
+```bash
+python run_learning_pipeline.py train --preparation artifacts/learning/PREPARATION_ID --results /path/to/bound_results.json
+python run_learning_pipeline.py predict --model artifacts/trained_readout/correlation_model.json --records /path/to/decoded_records.json
+```
+
+The readout uses heralded raw Z single, pair and triad moments. Connected correlations remain diagnostics. Standardized logistic regression fits train only; validation selects regularization; test labels enter only the separate evaluation. Full 1,024-count and selected-count classical baselines use the same split and tuning grid. Reports include ROC AUC, average precision, Brier score, log loss and fixed-threshold classification metrics. Portable JSON models avoid pickle. Synthetic result tests establish software behavior, not quantum ADMET accuracy.
+
+## Scientific scope and measured controls
+
+`H₀=−ΣXᵢ`, `Hₚ(θ)=H_A+ΣθᵢZᵢ`, `H(s)=(1−s)H₀+sHₚ`. The first-order AGP is `A=iα[H,Hₚ−H₀]`, with `α=−‖O₁‖²/‖O₂‖²`. Molecular fields use scaled counts; MI scores select features. Every retained nonzero interaction participates, with explicit precision/resource failures.
+
+Frozen QSVT encodes `β exp(−itH_CD)`, β≈¼, with approximately 1/16 heralding probability and two additional ancillas. Bounds cover polynomial tails, phase reconstruction and float64 allowance; they are not interval proofs. Frozen snapshots do not constitute a time-ordered QSVT anneal.
+
+The four-qubit transport ablation compares bare annealing, first-order CD and exact dense ground-projector control at five durations. First-order CD improves short-duration fidelity but is slightly worse at T=5 (0.24908 versus 0.25305). The exact state-specific reference reaches approximately unit fidelity and its higher control cost remains visible.
 
 ![Quantum-control benchmark](results/transport.svg)
 
-The pinned official BBB artifact has **2,039 valid observations, 1,975 canonical molecules, 64 duplicate observations, and 10 identities with conflicting labels**. The unique count matches the documentation's stated 1,975 drugs; the report does not assume how that published cohort was processed. All raw rows are retained under the declared exploratory weighting.
+The separate **legacy exploratory** BBB study preserves all raw-row weights and the original KSG screens. Its top-8 graph varies across jitter seeds (pair Jaccard 0.643–0.857); 20/140 pair-screen decisions differ from an exact discrete baseline. This is estimator sensitivity, not a validated causal interaction graph or supervised prediction score. MI uses nats; KSG/CMI and co-information use bits. Positive triad co-information selects redundancy; negative synergy diagnostics remain visible. [Measured records](results/benchmark_summary.json) retain source/data identity and negative results.
 
-| Real-data profile | Active qubits | CD terms | Recovered `expm` error | Numerical bound |
-| --- | ---: | ---: | ---: | ---: |
-| Top 4 | 4 | 32 | 1.75×10⁻⁸ | 5.73×10⁻⁸ |
-| Top 8 | 7 | 55 | 1.81×10⁻⁸ | 5.80×10⁻⁸ |
+## SDK and native execution boundary
 
-Both profiles complete the runtime handoff. Across five jitter seeds, top-4 supports are stable; top-8 pair Jaccard ranges **0.643–0.857**, and **20/140** pair-screen decisions disagree with exact discrete CMI. This exposes estimator sensitivity rather than hiding it. Label shuffles are descriptive, with selected features held fixed; they are not significance tests. No threshold is lowered to force interactions, and no held-out prediction claim is made.
-
-![BBB information-estimator sensitivity](results/information.svg)
-
-Complete measured records, source/data identity, and checksums are in [the benchmark record](results/benchmark_summary.json).
-
-## Method and verification policy
-
-`H₀=−ΣXᵢ`, `Hₚ(θ)=H_A+ΣθᵢZᵢ`, and `H(s)=(1−s)H₀+sHₚ`. Local fields use the selected molecule's scaled **counts**, not MI scores. All retained interactions participate; precision/resource failures raise diagnostics rather than silently pruning terms.
-
-Discrete feature–label MI is in nats; the retained seeded KSG estimates use bits. Screens 0.10/0.15 are heuristic. Positive co-information selects redundancy; negative synergy diagnostics remain visible. Statistics/scaling fit the exploratory table.
-
-Frozen QSVT encodes `β exp(−itH_CD)` with β≈¼, approximately 1/16 heralding probability, and two extra ancillas. Numerical bounds cover polynomial tails, phase reconstruction, and float64 allowance, without interval-proof claims. Register/query counts exclude compiler-dependent workspace and native costs. Strict runtime bundles bind data, settings, versions, source hashes, and independently decoded inputs.
-
-For local data, provide a CSV with `Drug` (SMILES) and binary `Y`:
+The optional **Triple Alpha 0.2.3** SDK is tested in a separate environment:
 
 ```bash
-python src/admet_submission_entry.py --data-csv /path/to/admet.csv --dataset My_ADMET --sample-index 0 --top-k 4
+python -m venv .venv-sdk
+.venv-sdk/bin/python -m pip install -r requirements-sdk.txt
+.venv-sdk/bin/python verify_sdk_contract.py
 ```
 
-Top-4/top-8 are bounded profiles; the original top-100 configuration remains available subject to budgets. Pinned BBB reproduction needs no PyTDC dependency.
+Socket-blocked comparisons against the installed SDK verify POST operations, URL handling, request models, status fields and named numeric-string inputs. The logical flat runtime stream is not sent directly to the service. Each circuit shape receives candidate fixed-shape Beryllium source with unique input/output names and a hash-bound mapping. Inner result fields require an explicit verified deployment mapping.
 
-## Extensions with explicit acceptance targets
+Native compilation, gate conventions, deployment identity/capacity and output semantics remain unverified. Protocol v2 requires a fresh verified deployment. Live opt-in and all native verification flags are required before execution; SDK mock success does not satisfy them.
 
-| Extension | What would establish improvement |
+## Research extensions
+
+| Extension | Acceptance target |
 | --- | --- |
-| Higher-order or ground-weighted AGP | Rank/conditioning diagnostics, monotone variational residual, transport fidelity **and** control-cost sweeps against the same exact reference |
-| Discrete estimators and calibrated screening | Permutation/null calibration, multiplicity policy, duplicate/conflicting-label sensitivity, edge stability, and a declared comparison with the retained KSG baseline |
-| Chemical interpretation of count buckets | RDKit atom-environment/bitInfo collision diagnostics; hashed indices are not unique chemical substructures |
-| Predictive ADMET readout | Grouped/scaffold train-only fitting, untouched held-out evaluation, uncertainty, and matched classical fingerprint baselines; no reuse of this exploratory fit as a prediction score |
-| Time-ordered QSVT and native deployment | Schedule discretization/error accumulation, postselection or amplification cost, compiled gate-convention fixtures, exact source/deployment identity, then an independently verified service contract |
+| Higher-order / ground-weighted AGP | Conditioning, residual, fidelity and control-cost sweeps against the same exact reference |
+| Calibrated information screens | Discrete-estimator ablations, permutation/multiplicity policy and edge stability on training only |
+| Chemical interpretation | RDKit atom-environment collision diagnostics; hashed buckets are not unique fragments |
+| Predictive validation | Real results; nonlinear classical controls, zero-time/no-CD readout ablations, repeated scaffold splits and scaffold bootstrap uncertainty; untouched external evaluation |
+| Time-ordered QSVT / native execution | Accumulated schedule/postselection cost, compiled gate fixtures and exact deployment/input/output verification |
 
-Generated data, caches, historical pickles, credentials, and runtime bundles stay in ignored `artifacts/` or local storage. Only small derived results are published. Candidate QBE protocol v2 requires a fresh verified deployment; an old deployment is incompatible. Live API execution remains blocked until native gates, compilation, deployment identity, and service semantics are verified. Mock tests cover the complete proposed lifecycle and failure paths.
-
-See [VALIDATION.md](VALIDATION.md) for scientific references, acceptance criteria, and remaining limits.
+See [VALIDATION.md](VALIDATION.md) for acceptance criteria, primary references and remaining limits.

@@ -106,8 +106,7 @@ class ScientificInputReviewTests(unittest.TestCase):
 class APIDeadlineReviewTests(unittest.TestCase):
     def client(self, *, clock=lambda: 0.):
         transport = Mock(side_effect=AssertionError("No transport call expected"))
-        flags = {name: True for name in ("compiler_verified", "gate_convention_verified",
-                                         "deployment_verified", "service_contract_verified")}
+        flags = {name: True for name in TripleAlphaClient.LIVE_VERIFICATIONS}
         return TripleAlphaClient("https://example.invalid", "test-placeholder", enable_live=True,
                                  native_validation=flags, transport=transport, clock=clock), transport
 
@@ -124,5 +123,6 @@ class APIDeadlineReviewTests(unittest.TestCase):
         client, transport = self.client(clock=lambda: float("nan"))
         from runtime_input_protocol import build_runtime_input_values
         with self.assertRaises(ValueError):
-            client.execute(build_runtime_input_values(payload(), settings()))
+            client.execute([[f"slot_{i}",format(value,".17g")]
+                            for i,value in enumerate(build_runtime_input_values(payload(),settings()))])
         transport.assert_not_called()
