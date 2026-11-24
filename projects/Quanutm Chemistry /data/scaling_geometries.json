@@ -1,0 +1,145 @@
+{
+  "unit": "angstrom",
+  "basis": "sto-3g",
+  "molecules": {
+    "ammonia": {
+      "symbols": [
+        "N",
+        "H",
+        "H",
+        "H"
+      ],
+      "coordinates_angstrom": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.94,
+          0.31
+        ],
+        [
+          0.82,
+          -0.47,
+          0.31
+        ],
+        [
+          -0.82,
+          -0.47,
+          0.31
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "expected_electrons": 10,
+      "expected_spatial_orbitals": 8,
+      "provenance": {
+        "method": "Original notebook fixed approximate geometry; not quantum-optimized"
+      }
+    },
+    "carbonic_acid": {
+      "symbols": [
+        "O",
+        "C",
+        "O",
+        "O",
+        "H",
+        "H"
+      ],
+      "coordinates_angstrom": [
+        [
+          0.07755916898486236,
+          1.3484386894329994,
+          -0.27774459084046954
+        ],
+        [
+          0.005264701253009458,
+          0.09153156919300787,
+          -0.2302842523189108
+        ],
+        [
+          1.1575553389782538,
+          -0.6683572421173574,
+          -0.06441285282089275
+        ],
+        [
+          -1.2271570156402762,
+          -0.5417341630918401,
+          -0.343550133634278
+        ],
+        [
+          2.0645184233890745,
+          -0.22491170641611838,
+          0.01994410148274336
+        ],
+        [
+          -2.0777406169649244,
+          -0.004967147000691715,
+          -0.4649200489424807
+        ]
+      ],
+      "charge": 0,
+      "multiplicity": 1,
+      "expected_electrons": 32,
+      "expected_spatial_orbitals": 22,
+      "provenance": {
+        "method": "RDKit ETKDGv3 embedding then UFF optimization; not quantum-optimized",
+        "rdkit_version": "2026.09.2",
+        "smiles": "O=C(O)O",
+        "random_seed": 1729,
+        "embedding_status": 0,
+        "uff_status": 0
+      }
+    },
+    "bicarbonate": {
+      "symbols": [
+        "O",
+        "C",
+        "O",
+        "O",
+        "H"
+      ],
+      "coordinates_angstrom": [
+        [
+          -0.4244031451597371,
+          1.2294810646960825,
+          -0.9295352293575581
+        ],
+        [
+          -0.4000117251245282,
+          0.02366981526256408,
+          -0.5686068430542676
+        ],
+        [
+          -1.5373901940623353,
+          -0.7608071124106691,
+          -0.7010257685706257
+        ],
+        [
+          0.7615919289801919,
+          -0.5256268393950453,
+          -0.03783634076769457
+        ],
+        [
+          1.600213135366406,
+          0.03328307184706639,
+          0.06551369581049676
+        ]
+      ],
+      "charge": -1,
+      "multiplicity": 1,
+      "expected_electrons": 32,
+      "expected_spatial_orbitals": 21,
+      "provenance": {
+        "method": "RDKit ETKDGv3 embedding then UFF optimization; not quantum-optimized",
+        "rdkit_version": "2026.09.2",
+        "smiles": "O=C([O-])O",
+        "random_seed": 1729,
+        "embedding_status": 0,
+        "uff_status": 0
+      }
+    }
+  }
+}
