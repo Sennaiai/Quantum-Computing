@@ -1,8 +1,7 @@
 # HCN validation record
 
 Local validation: 2026-11-24, Python 3.11.15, macOS ARM64. This is a fixed-orbital
-CAS(4,4) simulation with exact circuit expectations. The current HCN changes
-are a separate review checkpoint after H2 commit `ad85a0c`; they are uncommitted.
+CAS(4,4) simulation with exact circuit expectations. HCN was committed as `3f6f826` after H2 commit `ad85a0c`.
 
 ## Reproduction and checks
 
@@ -148,3 +147,12 @@ statevector observables from hardware measurements. The concise Markdown now
 answers the scientific question with the observed solver/truncation separation.
 Saved-evidence regression and orbital-basis-aware parameter replay close the
 remaining test-parity gap with H2. Model and solver choices were not changed.
+
+## Remote CI follow-up
+
+Draft PR #5 first exposed a workflow path failure before dependencies or
+scientific tests could run: GitHub Actions trimmed the terminal space from the
+project directory name. Both chemistry working directories now end in `/.`,
+preserving that space as an internal path component. A regression test checks
+that trimming the configured path still resolves to an existing directory.
+Remote verification is pending the corrected run.
