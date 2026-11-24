@@ -1,6 +1,7 @@
 """The repository move must not execute artifacts or silently promote coursework."""
 import importlib.util
 from pathlib import Path
+import re
 import unittest
 
 SCRIPT = Path(__file__).resolve().parents[2] / '.github/scripts/execute_notebooks.py'
@@ -34,6 +35,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn('resource-intensive', self.reason(
             'Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb'))
         self.assertIn('external data', self.reason('Modular_QEML_admet_Pipeline/example.ipynb'))
+
+    def test_workflow_directories_survive_actions_whitespace_trimming(self):
+        for name in ['h2-notebook.yml', 'hcn-notebook.yml']:
+            text = (policy.ROOT / '.github/workflows' / name).read_text()
+            directories = re.findall(r'working-directory:\s*"([^"]+)"', text)
+            self.assertTrue(directories, f'No working directory in {name}')
+            for directory in directories:
+                self.assertTrue((policy.ROOT / directory.strip()).is_dir(),
+                                f'Actions trims terminal whitespace: {name}: {directory!r}')
 
 
 if __name__ == '__main__':
