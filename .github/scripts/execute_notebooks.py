@@ -22,6 +22,8 @@ def skip_reason(path):
         return "generated artifact, not a source notebook"
     if relative.as_posix() == "Quanutm Chemistry /Quantum_Simulation_of_the_Hydrogen_Molecule_H2_Hamiltonian.ipynb":
         return "validated by dedicated H2 scientific tests and notebook workflow"
+    if relative.as_posix() == "Quanutm Chemistry /Chemistry_HCN_VQE_Study.ipynb":
+        return "validated by dedicated HCN scientific tests and notebook workflow"
     if relative.parts[0] == "QFT" or relative.as_posix() == "Shor_Senay_Kahsay.ipynb":
         return "relocated coursework; execution refinement pending"
     if path.name in RESOURCE_INTENSIVE_NOTEBOOKS:

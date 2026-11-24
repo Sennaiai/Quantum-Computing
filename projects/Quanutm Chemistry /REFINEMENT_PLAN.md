@@ -24,15 +24,15 @@ The notebook now exposes the full integral-to-circuit workflow. See
 [README_H2.md](README_H2.md) and [H2_VALIDATION.md](H2_VALIDATION.md).
 Remote Linux CI remains pending; human review is required before merge/release.
 
-## HCN: next
+## HCN: validated locally, review pending
 
-Correct geometry units and establish a justified π/π* CAS(4,4) model. Expose
-frozen-core integral construction, mapping, HF, spin-conserving variational
-circuits, and matched-sector CASCI checks. Pilot optimizer depth and multiple
-seeds before choosing scan budgets. Preserve best-state parameters, convergence
-status, symmetry diagnostics, and all seed outcomes. Compare full-basis RHF/PBE
-as separate classical baselines. A fixed-H–C, short C–N scan is not binding
-affinity or a complete triple-bond dissociation model.
+The notebook now exposes a π/π* CAS(4,4) construction, spin-conserving VQE,
+matched-sector CASCI checks, and a short fixed-H–C potential-energy scan.
+Full STO-3G FCI at one geometry separates active-space truncation from solver
+error. The pinned differentiable-HF backend was rejected by reference checks;
+PBE grids were refined after a failed numerical control. See
+[README_HCN.md](README_HCN.md) and [HCN_VALIDATION.md](HCN_VALIDATION.md).
+Review HCN before committing its refinement or starting active-space scaling.
 
 ## Active-space scaling: pending
 
