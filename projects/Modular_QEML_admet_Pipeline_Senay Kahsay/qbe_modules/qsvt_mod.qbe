@@ -1,4 +1,8 @@
+# Candidate native source. The mathematical model is tested independently;
+# Beryllium syntax, coherent control and gate semantics are unverified.
+# Assumed globalphase(theta)=exp(i theta), ry(theta)=exp(-i theta Y/2).
 import "walk_mod.qbe" as walk_mod
+import "reflect_mod.qbe" as reflect_mod
 
 module qsvt_mod {
     class QSVT {
@@ -6,36 +10,64 @@ module qsvt_mod {
             num num_coefs
             num num_ancillas
             num num_qubits
-            num num_phases
         }
         methods {
-            func QSVT(QSVT self, num num_coefs, num num_ancillas, num num_qubits, num num_phases){
+            func QSVT(QSVT self, num num_coefs, num num_ancillas, num num_qubits){
                 num_coefs -> self.num_coefs
                 num_ancillas -> self.num_ancillas
                 num_qubits -> self.num_qubits
-                num_phases -> self.num_phases
             }
-            func apply(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign, num[] phases){
-                Walk(self.num_coefs, self.num_ancillas, self.num_qubits) -> Walk walk
-                for {1 -> num i}{i <= self.num_phases}{i + 1 -> i}{
-                    -phases.[i] - 3.141592653589793 / 2 -> num right_alpha
-                    self.partial_reflection(ancillas, right_alpha)
-                    walk.apply(ancillas, qubits, coefs, pauli_strings, sign)
-                    phases.[i] + 3.141592653589793 / 2 -> num left_alpha
-                    self.partial_reflection(ancillas, left_alpha)
+            # Temporal order is reversed to realize D(phi0) B D(phi1)...B D(phid).
+            func polynomial(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign, num[] phases, num n_phases){
+                self.projector_phase(ancillas, phases.[n_phases])
+                for {1 -> num k}{k < n_phases}{k + 1 -> k}{
+                    n_phases - k -> num i
+                    self.signal(ancillas, qubits, coefs, pauli_strings, sign)
+                    self.projector_phase(ancillas, phases.[i])
                 }
             }
-            func partial_reflection(QSVT self, qusys(2)[] ancillas, num alpha){
-                3.141592653589793 + alpha -> num phase
+            func polynomial_inverse(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign, num[] phases, num n_phases){
+                self.projector_phase(ancillas, -phases.[1])
+                for {2 -> num i}{i <= n_phases}{i + 1 -> i}{
+                    self.signal(ancillas, qubits, coefs, pauli_strings, sign)
+                    self.projector_phase(ancillas, -phases.[i])
+                }
+            }
+            func signal(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, num[] coefs, num[] pauli_strings, num[] sign){
+                # W=R B, so R W=B. This exposes the qubitized walk
+                # while keeping reflection-QSP phases in their tested convention.
+                Walk(self.num_coefs, self.num_ancillas, self.num_qubits) -> Walk walk
+                walk.apply(ancillas, qubits, coefs, pauli_strings, sign)
+                reflect_mod.reflect_zero(ancillas, self.num_ancillas)
+            }
+            func real_polynomial(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, qusys(2) real_ancilla, num[] coefs, num[] pauli_strings, num[] sign, num[] phases, num n_phases){
+                h[real_ancilla]
+                x[real_ancilla]
+                if {real_ancilla}{ self.polynomial(ancillas, qubits, coefs, pauli_strings, sign, phases, n_phases) }
+                x[real_ancilla]
+                if {real_ancilla}{ self.polynomial_inverse(ancillas, qubits, coefs, pauli_strings, sign, phases, n_phases) }
+                h[real_ancilla]
+            }
+            func apply(QSVT self, qusys(2)[] ancillas, qusys(2)[] qubits, qusys(2) branch, qusys(2) real_ancilla, num[] coefs, num[] pauli_strings, num[] sign, num[] cos_phases, num n_cos, num[] sin_phases, num n_sin, num branch_angle){
+                ry(branch_angle)[branch]
+                x[branch]
+                if {branch}{ self.real_polynomial(ancillas, qubits, real_ancilla, coefs, pauli_strings, sign, cos_phases, n_cos) }
+                x[branch]
+                if {branch}{
+                    self.real_polynomial(ancillas, qubits, real_ancilla, coefs, pauli_strings, sign, sin_phases, n_sin)
+                    globalphase(-3.141592653589793 / 2)[branch]
+                }
+                ry(-branch_angle)[branch]
+            }
+            # D(phi)=exp(i phi (2|0><0|-I)). Global phase is material
+            # inside coherent controlled branches and must not be discarded.
+            func projector_phase(QSVT self, qusys(2)[] ancillas, num phi){
+                globalphase(-phi)[ancillas.[1]]
                 for {1 -> num i}{i <= self.num_ancillas}{i + 1 -> i}{ x[ancillas.[i]] }
-                if {self.num_ancillas == 1} {
-                    globalphase(phase / 2)[ancillas.[1]]
-                    rz(-phase / 2)[ancillas.[1]]
-                } elif {self.num_ancillas == 2} {
-                    if {ancillas.[1]} {
-                        globalphase(phase / 2)[ancillas.[2]]
-                        rz(-phase / 2)[ancillas.[2]]
-                    }
+                if {self.num_ancillas == 1}{
+                    if {ancillas.[1]}{ globalphase(2 * phi)[ancillas.[1]] }
+                } elif {self.num_ancillas == 2}{
+                    if {ancillas.[1]}{ if {ancillas.[2]}{ globalphase(2 * phi)[ancillas.[2]] } }
                 } else {
                     qusys(2)[] work
                     self.num_ancillas - 2 -> num n_work
@@ -44,22 +76,14 @@ module qsvt_mod {
                     for {1 -> num i}{i <= (n_work - 1)}{i + 1 -> i}{
                         toffoli[ancillas.[i + 2], work.[i], work.[i + 1]]
                     }
-                    if {work.[n_work]} {
-                        if {ancillas.[self.num_ancillas]} {
-                            globalphase(phase / 2)[ancillas.[self.num_ancillas]]
-                            rz(-phase / 2)[ancillas.[self.num_ancillas]]
-                        }
-                    }
+                    if {work.[n_work]}{ if {ancillas.[self.num_ancillas]}{ globalphase(2 * phi)[ancillas.[self.num_ancillas]] } }
                     for {1 -> num k}{k <= (n_work - 1)}{k + 1 -> k}{
                         n_work - k -> num i
                         toffoli[ancillas.[i + 2], work.[i], work.[i + 1]]
                     }
                     toffoli[ancillas.[1], ancillas.[2], work.[1]]
                 }
-                for {1 -> num k}{k <= self.num_ancillas}{k + 1 -> k}{
-                    self.num_ancillas - k + 1 -> num i
-                    x[ancillas.[i]]
-                }
+                for {1 -> num i}{i <= self.num_ancillas}{i + 1 -> i}{ x[ancillas.[i]] }
             }
         }
     }

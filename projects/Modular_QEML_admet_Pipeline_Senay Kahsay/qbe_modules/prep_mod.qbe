@@ -1,3 +1,5 @@
+# Candidate native source; compile/gate semantics require vendor validation.
+# Assumed ry(theta)=exp(-i theta Y/2).
 import "math.qbe" as math
 
 module prep_mod {
@@ -55,9 +57,16 @@ module prep_mod {
             }
             func compute_angle(Prep self, num p_left, num p_right) -> (num theta) {
                 p_left + p_right -> num total
-                if {total == 0}{ 0 -> theta } else {
+                if {total == 0}{ 0 -> theta } elif {p_right == 0}{ 0 -> theta } elif {p_left == 0}{
+                    3.141592653589793 -> theta
+                } elif {p_left >= p_right}{
+                    math.sqrt(p_right / total) -> num argument
+                    math.arccos(argument) -> num half_complement
+                    3.141592653589793 - 2 * half_complement -> theta
+                } else {
                     math.sqrt(p_left / total) -> num argument
-                    math.arccos(argument) -> theta
+                    math.arccos(argument) -> num half_angle
+                    2 * half_angle -> theta
                 }
             }
             func arb_seq_multi_controlled_ry(Prep self, qusys(2)[] ancillas, num[] control_values, num n_controls, num target, num theta){
