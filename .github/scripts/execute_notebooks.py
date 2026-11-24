@@ -38,6 +38,8 @@ def main():
             reason = (
                 "resource-intensive active-space scaling"
                 if path.name in RESOURCE_INTENSIVE_NOTEBOOKS
+                else "validated by the dedicated ADMET scientific experiment workflow"
+                if path.relative_to(project_root).parts[0] == "Modular_QEML_admet_Pipeline_Senay Kahsay"
                 else "external data, uploads, or credentials required"
             )
             print(f"SKIP {path.relative_to(ROOT)}: {reason}", flush=True)

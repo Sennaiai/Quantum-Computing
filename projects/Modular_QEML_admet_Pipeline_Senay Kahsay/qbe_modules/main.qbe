@@ -1,3 +1,6 @@
+# Candidate protocol v2 source. Do not submit until native compiler and
+# gate semantics are verified. Mathematical reference is not native validation.
+# Output order: branch bit, real-extraction bit, lambda, index bits, system bits.
 import "math.qbe" as math
 import "qsvt_mod.qbe" as qsvt_mod
 
@@ -10,7 +13,8 @@ func main(){
     input -> num num_coefs
     input -> num num_qubits
     input -> num num_ancillas
-    input -> num num_phases
+    input -> num num_cos_phases
+    input -> num num_sin_phases
 
     #
     # Reusable input buffers
@@ -19,7 +23,9 @@ func main(){
     num angle_value
     num coefficient_value
     num pauli_code
-    num phase_value
+    num cos_phase_value
+    num sin_phase_value
+    num branch_angle
 
     #
     # Runtime arrays
@@ -29,7 +35,8 @@ func main(){
     num[] coefs
     num[] sign
     num[] pauli_strings
-    num[] phases
+    num[] cos_phases
+    num[] sin_phases
 
     #
     # Quantum registers
@@ -86,10 +93,15 @@ func main(){
     # Runtime QSVT phases
     #
 
-    for {1 -> num i}{i <= num_phases}{i + 1 -> i}{
-        input -> phase_value
-        phase_value -> phases.[i]
+    for {1 -> num i}{i <= num_cos_phases}{i + 1 -> i}{
+        input -> cos_phase_value
+        cos_phase_value -> cos_phases.[i]
     }
+    for {1 -> num i}{i <= num_sin_phases}{i + 1 -> i}{
+        input -> sin_phase_value
+        sin_phase_value -> sin_phases.[i]
+    }
+    input -> branch_angle
 
     #
     # Inline sign extraction and lambda calculation
@@ -129,21 +141,17 @@ func main(){
 
     if {lambda > 0}{
 
-        QSVT(
-            num_coefs,
-            num_ancillas,
-            num_qubits,
-            num_phases
-        ) -> QSVT qsvt
-
-        qsvt.apply(
-            ancillas,
-            qubits,
-            coefs,
-            pauli_strings,
-            sign,
-            phases
-        )
+        qubit -> branch
+        qubit -> real_ancilla
+        QSVT(num_coefs, num_ancillas, num_qubits) -> QSVT qsvt
+        qsvt.apply(ancillas, qubits, branch, real_ancilla, coefs,
+                   pauli_strings, sign, cos_phases, num_cos_phases,
+                   sin_phases, num_sin_phases, branch_angle)
+        # Successful evolution requires branch=real_ancilla=all indices=0.
+        measure[branch] -> num branch_result
+        measure[real_ancilla] -> num real_result
+        branch_result -> output
+        real_result -> output
     }
 
     #
