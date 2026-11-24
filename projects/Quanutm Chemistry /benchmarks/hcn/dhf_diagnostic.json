@@ -1,0 +1,8 @@
+{
+  "pennylane_version": "0.36.0",
+  "pyscf_rhf_hartree": -91.67459259588719,
+  "dhf_hartree": -95.16203527167147,
+  "difference_hartree": -3.48744267578428,
+  "agreement_tolerance_hartree": 1e-06,
+  "backend_accepted": false
+}
