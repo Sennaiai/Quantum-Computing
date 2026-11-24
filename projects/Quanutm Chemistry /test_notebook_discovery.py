@@ -25,9 +25,12 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn('coursework', self.reason('QFT/Qiskit Arithemtic .ipynb'))
         self.assertIn('coursework', self.reason('Shor_Senay_Kahsay.ipynb'))
 
+    def test_hcn_has_a_dedicated_execution_job(self):
+        self.assertIn('dedicated HCN', self.reason(
+            'Quanutm Chemistry /Chemistry_HCN_VQE_Study.ipynb'))
+
     def test_previous_offline_and_resource_policies_are_preserved(self):
         self.assertIsNone(self.reason('Optimization/Unit_Commitment_MOPSO.ipynb'))
-        self.assertIsNone(self.reason('Quanutm Chemistry /Chemistry_HCN_VQE_Study.ipynb'))
         self.assertIn('resource-intensive', self.reason(
             'Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb'))
         self.assertIn('external data', self.reason('Modular_QEML_admet_Pipeline/example.ipynb'))
