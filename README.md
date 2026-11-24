@@ -51,15 +51,11 @@ Project-specific dependencies and input requirements are documented alongside ea
 Mathematical and physical foundations:
 - **`basics.md`** — qubits, states, operators, measurement  
 - **`algorithms.md`** — VQE, QAOA, QRC, and related methods  
-- **`models.md`** — Hamiltonians, encodings, ansätze, cost functions  
 
 ---
 
 ### `resources/`
-Curated references for working in quantum life-science modeling:
-- **`conferences.md`** — major research and industry venues  
-- **`reading.md`** — key books, journals, and papers  
-- **`tools.md`** — quantum and molecular modeling frameworks  
+Reference material and project-planning notes, including **`roadmap.md`**.
 
 ---
 
@@ -84,7 +80,7 @@ conda activate quantum-projects
 python .github/scripts/execute_notebooks.py
 ```
 
-GitHub Actions also executes the offline notebooks on pushes and pull requests. The runner uses short smoke configurations for VQE optimizations; open those notebooks in Jupyter to run their full iteration counts. The large active-space scaling study and notebooks requiring Colab uploads, local forecasting spreadsheets, ADMET datasets, or Triple Alpha credentials are not run in CI.
+GitHub Actions also executes notebooks whose inputs and runtime dependencies are available. The runner uses bounded smoke configurations for VQE, forecasting, and ADMET curation, skips notebooks that require unavailable local inputs, Colab uploads, optional plugins, external services, or excessive resources, and prints the reason for each skip. Open notebooks in Jupyter with the shared environment for full-data execution.
 
 Coursework notebooks are kept separately in the legacy-named `Assignemnts/`
 directory; the project runner discovers notebooks under `projects/` only.

@@ -1,18 +1,9 @@
-# ADMET Future Curation
+# Local ADMET Inputs
 
-Cleaned notebook for ADMET dataset curation and Hamiltonian construction only.
+This directory contains the ten tab-separated ADMET datasets used by the
+canonical curation notebook at `../pipeline/ADMET_future_curation_complete.ipynb`.
+The notebook loads these files locally; it does not download them at runtime.
 
-Responsibilities:
-- Load ADMET datasets
-- Generate Morgan fingerprints
-- Select features with mutual information
-- Build feature-interaction matrices
-- Construct Hamiltonian A, B, and C dictionaries
-- Export curated Hamiltonian payloads for the class-based LCU framework
-
-Excluded by design:
-- LCU generation
-- QBE generation
-- Block encoding
-- ReflectZero / WalkOperator
-- Triple Alpha tests
+The raw inputs are in `data/`. The curation notebook produces the intermediate
+fingerprints, selected features, interaction data, and Hamiltonian handoff used
+by the counterdiabatic and Triple Alpha workflows.

@@ -3,12 +3,14 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - pip
   - ipykernel
   - jupyterlab
   - nbclient
   - nbformat
   - matplotlib
-  - numpy
+  - numpy<2
+  - openpyxl
   - pandas
   - pennylane
   - autoray=0.6.11
@@ -19,3 +21,5 @@ dependencies:
   - rdkit
   - scikit-learn
   - scipy
+  - pip:
+      - npeet-plus

@@ -23,7 +23,7 @@ The notebook performs preprocessing, AGP/CD construction, QSVT phase synthesis, 
 
 The canonical derivation notebooks are in `pipeline/`:
 
-- `ADMET_future_curation_complete.ipynb` downloads or loads the ADMET datasets,
+- `ADMET_future_curation_complete.ipynb` loads the ten committed local `.tab` datasets from `ADMET_data/data`,
   generates Morgan count fingerprints, performs MI feature selection, computes
   pairwise and conditional mutual information, identifies triadic interactions, and constructs the parameterized Stage-6 Hamiltonian.
 - `Counter-diabatic hamiltonian_complete.ipynb` constructs the adiabatic Hamiltonian, nested commutators, variational AGP coefficient, first-order AGP, counterdiabatic Hamiltonian, and resource summary.
@@ -34,6 +34,10 @@ counterdiabatic notebook loads that artifact and writes
 `artifacts/HCD_resource_summary.pkl`.
 
 The end-to-end notebook invokes the curation stages directly and performs the molecule-specific AGP/CD calculation without interaction-term truncation.
+
+The repository notebook runner sets `NOTEBOOK_CI=1` for a bounded smoke run
+(two datasets, 250 rows each, and 8 selected features). A normal notebook run
+uses all ten local datasets and the full 100-feature analysis.
 
 ## Quantum runtime
 
@@ -85,7 +89,7 @@ Modular_QEML_admet_Pipeline_Senay Kahsay/
 ├── src/               # preprocessing, serialization, and validation helpers
 ├── python_classes/    # validated Hamiltonian and QSVT helpers
 ├── qbe_modules/       # compiler-validated Beryllium source
-└── data/              # optional local inputs; not included in this checkout
+└── ADMET_data/data/   # local tab-separated ADMET inputs
 ```
 
 `runtime_inputs.json` and `runtime_manifest.json` are generated runtime

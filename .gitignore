@@ -1,3 +1,5 @@
 notebooks/roadmap_draft.md
 .DS_Store
-
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
