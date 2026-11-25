@@ -64,6 +64,9 @@ class AmplificationTests(unittest.TestCase):
             r,_=simulate(a,o,targets,3,shots=4096,seed=seed)
             self.assertLessEqual(abs(r['sampled_success']-r['exact_success']),r['hoeffding_half_width'])
             self.assertEqual(sum(r['counts'].values()),4096)
+            self.assertEqual(r['valid_shots']+r['invalid_shots'],r['shots'])
+            self.assertLessEqual(r['binomial_95_interval'][0],r['sampled_success'])
+            self.assertGreaterEqual(r['binomial_95_interval'][1],r['sampled_success'])
 
     def test_board_predicate_rejects_out_of_range_or_malformed_columns(self):
         for cols in ([-1], [1], [True], ['0'], [], [0,0], [4,2,0,3]):
@@ -114,7 +117,7 @@ class AmplificationTests(unittest.TestCase):
             with self.assertRaises(ValueError):build_amplification(uniform_preparation(2),oracle_for_targets(2,['01']),k)
         for p in (float('nan'),float('inf'),True,-.1,1.1):
             with self.assertRaises(ValueError):first_peak_iterations(p)
-        with self.assertRaises(ValueError):build_amplification(uniform_preparation(2),QuantumCircuit(17),1)
+        with self.assertRaises(ValueError):build_amplification(uniform_preparation(2),QuantumCircuit(MAX_TOTAL_QUBITS+1),1)
         with self.assertRaises(ValueError):queens_reference(6)
 
     def test_classical_sampling_control_and_transpiled_resources(self):
@@ -123,6 +126,67 @@ class AmplificationTests(unittest.TestCase):
         cost=resource_counts(oracle_for_targets(3,['001']))
         self.assertGreater(cost['cx_count'],0)
         self.assertGreater(cost['depth'],0)
+
+
+    def test_counter_increment_is_correct_for_every_counter_value_and_control(self):
+        from amplification import _increment_if
+        circuit=QuantumCircuit(5)
+        _increment_if(circuit,[0],list(range(1,5)))
+        expected=np.zeros((32,32),complex)
+        for control in (0,1):
+            for count in range(16):
+                source=(count<<1)|control
+                target=(((count+control)%16)<<1)|control
+                expected[target,source]=1
+        np.testing.assert_allclose(Operator(circuit).data,expected,atol=1e-12)
+
+    def test_five_queens_constraint_oracle_marks_all_32768_inputs_and_uncomputes(self):
+        size=32768
+        rng=np.random.default_rng(2026)
+        psi=rng.normal(size=size)+1j*rng.normal(size=size);psi/=np.linalg.norm(psi)
+        oracle=queens_constraint_oracle(5)
+        self.assertEqual(oracle.num_qubits,19)
+        qc=QuantumCircuit(19)
+        state=np.zeros(2**19,complex);state[:size]=psi
+        qc.set_statevector(state)
+        qc.compose(oracle,inplace=True)
+        backend=AerSimulator(method='statevector',max_parallel_threads=1)
+        compiled=transpile(qc,backend,optimization_level=1,seed_transpiler=2718)
+        compiled.save_statevector()
+        observed=np.asarray(backend.run(compiled).result().get_statevector()).reshape(16,size)
+        # Independent vectorized predicate includes invalid binary column codes.
+        x=np.arange(size)
+        cols=np.column_stack([(x>>(3*(4-row)))&7 for row in range(5)])
+        valid=np.all(cols<5,axis=1)
+        for i in range(5):
+            for j in range(i+1,5):
+                valid &= (cols[:,i]!=cols[:,j]) & (np.abs(cols[:,i]-cols[:,j])!=j-i)
+        self.assertEqual(int(valid.sum()),10)
+        expected=psi*np.where(valid,-1,1)
+        np.testing.assert_allclose(observed[0],expected,atol=2e-11)
+        self.assertLess(np.linalg.norm(observed[1:]),1e-11)
+        self.assertEqual([format(i,'015b') for i in np.flatnonzero(valid)],queens_reference(5)['targets'])
+
+    def test_counter_predicate_supports_no_solution_instances(self):
+        for n in (2,3):
+            reference=queens_reference(n)
+            self.assertEqual(reference['marked_count'],0)
+            result,_=simulate(uniform_preparation(reference['system_qubits']),
+                queens_constraint_oracle(n),[],2,shots=256)
+            self.assertLess(result['state_error_l2'],1e-10)
+            self.assertEqual(result['exact_success'],0.)
+        self.assertEqual(queens_constraint_oracle(np.int64(4)).num_qubits,11)
+
+    def test_cached_ideal_readout_agrees_with_direct_circuit_sampling(self):
+        a=uniform_preparation(5);targets=['00011','10101']
+        run,circuit=simulate(a,oracle_for_targets(5,targets),targets,3,shots=4096)
+        measured=circuit.copy();measured.add_register(__import__('qiskit').ClassicalRegister(5))
+        measured.measure(range(5),range(5))
+        backend=AerSimulator(method='statevector',max_parallel_threads=1)
+        counts=backend.run(transpile(measured,backend,seed_transpiler=2718),shots=4096,seed_simulator=2718).result().get_counts()
+        direct=sum(counts.get(t,0) for t in targets)/4096
+        self.assertLess(abs(direct-run['exact_success']),run['hoeffding_half_width'])
+        self.assertLess(abs(direct-run['sampled_success']),2*run['hoeffding_half_width'])
 
 
 class PublishedEvidenceTests(unittest.TestCase):
@@ -139,12 +203,16 @@ class PublishedEvidenceTests(unittest.TestCase):
         self.assertEqual(set(manifest['files']),{'summary.json','amplification.svg'})
         self.assertEqual(report['status'],'passed')
         self.assertEqual(report['network_calls'],0)
-        for run in (report['uniform'],report['nonuniform'],report['queens4']['constraint_run'],report['queens5']['lookup_run']):
+        for run in (report['uniform'],report['nonuniform'],report['queens4']['constraint_run'],report['queens5']['lookup_run'],report['queens5']['constraint_run']):
             self.assertLess(run['state_error_l2'],1e-9)
             self.assertLess(run['workspace_leakage'],1e-12)
             self.assertAlmostEqual(run['analytic_success'],run['exact_success'],places=10)
             self.assertLessEqual(abs(run['sampled_success']-run['exact_success']),run['hoeffding_half_width'])
         self.assertEqual(report['queens4']['constraint_run']['workspace_qubits'],6)
-        self.assertIn('pre-enumerated',report['queens5']['oracle_scope'])
+        self.assertIn('pre-enumerated',report['queens5']['lookup_scope'])
+        self.assertEqual(report['queens5']['constraint_run']['workspace_qubits'],4)
+        self.assertEqual(report['queens5']['constraint_run']['iterations'],44)
+        self.assertGreater(report['queens5']['constraint_run']['exact_success'],.999)
+        self.assertEqual(report['queens5']['reference_observed_marked_states'],report['queens5']['classical']['targets'])
 
 if __name__=='__main__':unittest.main()
