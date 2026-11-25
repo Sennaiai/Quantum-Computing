@@ -1,0 +1,46 @@
+name: IROPS QUBO actual-catalog experiment
+# Scientific execution is scoped to this project's files; manual reruns remain available.
+on:
+  pull_request:
+    paths:
+      - "projects/QUBO IROPS solver/**"
+  push:
+    branches: [main]
+    paths:
+      - "projects/QUBO IROPS solver/**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  irops:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: "projects/QUBO IROPS solver"
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: "projects/QUBO IROPS solver/requirements.txt"
+      - name: Install pinned local QUBO environment
+        run: python -m pip install -r requirements.txt
+      - name: Verify formulation and execute actual-catalog allocation experiment
+        run: python run_checks.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: irops-executed-actual-catalog-evidence
+          path: |
+            projects/QUBO IROPS solver/artifacts/validation/validation_summary.json
+            projects/QUBO IROPS solver/artifacts/validation/QUBO_IROPS_Allocation_Experiment.ipynb
+            projects/QUBO IROPS solver/artifacts/validation/actual_catalog_results.json
+            projects/QUBO IROPS solver/artifacts/validation/assignments.csv.gz
+            projects/QUBO IROPS solver/artifacts/validation/allocation_resources.svg
