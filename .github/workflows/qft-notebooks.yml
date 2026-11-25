@@ -1,16 +1,13 @@
 name: QFT arithmetic and Shor scientific benchmark
+# Scientific execution is scoped to this project's files; manual reruns remain available.
 on:
   pull_request:
     paths:
       - "projects/QFT/**"
-      - ".github/workflows/qft-notebooks.yml"
-      - ".github/scripts/execute_notebooks.py"
   push:
     branches: [main]
     paths:
       - "projects/QFT/**"
-      - ".github/workflows/qft-notebooks.yml"
-      - ".github/scripts/execute_notebooks.py"
   workflow_dispatch:
 permissions:
   contents: read

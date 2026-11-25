@@ -139,3 +139,20 @@ def resources(compiled):
             'p1_cost_layer_RZZ_terms': graph.number_of_edges(),
             'p1_all_to_all_CX_count_before_cancellation': 2*graph.number_of_edges(),
             'resource_scope': 'Logical representation estimates only; no device embedding, chain-strength, noise, calibration or hardware execution model'}
+
+
+def estimate_bqm_variables(instance, party_ids, options, remaining):
+    """Exact size on the validated solver ledger, before constructing couplers.
+
+    The authoritative compiler validates the full ledger when a chunk is accepted.
+    This helper only receives canonical options and whole PNRs from the solver.
+    """
+    options = tuple(options); users = defaultdict(set); parties = instance.party_by_id
+    for option in options:
+        for key in option.legs: users[key].add(option.party)
+    count = len(options)+len(party_ids)
+    for key, members in users.items():
+        capacity = integer(remaining[key], 'remaining capacity', 0, instance.capacities[key])
+        if sum(parties[p].pax for p in members) > capacity:
+            count += len(bounded_weights(capacity))
+    return count

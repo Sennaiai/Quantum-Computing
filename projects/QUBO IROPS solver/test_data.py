@@ -118,6 +118,20 @@ class DataTests(unittest.TestCase):
             self.assertEqual(loaded.options, case.options)
             self.assertEqual(audit['departure_source'], 'candidates')
 
+    def test_integer_like_inputs_are_canonical_and_cannot_overflow_seat_totals(self):
+        from fixtures import option
+        from solver import score
+        parties=tuple(Party(f'P{j}',np.int8(13),'.5') for j in range(20))
+        options=tuple(option(f'O{j}',f'P{j}',[('F','Y')]) for j in range(20))
+        instance=Instance(parties,options,{('F','Y'):300})
+        self.assertTrue(all(type(p.pax) is int and type(p.cvm) is float for p in instance.parties))
+        report=score(instance,{f'P{j}':f'O{j}' for j in range(20)})
+        self.assertEqual(report['passengers'],260); self.assertEqual(report['assigned_passengers'],260)
+        self.assertEqual(report['capacity_violations'],0)
+        numeric_strings=replace(instance,parties=(Party('P0','13','.5'),),options=(replace(options[0],features=tuple(str(x) for x in options[0].features)),))
+        self.assertTrue(all(type(x) is float for x in numeric_strings.options[0].features))
+        self.assertEqual(score(numeric_strings,{'P0':'O0'})['assigned_passengers'],13)
+
     def test_bad_config_is_rejected(self):
         for key, value in [('unassigned_cost', np.nan), ('block_hours', 0), ('seeds', [7, 7])]:
             bad = copy.deepcopy(CONFIG); bad[key] = value

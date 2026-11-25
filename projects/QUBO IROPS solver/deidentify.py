@@ -51,6 +51,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input-dir', type=Path, required=True)
     parser.add_argument('--output-dir', type=Path, default=ROOT/'data')
+    parser.add_argument('--include-connections', action='store_true')
     args = parser.parse_args()
     source, audit = load_private_csvs(args.input_dir, capacity_policy='conservative')
     public, mapping, provenance = deidentify(source)
@@ -61,6 +62,10 @@ def main():
     (args.output_dir/'provenance.json').write_text(json.dumps(provenance, indent=2, allow_nan=False)+'\n')
     private = ROOT/'artifacts/private'; private.mkdir(parents=True, exist_ok=True)
     (private/'deidentification_map.json').write_text(json.dumps(mapping, separators=(',', ':'))+'\n')
+    if args.include_connections:
+        from connection_curation import build_connection_metadata, write_network
+        metadata = build_connection_metadata(args.input_dir, mapping, provenance['sha256'])
+        write_network(metadata, args.output_dir/'connection_network.json.gz')
     print(json.dumps({k: provenance[k] for k in ('synthetic', 'pnrs', 'options', 'passengers', 'sha256')}, indent=2))
 
 

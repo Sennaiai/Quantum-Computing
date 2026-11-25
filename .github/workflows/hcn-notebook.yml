@@ -1,17 +1,14 @@
 name: HCN scientific benchmark
 
+# Scientific execution is scoped to this project's files; manual reruns remain available.
 on:
   pull_request:
     paths:
       - "projects/Quanutm Chemistry /**"
-      - ".github/scripts/execute_notebooks.py"
-      - ".github/workflows/hcn-notebook.yml"
   push:
     branches: [main]
     paths:
       - "projects/Quanutm Chemistry /**"
-      - ".github/scripts/execute_notebooks.py"
-      - ".github/workflows/hcn-notebook.yml"
   workflow_dispatch:
 
 permissions:

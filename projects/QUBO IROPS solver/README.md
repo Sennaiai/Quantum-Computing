@@ -1,18 +1,29 @@
-# Experimental QUBO Solver for Airline Re-accommodation
+# QUBO Airline Recovery: Capacity, Connections and Allocation
 
-The goal is to develop a QUBO IROPS solver, measure feasible PNR/passenger allocation, and assess it against the client’s own industry-standard solver. **The client performs that comparison independently; no competing solver is built here and no outperformance claim is made.**
+Develop an IROPS QUBO solver, measure feasible PNR/passenger allocation, and assess it against the client’s industry-standard solver. **The client performs that comparison independently, with matched populations and rules.**
 
-The [executed notebook](QUBO_IROPS_Allocation_Experiment.ipynb) runs the supplied de-identified catalog: **7,653 PNRs, 57,963 options and 11,822 passengers**. All fixed-seed results, assignments, runtime and resource evidence are in [results](results/).
+The [executed notebook](QUBO_IROPS_Allocation_Experiment.ipynb) uses **7,653 PNRs and 11,822 passengers**. Both experiments share inventory, S3 weights/scales, recovery constraints and optimization budgets.
 
 ## Results and runtime
 
-Across five fixed seeds, mean allocation was **54.98% of PNRs** and **46.21% of passengers**, with **zero final capacity violations**.
+Five fixed seeds; means shown. Final solutions passed independent capacity and route-policy audits.
 
-**End-to-end runtime: 107.5 seconds for all five runs**; mean solver time **19.74 seconds per seed**. Measured on Apple M5/arm64, Python 3.11.18, with BLAS/OpenMP threads set to 1. End-to-end timing includes loading, certificate verification, optimization, repair, final audits and result export; dependency installation and kernel startup are excluded.
+| Candidate catalog | Options | PNR allocation | Passenger allocation | Mean variant time |
+|---|---:|---:|---:|---:|
+| Original routes, policy filtered | 57,830 | 57.60% | 47.46% | 21.65 s |
+| Expanded routes and cabin alternatives | 439,145 | **72.19%** | **61.29%** | 27.00 s |
 
-The 70% target is infeasible under this catalog and remaining-seat inventory: exact-rational certificates bound allocation by **4,557 PNRs (59.55%)** and **5,930 passengers (50.16%)**, separately. [Certificate verification](capacity_bounds.py) checks every option independently of the optimizer.
+**End-to-end: 265.1 seconds** for both catalogs across all five seeds. Apple M5/arm64, Python 3.11.18; BLAS/OpenMP threads set to 1. This includes loading, route generation, certificate verification, optimization, audits and exports; installation, kernel startup and precomputed certificate generation are excluded. [Results](results/) retain assignments, stage timings, variability and resources.
 
-## Reproduce
+Mean journey time rises **7.61 → 9.13 hours**, and downgrades **4.09% → 8.55%** of allocated PNRs. These compare different served cohorts, not measured satisfaction.
+
+Exact-rational certificates cap the expanded instance at **5,599 PNRs (73.16%)** and **7,437 passengers (62.91%)**, separately; attainability is unproven. Added routes enlarge the feasible set without adding seats. Original-catalog bounds apply only to that control.
+
+## Method and reproduction
+
+Whole-PNR decomposition uses exact capacity-slack QUBOs, explicit unassignment and a sufficient penalty bound. **Classical `neal` simulated annealing** precedes separately audited route improvement, bounded rerouting and passenger-preserving two-for-one exchanges. Accepted moves improve S3. Exact size estimation avoids constructing rejected BQMs; accepted chunks retain full validation and a 128-variable budget. Search remains heuristic; resource counts imply no embedding, hardware execution or quantum advantage.
+
+Expansion reconstructs original features on frozen scales, excludes 133 routes exceeding the 72-hour final-arrival window, and includes connecting routes and feasible cabin patterns. Negative inventory is conservatively floored at zero.
 
 Python 3.11, from this folder:
 
@@ -23,16 +34,6 @@ python -m pip install -r requirements.txt
 python run_checks.py
 ```
 
-Acceptance tests the formulation and executes the actual-data notebook in a fresh offline kernel. Controlled fixtures serve only as unit tests. Generated outputs stay in ignored `artifacts/`.
+Acceptance runs scientific tests and the full notebook in a fresh offline kernel. Raw inputs and reversible mappings remain local; [provenance](data/provenance.json) and anonymous network metadata support reproduction. Private processed-table execution supports `run_private.py --expand-connections`.
 
-## Method and limits
-
-Original S1–S4 scoring weights are preserved; S3 is the main experiment. Each PNR chooses one itinerary or explicit unassignment. Complete capacity inequalities use bounded integer slack variables. A penalty above the linear-objective range guarantees feasible global ground states. Finite simulated annealing, whole-PNR decomposition and reconciliation do not guarantee global optimality or maximum allocation.
-
-The implementation uses **classical simulated annealing (`neal`)**, with shared residual inventory and independent final capacity audits. Raw sample and repaired outcomes are separate. Resource reports include variables, slack overhead, couplers, coefficient range and logical hardware lower bounds. No quantum hardware execution, embedding feasibility or speedup is claimed.
-
-The authorized [catalog](data/provenance.json) preserves costs, capacities, party sizes and priority order. Identifiers are replaced, dates shifted and CVM normalized. Raw tables and reversible mappings remain local. Negative availability becomes zero remaining seats, with counts recorded. Flagged original-journey/ranking outliers remain an upstream limitation.
-
-Allocation denominators cover the supplied candidate catalog, not every disrupted booking. Client comparisons require matched populations and business rules. Optional local processed-table execution uses `run_private.py`; its outputs remain private.
-
-References: [penalties](https://docs.dwavequantum.com/en/latest/concepts/penalty.html), [QUBO/Ising offsets](https://docs.dwavequantum.com/en/latest/ocean/api_ref_dimod/generated/dimod.utilities.ising_to_qubo.html), [classical samplers](https://docs.dwavequantum.com/en/latest/ocean/api_ref_dimod/sampler_composites.html).
+The prototype assumes 45-minute transfers, at most 18-hour layovers and two stops; airport-specific certification remains external. Original-journey/ranking anomalies and bookings outside the candidate population remain limitations. S3 is a business proxy, with no monetary-profit claim.

@@ -10,3 +10,6 @@
   and only with authorization for the information shared.
 - Request human review before merging or releasing. Do not claim production
   readiness from a passing structural check.
+- Keep scientific execution CI scoped to changes in each project. Do not rerun
+  completed projects for unrelated work or shared notebook-routing changes;
+  retain manual reruns and lightweight shared checks.
