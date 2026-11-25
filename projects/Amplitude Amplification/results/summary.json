@@ -1,0 +1,1165 @@
+{
+  "analytic_query_scaling": [
+    {
+      "M": 1,
+      "N": 4,
+      "analytic_success": 1.0,
+      "classical_expected_checks_without_replacement": 2.5,
+      "iterations": 1,
+      "system_qubits": 2
+    },
+    {
+      "M": 1,
+      "N": 8,
+      "analytic_success": 0.9453124999999999,
+      "classical_expected_checks_without_replacement": 4.5,
+      "iterations": 2,
+      "system_qubits": 3
+    },
+    {
+      "M": 1,
+      "N": 16,
+      "analytic_success": 0.9613189697265625,
+      "classical_expected_checks_without_replacement": 8.5,
+      "iterations": 3,
+      "system_qubits": 4
+    },
+    {
+      "M": 1,
+      "N": 32,
+      "analytic_success": 0.9991823155432941,
+      "classical_expected_checks_without_replacement": 16.5,
+      "iterations": 4,
+      "system_qubits": 5
+    },
+    {
+      "M": 1,
+      "N": 64,
+      "analytic_success": 0.9965856807867991,
+      "classical_expected_checks_without_replacement": 32.5,
+      "iterations": 6,
+      "system_qubits": 6
+    },
+    {
+      "M": 1,
+      "N": 128,
+      "analytic_success": 0.9956198656943223,
+      "classical_expected_checks_without_replacement": 64.5,
+      "iterations": 8,
+      "system_qubits": 7
+    },
+    {
+      "M": 1,
+      "N": 256,
+      "analytic_success": 0.9999470421032736,
+      "classical_expected_checks_without_replacement": 128.5,
+      "iterations": 12,
+      "system_qubits": 8
+    },
+    {
+      "M": 1,
+      "N": 512,
+      "analytic_success": 0.9994480261540108,
+      "classical_expected_checks_without_replacement": 256.5,
+      "iterations": 17,
+      "system_qubits": 9
+    },
+    {
+      "M": 1,
+      "N": 1024,
+      "analytic_success": 0.9994612447444079,
+      "classical_expected_checks_without_replacement": 512.5,
+      "iterations": 25,
+      "system_qubits": 10
+    },
+    {
+      "M": 1,
+      "N": 2048,
+      "analytic_success": 0.9999968477766256,
+      "classical_expected_checks_without_replacement": 1024.5,
+      "iterations": 35,
+      "system_qubits": 11
+    },
+    {
+      "M": 1,
+      "N": 4096,
+      "analytic_success": 0.9999453461091142,
+      "classical_expected_checks_without_replacement": 2048.5,
+      "iterations": 50,
+      "system_qubits": 12
+    },
+    {
+      "M": 1,
+      "N": 8192,
+      "analytic_success": 0.9999157752494188,
+      "classical_expected_checks_without_replacement": 4096.5,
+      "iterations": 71,
+      "system_qubits": 13
+    },
+    {
+      "M": 1,
+      "N": 16384,
+      "analytic_success": 0.9999997811142307,
+      "classical_expected_checks_without_replacement": 8192.5,
+      "iterations": 100,
+      "system_qubits": 14
+    }
+  ],
+  "classical_controls": {
+    "limitations": "phase-oracle calls, verifier calls, state preparation and gates have different costs; structured backtracking is not an unstructured query baseline",
+    "uniform_with_replacement": "1-(1-p)^q; q=k+1 includes a final candidate verification",
+    "without_replacement_expected_first_success": "(N+1)/(M+1), assuming M>0"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "qiskit": "2.6.2",
+    "qiskit-aer": "0.18.4",
+    "scipy": "1.17.1"
+  },
+  "five_queens_encoding": "15 uniform system bits represent 32768 assignments; column-range and pair constraints mark exactly 10 boards",
+  "network_calls": 0,
+  "nonuniform": {
+    "A_calls": 2,
+    "A_inverse_calls": 1,
+    "analytic_success": 0.7702481456845911,
+    "binomial_95_interval": [
+      0.7565712644399346,
+      0.7825936302378871
+    ],
+    "counts": {
+      "000": 624,
+      "001": 125,
+      "010": 127,
+      "011": 5,
+      "100": 155,
+      "101": 5,
+      "110": 3028,
+      "111": 27
+    },
+    "exact_success": 0.7702481456845909,
+    "hoeffding_delta": 0.001,
+    "hoeffding_half_width": 0.03046054068000633,
+    "initial_success": 0.40540249206766604,
+    "invalid_shots": 943,
+    "iterations": 1,
+    "phase_oracle_calls": 1,
+    "sampled_success": 0.769775390625,
+    "sampling_mode": "Aer readout from the validated final system state; full coherent circuit executed once",
+    "seed": 2718,
+    "shots": 4096,
+    "state_error_l2": 4.3169526926908523e-16,
+    "system_qubits": 3,
+    "valid_shots": 3153,
+    "workspace_leakage": 0.0,
+    "workspace_qubits": 0
+  },
+  "overshoot_sweep": [
+    {
+      "classical_success_k_plus_one_checks": 0.0625,
+      "iterations": 0,
+      "quantum_success": 0.0625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.12109375000000001,
+      "iterations": 1,
+      "quantum_success": 0.47265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.176025390625,
+      "iterations": 2,
+      "quantum_success": 0.908447265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.22752380371093753,
+      "iterations": 3,
+      "quantum_success": 0.9613189697265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.27580356597900396,
+      "iterations": 4,
+      "quantum_success": 0.5817041397094724
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.32106584310531616,
+      "iterations": 5,
+      "quantum_success": 0.1254916787147522
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.3634992279112339,
+      "iterations": 6,
+      "quantum_success": 0.020380768924951515
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.40328052616678184,
+      "iterations": 7,
+      "quantum_success": 0.36491288826800855
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.440575493281358,
+      "iterations": 8,
+      "quantum_success": 0.8360891748598078
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.4755395249512731,
+      "iterations": 9,
+      "quantum_success": 0.992181860020537
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.5083183046418185,
+      "iterations": 10,
+      "quantum_success": 0.686854051412013
+    }
+  ],
+  "queens4": {
+    "classical": {
+      "analytic_peak_success": 0.9956198656943223,
+      "backtracking_column_attempts": 60,
+      "backtracking_nodes": 17,
+      "binary_search_space": 256,
+      "bits_per_row": 2,
+      "boards": [
+        [
+          1,
+          3,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3,
+          1
+        ]
+      ],
+      "classical_enumeration_candidates": 256,
+      "first_peak_iterations": 8,
+      "in_range_assignments": 256,
+      "initial_success": 0.0078125,
+      "marked_count": 2,
+      "size": 4,
+      "system_qubits": 8,
+      "targets": [
+        "01110010",
+        "10001101"
+      ]
+    },
+    "constraint_run": {
+      "A_calls": 9,
+      "A_inverse_calls": 8,
+      "analytic_success": 0.995619865694322,
+      "binomial_95_interval": [
+        0.9933631128599555,
+        0.997580442257999
+      ],
+      "counts": {
+        "00001101": 1,
+        "00011010": 1,
+        "00100100": 1,
+        "00101111": 1,
+        "00111010": 1,
+        "01001111": 1,
+        "01010101": 1,
+        "01110010": 2010,
+        "10001101": 2069,
+        "10100001": 1,
+        "10111000": 1,
+        "11000001": 1,
+        "11000010": 1,
+        "11000011": 1,
+        "11010101": 1,
+        "11010110": 1,
+        "11100100": 1,
+        "11101001": 1,
+        "11101101": 1
+      },
+      "exact_success": 0.9956198656943194,
+      "hoeffding_delta": 0.001,
+      "hoeffding_half_width": 0.03046054068000633,
+      "initial_success": 0.00781249999999999,
+      "invalid_shots": 17,
+      "iterations": 8,
+      "phase_oracle_calls": 8,
+      "sampled_success": 0.995849609375,
+      "sampling_mode": "Aer readout from the validated final system state; full coherent circuit executed once",
+      "seed": 2718,
+      "shots": 4096,
+      "state_error_l2": 1.3291963474108272e-14,
+      "system_qubits": 8,
+      "valid_shots": 4079,
+      "workspace_leakage": 1.4464473797966844e-31,
+      "workspace_qubits": 6
+    }
+  },
+  "queens5": {
+    "classical": {
+      "analytic_peak_success": 0.9997455801331705,
+      "backtracking_column_attempts": 220,
+      "backtracking_nodes": 54,
+      "binary_search_space": 32768,
+      "bits_per_row": 3,
+      "boards": [
+        [
+          0,
+          2,
+          4,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          1,
+          3,
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          2,
+          4,
+          1
+        ],
+        [
+          3,
+          1,
+          4,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          3,
+          0,
+          2
+        ],
+        [
+          4,
+          2,
+          0,
+          3,
+          1
+        ]
+      ],
+      "classical_enumeration_candidates": 3125,
+      "first_peak_iterations": 44,
+      "in_range_assignments": 3125,
+      "initial_success": 0.00030517578125,
+      "marked_count": 10,
+      "size": 5,
+      "system_qubits": 15,
+      "targets": [
+        "000010100001011",
+        "000011001100010",
+        "001011000010100",
+        "001100010000011",
+        "010000011001100",
+        "010100001011000",
+        "011000010100001",
+        "011001100010000",
+        "100001011000010",
+        "100010000011001"
+      ]
+    },
+    "constraint_run": {
+      "A_calls": 45,
+      "A_inverse_calls": 44,
+      "analytic_success": 0.9997455801331703,
+      "binomial_95_interval": [
+        0.9990998000877902,
+        1.0
+      ],
+      "counts": {
+        "000010100001011": 421,
+        "000011001100010": 402,
+        "001011000010100": 391,
+        "001100010000011": 385,
+        "010000011001100": 418,
+        "010100001011000": 394,
+        "011000010100001": 422,
+        "011001100010000": 423,
+        "100001011000010": 423,
+        "100010000011001": 417
+      },
+      "exact_success": 0.9997455801331664,
+      "hoeffding_delta": 0.001,
+      "hoeffding_half_width": 0.03046054068000633,
+      "initial_success": 0.0003051757812499993,
+      "invalid_shots": 0,
+      "iterations": 44,
+      "phase_oracle_calls": 44,
+      "sampled_success": 1.0,
+      "sampling_mode": "Aer readout from the validated final system state; full coherent circuit executed once",
+      "seed": 2718,
+      "shots": 4096,
+      "state_error_l2": 1.2500099866796649e-12,
+      "system_qubits": 15,
+      "valid_shots": 4096,
+      "workspace_leakage": 1.0469253352610142e-30,
+      "workspace_qubits": 4
+    },
+    "constraint_scope": "15 board qubits plus four violation-counter qubits; no solution list in oracle construction",
+    "known_success_assumption": "M=10 from the independent classical reference sets k=44; unknown-M search is not implemented",
+    "lookup_run": {
+      "A_calls": 45,
+      "A_inverse_calls": 44,
+      "analytic_success": 0.9997455801331703,
+      "binomial_95_interval": [
+        0.9990998000877902,
+        1.0
+      ],
+      "counts": {
+        "000010100001011": 421,
+        "000011001100010": 402,
+        "001011000010100": 391,
+        "001100010000011": 385,
+        "010000011001100": 418,
+        "010100001011000": 394,
+        "011000010100001": 422,
+        "011001100010000": 423,
+        "100001011000010": 423,
+        "100010000011001": 417
+      },
+      "exact_success": 0.9997455801331694,
+      "hoeffding_delta": 0.001,
+      "hoeffding_half_width": 0.03046054068000633,
+      "initial_success": 0.0003051757812499993,
+      "invalid_shots": 0,
+      "iterations": 44,
+      "phase_oracle_calls": 44,
+      "sampled_success": 1.0,
+      "sampling_mode": "Aer readout from the validated final system state; full coherent circuit executed once",
+      "seed": 2718,
+      "shots": 4096,
+      "state_error_l2": 1.2515663518936586e-12,
+      "system_qubits": 15,
+      "valid_shots": 4096,
+      "workspace_leakage": 0.0,
+      "workspace_qubits": 0
+    },
+    "lookup_scope": "pre-enumerated solution lookup; comparison only",
+    "observed_valid_boards": [
+      [
+        0,
+        2,
+        4,
+        1,
+        3
+      ],
+      [
+        0,
+        3,
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        3,
+        0,
+        2,
+        4
+      ],
+      [
+        1,
+        4,
+        2,
+        0,
+        3
+      ],
+      [
+        2,
+        0,
+        3,
+        1,
+        4
+      ],
+      [
+        2,
+        4,
+        1,
+        3,
+        0
+      ],
+      [
+        3,
+        0,
+        2,
+        4,
+        1
+      ],
+      [
+        3,
+        1,
+        4,
+        2,
+        0
+      ],
+      [
+        4,
+        1,
+        3,
+        0,
+        2
+      ],
+      [
+        4,
+        2,
+        0,
+        3,
+        1
+      ]
+    ],
+    "reference_observed_marked_states": [
+      "000010100001011",
+      "000011001100010",
+      "001011000010100",
+      "001100010000011",
+      "010000011001100",
+      "010100001011000",
+      "011000010100001",
+      "011001100010000",
+      "100001011000010",
+      "100010000011001"
+    ]
+  },
+  "queens5_sweep": [
+    {
+      "classical_success_k_plus_one_checks": 0.00030517578125,
+      "iterations": 0,
+      "quantum_success": 0.0003051757812499999
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0006102584302425385,
+      "iterations": 1,
+      "quantum_success": 0.0027443473118182733
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0009152479753993247,
+      "iterations": 2,
+      "quantum_success": 0.007610783990364535
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0012201444451333948,
+      "iterations": 3,
+      "quantum_success": 0.014880731170600053
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0015249478678491133,
+      "iterations": 4,
+      "quantum_success": 0.02451870189662432
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.001829658271942177,
+      "iterations": 5,
+      "quantum_success": 0.03647765012619721
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0021342756857996165,
+      "iterations": 6,
+      "quantum_success": 0.05069920037763803
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0024388001377997994,
+      "iterations": 7,
+      "quantum_success": 0.06711393267937095
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0027432316563124337,
+      "iterations": 8,
+      "quantum_success": 0.08564172143118609
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.003047570269698569,
+      "iterations": 9,
+      "quantum_success": 0.10619212652312542
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0033518160063105997,
+      "iterations": 10,
+      "quantum_success": 0.12866483480281588
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0036559688944922675,
+      "iterations": 11,
+      "quantum_success": 0.15295014973630533
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.003960028962578664,
+      "iterations": 12,
+      "quantum_success": 0.1789295268722094
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.004263996238896238,
+      "iterations": 13,
+      "quantum_success": 0.20647615249539528
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.004567870751762786,
+      "iterations": 14,
+      "quantum_success": 0.23545556264560805
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.004871652529487467,
+      "iterations": 15,
+      "quantum_success": 0.2657262994794101
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.005175341600370802,
+      "iterations": 16,
+      "quantum_success": 0.29714060177151774
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0054789379927046725,
+      "iterations": 17,
+      "quantum_success": 0.3295451261849787
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.005782441734772329,
+      "iterations": 18,
+      "quantum_success": 0.36278169578943437
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0060858528548483875,
+      "iterations": 19,
+      "quantum_success": 0.3966880721737112
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.006389171381198836,
+      "iterations": 20,
+      "quantum_success": 0.43109874738380843
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.006692397342081039,
+      "iterations": 21,
+      "quantum_success": 0.4658457518205784
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.006995530765743734,
+      "iterations": 22,
+      "quantum_success": 0.5007594741534913
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.00729857168042704,
+      "iterations": 23,
+      "quantum_success": 0.5356694892482188
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.007601520114362456,
+      "iterations": 24,
+      "quantum_success": 0.5704053900666574
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.007904376095772868,
+      "iterations": 25,
+      "quantum_success": 0.6047976194786175
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.008207139652872546,
+      "iterations": 26,
+      "quantum_success": 0.6386782979248394
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.008509810813867154,
+      "iterations": 27,
+      "quantum_success": 0.6718820428912423
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.008812389606953741,
+      "iterations": 28,
+      "quantum_success": 0.7042467761942931
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.00911487606032076,
+      "iterations": 29,
+      "quantum_success": 0.7356145151368711
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.009417270202148054,
+      "iterations": 30,
+      "quantum_success": 0.7658321436727448
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.009719572060606871,
+      "iterations": 31,
+      "quantum_success": 0.7947521598153533
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.010021781663859862,
+      "iterations": 32,
+      "quantum_success": 0.8222333956425579
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.010323899040061075,
+      "iterations": 33,
+      "quantum_success": 0.8481417063827789
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.010625924217355979,
+      "iterations": 34,
+      "quantum_success": 0.8723506252188712
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.010927857223881442,
+      "iterations": 35,
+      "quantum_success": 0.8947419806134305
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.011229698087765756,
+      "iterations": 36,
+      "quantum_success": 0.9152064731421642
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.011531446837128622,
+      "iterations": 37,
+      "quantum_success": 0.933644209019617
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.011833103500081156,
+      "iterations": 38,
+      "quantum_success": 0.9499651877129419
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.012134668104725908,
+      "iterations": 39,
+      "quantum_success": 0.9640897412635169
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01243614067915684,
+      "iterations": 40,
+      "quantum_success": 0.9759489231719329
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.012737521251459343,
+      "iterations": 41,
+      "quantum_success": 0.9854848449480856
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01303880984971024,
+      "iterations": 42,
+      "quantum_success": 0.9926509586835586
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.013340006501977785,
+      "iterations": 43,
+      "quantum_success": 0.9974122842669694
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.013641111236321663,
+      "iterations": 44,
+      "quantum_success": 0.9997455801331705
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.013942124080793001,
+      "iterations": 45,
+      "quantum_success": 0.9996394567128222
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01424304506343436,
+      "iterations": 46,
+      "quantum_success": 0.9970944320285515
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.014543874212279748,
+      "iterations": 47,
+      "quantum_success": 0.9921229291663175
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.014844611555354614,
+      "iterations": 48,
+      "quantum_success": 0.984749215634323
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.015145257120675855,
+      "iterations": 49,
+      "quantum_success": 0.9750092849054842
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.015445810936251822,
+      "iterations": 50,
+      "quantum_success": 0.9629506807216852
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01574627303008231,
+      "iterations": 51,
+      "quantum_success": 0.9486322650174467
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.016046643430158578,
+      "iterations": 52,
+      "quantum_success": 0.9321239305958473
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.016346922164463342,
+      "iterations": 53,
+      "quantum_success": 0.91350625995922
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01664710926097077,
+      "iterations": 54,
+      "quantum_success": 0.892870131959979
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.016947204747646497,
+      "iterations": 55,
+      "quantum_success": 0.8703162781916436
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.017247208652447627,
+      "iterations": 56,
+      "quantum_success": 0.845954791285456
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.017547121003322737,
+      "iterations": 57,
+      "quantum_success": 0.819904587512756
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.017846941828211862,
+      "iterations": 58,
+      "quantum_success": 0.7922928263163237
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.018146671155046513,
+      "iterations": 59,
+      "quantum_success": 0.7632542896041461
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.018446309011749686,
+      "iterations": 60,
+      "quantum_success": 0.732930723835471
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.018745855426235844,
+      "iterations": 61,
+      "quantum_success": 0.7014701481106445
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.019045310426410944,
+      "iterations": 62,
+      "quantum_success": 0.6690261316421616
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.019344674040172413,
+      "iterations": 63,
+      "quantum_success": 0.6357570441338332
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.01964394629540918,
+      "iterations": 64,
+      "quantum_success": 0.6018252827272041
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.019943127220001643,
+      "iterations": 65,
+      "quantum_success": 0.5673964792887544
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02024221684182171,
+      "iterations": 66,
+      "quantum_success": 0.5326386919073579
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.020541215188732777,
+      "iterations": 67,
+      "quantum_success": 0.4977215845485733
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02084012228858973,
+      "iterations": 68,
+      "quantum_success": 0.46281559887013135
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.021138938169238966,
+      "iterations": 69,
+      "quantum_success": 0.428091122241256
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.021437662858518374,
+      "iterations": 70,
+      "quantum_success": 0.3937176560269841
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.021736296384257347,
+      "iterations": 71,
+      "quantum_success": 0.3598629881973591
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0220348387742768,
+      "iterations": 72,
+      "quantum_success": 0.3266923743002563
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.022333290056389146,
+      "iterations": 73,
+      "quantum_success": 0.29436773079577855
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.022631650258398302,
+      "iterations": 74,
+      "quantum_success": 0.26304684468981593
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02292991940809972,
+      "iterations": 75,
+      "quantum_success": 0.23288260332480007
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.023228097533280354,
+      "iterations": 76,
+      "quantum_success": 0.20402224808729874
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.023526184661718682,
+      "iterations": 77,
+      "quantum_success": 0.17660665567533954
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02382418082118471,
+      "iterations": 78,
+      "quantum_success": 0.1507696504338303
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.024122086039439966,
+      "iterations": 79,
+      "quantum_success": 0.12663735111478888
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0244199003442375,
+      "iterations": 80,
+      "quantum_success": 0.10432755525105576
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.0247176237633219,
+      "iterations": 81,
+      "quantum_success": 0.08394916414856045
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02501525632442928,
+      "iterations": 82,
+      "quantum_success": 0.06560165130393877
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.025312798055287307,
+      "iterations": 83,
+      "quantum_success": 0.049374576842328224
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02561024898361516,
+      "iterations": 84,
+      "quantum_success": 0.03534715034552286
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.025907609137123578,
+      "iterations": 85,
+      "quantum_success": 0.02358784420446981
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.026204878543514838,
+      "iterations": 86,
+      "quantum_success": 0.014154059383454291
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.02650205723048276,
+      "iterations": 87,
+      "quantum_success": 0.007091845227487842
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.026799145225712712,
+      "iterations": 88,
+      "quantum_success": 0.002435674680609741
+    }
+  ],
+  "resources": {
+    "queens4_constraint_complete_run": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 17132,
+      "depth": 44092,
+      "optimization_level": 0,
+      "qubits": 14,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 32978
+    },
+    "queens4_constraint_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 2024,
+      "depth": 5097,
+      "optimization_level": 0,
+      "qubits": 14,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 4054
+    },
+    "queens4_lookup_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 340,
+      "depth": 356,
+      "optimization_level": 0,
+      "qubits": 8,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 534
+    },
+    "queens5_constraint_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 45026,
+      "depth": 107438,
+      "optimization_level": 0,
+      "qubits": 19,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 73465
+    },
+    "queens5_diffuser": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 730,
+      "depth": 405,
+      "optimization_level": 0,
+      "qubits": 15,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 1159
+    },
+    "queens5_lookup_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 7300,
+      "depth": 4013,
+      "optimization_level": 0,
+      "qubits": 15,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 11190
+    },
+    "queens5_modular_run": {
+      "cx_count": 2013264,
+      "phase_oracle_calls": 44,
+      "qubits": 19,
+      "scope": "CX sum for separately compiled oracle and diffuser modules; no cross-module optimization or device routing"
+    },
+    "uniform_complete_run": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 324,
+      "depth": 766,
+      "optimization_level": 0,
+      "qubits": 5,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 734
+    }
+  },
+  "schema_version": 2,
+  "scope": "ideal Aer statevector and seeded shots; no noise, hardware, or wall-clock speedup claim",
+  "source_hashes": {
+    "Grovers_Algorithm_for_Quantum_Search_and_Acceleration.ipynb": "7c0f9ce75a03f8ea1f742dd347ba7c441a5ac7661e9ae72cf8c8512fdb5bc6e4",
+    "amplification.py": "e89c89ad02f7da55abd23fde1a4903d61adad2da4232a12f2190b22da289441f",
+    "experiments.py": "4aa76385a79dcf6edd6d7a939c7f372028e9a11c6534458d62e649b0fe0b3c1b",
+    "requirements.txt": "11e42cf9b8cab5f4b2cfacdae4020e7d6c44afc9e01a04f3e45701f68bb67f83",
+    "run_checks.py": "b9911d7c0d0b46952f3715cc2b30cde48927b4cec727a69d793e305df19bb590",
+    "test_amplification.py": "9b3dc2bb33d2bfadccb2464dd0278e824b5d164243aed9a19ad019454e735015",
+    "test_discovery.py": "b61e579f02329eb4064e8fb34d5a5d78f5e63c2ed7ffa1e1317c9673cf2d69ae"
+  },
+  "status": "passed",
+  "uniform": {
+    "A_calls": 4,
+    "A_inverse_calls": 3,
+    "analytic_success": 0.9613189697265629,
+    "binomial_95_interval": [
+      0.9545442886059536,
+      0.9666619634625524
+    ],
+    "counts": {
+      "00000": 5,
+      "00001": 5,
+      "00010": 8,
+      "00011": 1937,
+      "00100": 7,
+      "00101": 4,
+      "00110": 1,
+      "00111": 5,
+      "01000": 6,
+      "01001": 8,
+      "01010": 7,
+      "01011": 7,
+      "01100": 3,
+      "01101": 6,
+      "01110": 5,
+      "01111": 3,
+      "10000": 6,
+      "10001": 5,
+      "10010": 5,
+      "10011": 7,
+      "10100": 6,
+      "10101": 1999,
+      "10110": 5,
+      "10111": 4,
+      "11000": 3,
+      "11001": 8,
+      "11010": 3,
+      "11011": 4,
+      "11100": 10,
+      "11101": 2,
+      "11110": 3,
+      "11111": 9
+    },
+    "exact_success": 0.9613189697265621,
+    "hoeffding_delta": 0.001,
+    "hoeffding_half_width": 0.03046054068000633,
+    "initial_success": 0.06249999999999995,
+    "invalid_shots": 160,
+    "iterations": 3,
+    "phase_oracle_calls": 3,
+    "sampled_success": 0.9609375,
+    "sampling_mode": "Aer readout from the validated final system state; full coherent circuit executed once",
+    "seed": 2718,
+    "shots": 4096,
+    "state_error_l2": 3.138307229940228e-15,
+    "system_qubits": 5,
+    "valid_shots": 3936,
+    "workspace_leakage": 0.0,
+    "workspace_qubits": 0
+  }
+}
