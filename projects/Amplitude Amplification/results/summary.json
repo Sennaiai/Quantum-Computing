@@ -1,0 +1,534 @@
+{
+  "analytic_query_scaling": [
+    {
+      "M": 1,
+      "N": 4,
+      "analytic_success": 1.0,
+      "classical_expected_checks_without_replacement": 2.5,
+      "iterations": 1,
+      "system_qubits": 2
+    },
+    {
+      "M": 1,
+      "N": 8,
+      "analytic_success": 0.9453124999999999,
+      "classical_expected_checks_without_replacement": 4.5,
+      "iterations": 2,
+      "system_qubits": 3
+    },
+    {
+      "M": 1,
+      "N": 16,
+      "analytic_success": 0.9613189697265625,
+      "classical_expected_checks_without_replacement": 8.5,
+      "iterations": 3,
+      "system_qubits": 4
+    },
+    {
+      "M": 1,
+      "N": 32,
+      "analytic_success": 0.9991823155432941,
+      "classical_expected_checks_without_replacement": 16.5,
+      "iterations": 4,
+      "system_qubits": 5
+    },
+    {
+      "M": 1,
+      "N": 64,
+      "analytic_success": 0.9965856807867991,
+      "classical_expected_checks_without_replacement": 32.5,
+      "iterations": 6,
+      "system_qubits": 6
+    },
+    {
+      "M": 1,
+      "N": 128,
+      "analytic_success": 0.9956198656943223,
+      "classical_expected_checks_without_replacement": 64.5,
+      "iterations": 8,
+      "system_qubits": 7
+    },
+    {
+      "M": 1,
+      "N": 256,
+      "analytic_success": 0.9999470421032736,
+      "classical_expected_checks_without_replacement": 128.5,
+      "iterations": 12,
+      "system_qubits": 8
+    },
+    {
+      "M": 1,
+      "N": 512,
+      "analytic_success": 0.9994480261540108,
+      "classical_expected_checks_without_replacement": 256.5,
+      "iterations": 17,
+      "system_qubits": 9
+    },
+    {
+      "M": 1,
+      "N": 1024,
+      "analytic_success": 0.9994612447444079,
+      "classical_expected_checks_without_replacement": 512.5,
+      "iterations": 25,
+      "system_qubits": 10
+    },
+    {
+      "M": 1,
+      "N": 2048,
+      "analytic_success": 0.9999968477766256,
+      "classical_expected_checks_without_replacement": 1024.5,
+      "iterations": 35,
+      "system_qubits": 11
+    },
+    {
+      "M": 1,
+      "N": 4096,
+      "analytic_success": 0.9999453461091142,
+      "classical_expected_checks_without_replacement": 2048.5,
+      "iterations": 50,
+      "system_qubits": 12
+    },
+    {
+      "M": 1,
+      "N": 8192,
+      "analytic_success": 0.9999157752494188,
+      "classical_expected_checks_without_replacement": 4096.5,
+      "iterations": 71,
+      "system_qubits": 13
+    },
+    {
+      "M": 1,
+      "N": 16384,
+      "analytic_success": 0.9999997811142307,
+      "classical_expected_checks_without_replacement": 8192.5,
+      "iterations": 100,
+      "system_qubits": 14
+    }
+  ],
+  "classical_controls": {
+    "limitations": "phase-oracle calls, verifier calls, state preparation and gates have different costs; structured backtracking is not an unstructured query baseline",
+    "uniform_with_replacement": "1-(1-p)^q; q=k+1 includes a final candidate verification",
+    "without_replacement_expected_first_success": "(N+1)/(M+1), assuming M>0"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "qiskit": "2.6.2",
+    "qiskit-aer": "0.18.4",
+    "scipy": "1.17.1"
+  },
+  "five_queens_encoding": "15 system bits represent 32768 assignments; only 3125 use valid columns; oracle marks 10 precomputed solutions",
+  "network_calls": 0,
+  "nonuniform": {
+    "A_calls": 3,
+    "A_inverse_calls": 2,
+    "analytic_success": 0.9911299089168902,
+    "counts": {
+      "000": 18,
+      "001": 616,
+      "010": 4,
+      "100": 14,
+      "110": 3444
+    },
+    "exact_success": 0.9911299089168896,
+    "hoeffding_delta": 0.001,
+    "hoeffding_half_width": 0.03046054068000633,
+    "initial_success": 0.10686482618562995,
+    "iterations": 2,
+    "phase_oracle_calls": 2,
+    "sampled_success": 0.9912109375,
+    "seed": 2718,
+    "shots": 4096,
+    "state_error_l2": 4.4097737248216755e-16,
+    "system_qubits": 3,
+    "workspace_leakage": 0.0,
+    "workspace_qubits": 0
+  },
+  "overshoot_sweep": [
+    {
+      "classical_success_k_plus_one_checks": 0.0625,
+      "iterations": 0,
+      "quantum_success": 0.0625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.12109375000000001,
+      "iterations": 1,
+      "quantum_success": 0.47265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.176025390625,
+      "iterations": 2,
+      "quantum_success": 0.908447265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.22752380371093753,
+      "iterations": 3,
+      "quantum_success": 0.9613189697265625
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.27580356597900396,
+      "iterations": 4,
+      "quantum_success": 0.5817041397094724
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.32106584310531616,
+      "iterations": 5,
+      "quantum_success": 0.1254916787147522
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.3634992279112339,
+      "iterations": 6,
+      "quantum_success": 0.020380768924951515
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.40328052616678184,
+      "iterations": 7,
+      "quantum_success": 0.36491288826800855
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.440575493281358,
+      "iterations": 8,
+      "quantum_success": 0.8360891748598078
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.4755395249512731,
+      "iterations": 9,
+      "quantum_success": 0.992181860020537
+    },
+    {
+      "classical_success_k_plus_one_checks": 0.5083183046418185,
+      "iterations": 10,
+      "quantum_success": 0.686854051412013
+    }
+  ],
+  "queens4": {
+    "classical": {
+      "analytic_peak_success": 0.9956198656943223,
+      "backtracking_column_attempts": 60,
+      "backtracking_nodes": 17,
+      "binary_search_space": 256,
+      "bits_per_row": 2,
+      "boards": [
+        [
+          1,
+          3,
+          0,
+          2
+        ],
+        [
+          2,
+          0,
+          3,
+          1
+        ]
+      ],
+      "classical_enumeration_candidates": 256,
+      "first_peak_iterations": 8,
+      "in_range_assignments": 256,
+      "initial_success": 0.0078125,
+      "marked_count": 2,
+      "size": 4,
+      "system_qubits": 8,
+      "targets": [
+        "01110010",
+        "10001101"
+      ]
+    },
+    "constraint_run": {
+      "A_calls": 9,
+      "A_inverse_calls": 8,
+      "analytic_success": 0.995619865694322,
+      "counts": {
+        "00001101": 1,
+        "00011010": 1,
+        "00100100": 1,
+        "00101111": 1,
+        "00111010": 1,
+        "01001111": 1,
+        "01010101": 1,
+        "01110010": 2010,
+        "10001101": 2069,
+        "10100001": 1,
+        "10111000": 1,
+        "11000001": 1,
+        "11000010": 1,
+        "11000011": 1,
+        "11010101": 1,
+        "11010110": 1,
+        "11100100": 1,
+        "11101001": 1,
+        "11101101": 1
+      },
+      "exact_success": 0.9956198656943194,
+      "hoeffding_delta": 0.001,
+      "hoeffding_half_width": 0.03046054068000633,
+      "initial_success": 0.00781249999999999,
+      "iterations": 8,
+      "phase_oracle_calls": 8,
+      "sampled_success": 0.995849609375,
+      "seed": 2718,
+      "shots": 4096,
+      "state_error_l2": 1.3291963474108272e-14,
+      "system_qubits": 8,
+      "workspace_leakage": 1.4464473797966844e-31,
+      "workspace_qubits": 6
+    }
+  },
+  "queens5": {
+    "classical": {
+      "analytic_peak_success": 0.9997455801331705,
+      "backtracking_column_attempts": 220,
+      "backtracking_nodes": 54,
+      "binary_search_space": 32768,
+      "bits_per_row": 3,
+      "boards": [
+        [
+          0,
+          2,
+          4,
+          1,
+          3
+        ],
+        [
+          0,
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          1,
+          3,
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          2,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          1,
+          3,
+          0
+        ],
+        [
+          3,
+          0,
+          2,
+          4,
+          1
+        ],
+        [
+          3,
+          1,
+          4,
+          2,
+          0
+        ],
+        [
+          4,
+          1,
+          3,
+          0,
+          2
+        ],
+        [
+          4,
+          2,
+          0,
+          3,
+          1
+        ]
+      ],
+      "classical_enumeration_candidates": 3125,
+      "first_peak_iterations": 44,
+      "in_range_assignments": 3125,
+      "initial_success": 0.00030517578125,
+      "marked_count": 10,
+      "size": 5,
+      "system_qubits": 15,
+      "targets": [
+        "000010100001011",
+        "000011001100010",
+        "001011000010100",
+        "001100010000011",
+        "010000011001100",
+        "010100001011000",
+        "011000010100001",
+        "011001100010000",
+        "100001011000010",
+        "100010000011001"
+      ]
+    },
+    "lookup_run": {
+      "A_calls": 45,
+      "A_inverse_calls": 44,
+      "analytic_success": 0.9997455801331703,
+      "counts": {
+        "000010100001011": 421,
+        "000011001100010": 402,
+        "001011000010100": 391,
+        "001100010000011": 385,
+        "010000011001100": 418,
+        "010100001011000": 394,
+        "011000010100001": 422,
+        "011001100010000": 423,
+        "100001011000010": 423,
+        "100010000011001": 417
+      },
+      "exact_success": 0.9997455801331694,
+      "hoeffding_delta": 0.001,
+      "hoeffding_half_width": 0.03046054068000633,
+      "initial_success": 0.0003051757812499993,
+      "iterations": 44,
+      "phase_oracle_calls": 44,
+      "sampled_success": 1.0,
+      "seed": 2718,
+      "shots": 4096,
+      "state_error_l2": 1.2515663518936586e-12,
+      "system_qubits": 15,
+      "workspace_leakage": 0.0,
+      "workspace_qubits": 0
+    },
+    "oracle_scope": "pre-enumerated solution lookup; no scalable constraint search claim"
+  },
+  "resources": {
+    "queens4_constraint_complete_run": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 17132,
+      "depth": 44092,
+      "optimization_level": 0,
+      "qubits": 14,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 32978
+    },
+    "queens4_constraint_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 2024,
+      "depth": 5097,
+      "optimization_level": 0,
+      "qubits": 14,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 4054
+    },
+    "queens4_lookup_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 340,
+      "depth": 356,
+      "optimization_level": 0,
+      "qubits": 8,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 534
+    },
+    "queens5_lookup_oracle": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 7300,
+      "depth": 4013,
+      "optimization_level": 0,
+      "qubits": 15,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 11190
+    },
+    "uniform_complete_run": {
+      "basis": [
+        "u",
+        "cx"
+      ],
+      "cx_count": 324,
+      "depth": 766,
+      "optimization_level": 0,
+      "qubits": 5,
+      "routing": "none; all-to-all logical connectivity",
+      "u_count": 734
+    }
+  },
+  "schema_version": 1,
+  "scope": "ideal Aer statevector and seeded shots; no noise, hardware, or wall-clock speedup claim",
+  "source_hashes": {
+    "Grovers_Algorithm_for_Quantum_Search_and_Acceleration.ipynb": "82377b393346a994e1f16de5a3fdd46ffd24120a892aa7edefd0e58419b25368",
+    "amplification.py": "46888a7b7f049071df7116be98ee02b51930e42779733fddcb2423e1f12bc24c",
+    "experiments.py": "fb6a2a793ba0975281fc76d27b8828374d0c22337d369dd72b03d762013ba316",
+    "requirements.txt": "11e42cf9b8cab5f4b2cfacdae4020e7d6c44afc9e01a04f3e45701f68bb67f83",
+    "run_checks.py": "f605b79c6302bd8bdbd593bac7c1fa38070a1c11abb0c59806b8671ee05d5bb4",
+    "test_amplification.py": "4ddf65cbaf7a057aaf8aa8eb146625deedecff36bdcfd7cd669ce2426cfd8644",
+    "test_discovery.py": "b61e579f02329eb4064e8fb34d5a5d78f5e63c2ed7ffa1e1317c9673cf2d69ae"
+  },
+  "status": "passed",
+  "uniform": {
+    "A_calls": 4,
+    "A_inverse_calls": 3,
+    "analytic_success": 0.9613189697265629,
+    "counts": {
+      "00000": 5,
+      "00001": 5,
+      "00010": 8,
+      "00011": 1937,
+      "00100": 7,
+      "00101": 4,
+      "00110": 1,
+      "00111": 5,
+      "01000": 6,
+      "01001": 8,
+      "01010": 7,
+      "01011": 7,
+      "01100": 3,
+      "01101": 6,
+      "01110": 5,
+      "01111": 3,
+      "10000": 6,
+      "10001": 5,
+      "10010": 5,
+      "10011": 7,
+      "10100": 6,
+      "10101": 1999,
+      "10110": 5,
+      "10111": 4,
+      "11000": 3,
+      "11001": 8,
+      "11010": 3,
+      "11011": 4,
+      "11100": 10,
+      "11101": 2,
+      "11110": 3,
+      "11111": 9
+    },
+    "exact_success": 0.9613189697265621,
+    "hoeffding_delta": 0.001,
+    "hoeffding_half_width": 0.03046054068000633,
+    "initial_success": 0.06249999999999995,
+    "iterations": 3,
+    "phase_oracle_calls": 3,
+    "sampled_success": 0.9609375,
+    "seed": 2718,
+    "shots": 4096,
+    "state_error_l2": 3.138307229940228e-15,
+    "system_qubits": 5,
+    "workspace_leakage": 0.0,
+    "workspace_qubits": 0
+  }
+}
