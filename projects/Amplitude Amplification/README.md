@@ -24,7 +24,7 @@ For `A|0⟩=|ψ⟩`, the circuit implements `Oχ=I−2Πgood`, `D_A=2|ψ⟩⟨ψ
 | Case | Evidence |
 | --- | --- |
 | Five-qubit search, two marked states | Analytic/exact/seeded-shot agreement and visible overshooting |
-| Nonuniform complex three-qubit preparation | Reflection uses the actual A and its inverse; full amplitude comparison |
+| Entangled, nonuniform complex three-qubit preparation | Reflection uses the actual A and its inverse; full amplitude comparison |
 | 4-Queens constraint oracle | Eight system qubits plus six pair-conflict flags; compute–phase–uncompute, with no complete-solution enumeration inside the oracle |
 | 5-Queens lookup oracle | Fifteen system qubits, ten pre-enumerated targets; explicit distinction between 32,768 binary assignments and 3,125 in-range boards |
 
