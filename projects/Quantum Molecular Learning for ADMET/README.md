@@ -1,8 +1,10 @@
-# ADMET feature-Ising quantum-control experiment
+# Quantum Molecular Learning for ADMET
 
 Molecular Morgan **counts** → information-screened Ising interactions → molecule-specific variational counterdiabatic control → heralded cosine/sine QSVT → validated measurement records → binary ADMET readout. Three independent notebooks expose the chemistry, statistics, Hamiltonian algebra, and runtime boundary.
 
-The Hamiltonian is a **dimensionless data-derived encoding**, with a chosen energy scale and ℏ = 1. It is not an electronic-structure Hamiltonian or a calibrated ADMET mechanism. Offline execution, classical baselines, and a post-API learning implementation are available. Quantum predictive performance awaits measured outputs; native Triple Alpha execution remains blocked.
+The Hamiltonian is a **dimensionless data-derived encoding**, with a chosen energy scale and ℏ = 1. It is not an electronic-structure Hamiltonian or a calibrated ADMET mechanism. Offline execution, classical baselines, and a post-API learning implementation are available. The public readout awaits measurement records; the public runtime client retains deployment-specific execution guards.
+
+**Private execution confirmation:** The project author confirms an end-to-end hardware run using Horizon Quantum's Triple Alpha workflow. This confirmation strengthens ADMET’s execution signal: **successful private compilation and execution, with proprietary results kept confidential**. Public CI validates the disclosed offline pipeline; it does not reproduce the private hardware run or disclose its results.
 
 ## Reproduce
 
@@ -67,7 +69,7 @@ python -m venv .venv-sdk
 
 Socket-blocked comparisons against the installed SDK verify POST operations, URL handling, request models, status fields and named numeric-string inputs. The logical flat runtime stream is not sent directly to the service. Each circuit shape receives candidate fixed-shape Beryllium source with unique input/output names and a hash-bound mapping. Inner result fields require an explicit verified deployment mapping.
 
-Native compilation, gate conventions, deployment identity/capacity and output semantics remain unverified. Protocol v2 requires a fresh verified deployment. Live opt-in and all native verification flags are required before execution; SDK mock success does not satisfy them.
+Deployment-specific compilation, gate conventions, capacity and output semantics are not independently verified by the public checks. Protocol v2 must be matched to its verified deployment. Live opt-in and all native verification flags are required before execution; SDK mock success does not satisfy them.
 
 ## Research extensions
 

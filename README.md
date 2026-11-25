@@ -76,7 +76,7 @@ conda activate quantum-projects
 python .github/scripts/execute_notebooks.py
 ```
 
-GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Notebooks requiring Colab uploads, local forecasting spreadsheets, ADMET datasets, or Triple Alpha credentials are not run in CI. The three chemistry studies use their dedicated scientific workflows.
+GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Notebooks requiring Colab uploads or local forecasting spreadsheets are excluded. The ADMET scientific workflow independently acquires its pinned public dataset and runs offline tests, notebooks, and benchmarks. Live Triple Alpha calls are excluded from CI. The three chemistry studies use their dedicated scientific workflows.
 
 Coursework has been consolidated under `projects/`, including `QFT/`,
 `Shor_Senay_Kahsay.ipynb`, and `Optimization/Unit_Commitment_MOPSO.ipynb`.
@@ -93,12 +93,12 @@ artifact notebooks from discovery.
 For the ADMET project, create its environment from that project directory so its existing `requirements.txt` is found:
 
 ```bash
-cd "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
+cd "projects/Quantum Molecular Learning for ADMET"
 conda env create -f environment.yml
 conda activate admet-triplealpha
 ```
 
-Set `TRIPLE_ALPHA_API_KEY` and `TRIPLE_ALPHA_RUN_URL` in your local environment before running the end-to-end notebook. Never store API credentials in a notebook or commit them.
+The public ADMET notebook runs offline without credentials. Optional native execution requires verified deployment settings and local `TRIPLE_ALPHA_API_KEY` and `TRIPLE_ALPHA_RUN_URL` values. Never store API credentials in a notebook or commit them.
 
 ## Connect With Me
 - [LinkedIn](https://www.linkedin.com/in/senay-kahsay)

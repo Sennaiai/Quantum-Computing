@@ -32,9 +32,20 @@ class DiscoveryTests(unittest.TestCase):
 
     def test_admet_uses_scientific_workflow_and_excludes_generated_notebooks(self):
         self.assertIn('dedicated ADMET', self.reason(
-            'Modular_QEML_admet_Pipeline_Senay Kahsay/ADMET_Triple_Alpha_End_to_End.ipynb'))
+            'Quantum Molecular Learning for ADMET/ADMET_Triple_Alpha_End_to_End.ipynb'))
         self.assertIn('generated', self.reason(
-            'Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/validation/result.ipynb'))
+            'Quantum Molecular Learning for ADMET/artifacts/validation/result.ipynb'))
+
+    def test_admet_workflow_paths_follow_the_current_project_directory(self):
+        project = policy.ROOT / 'projects/Quantum Molecular Learning for ADMET'
+        text = (policy.ROOT / '.github/workflows/admet-pipeline.yml').read_text()
+        self.assertTrue(project.is_dir())
+        self.assertIn('projects/Quantum Molecular Learning for ADMET/**', text)
+        dependencies = re.findall(r'cache-dependency-path:\s*"([^"]+)"', text)
+        self.assertEqual(len(dependencies), 2)
+        for relative in dependencies:
+            self.assertTrue((policy.ROOT / relative).is_file(), relative)
+        self.assertNotIn('Modular_QEML_admet_Pipeline_Senay Kahsay', text)
 
     def test_previous_offline_and_resource_policies_are_preserved(self):
         self.assertIsNone(self.reason('Optimization/Unit_Commitment_MOPSO.ipynb'))
@@ -43,7 +54,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn('external data', self.reason('Modular_QEML_admet_Pipeline/example.ipynb'))
 
     def test_workflow_directories_survive_actions_whitespace_trimming(self):
-        for name in ['h2-notebook.yml', 'hcn-notebook.yml', 'scaling-notebook.yml']:
+        for name in ['h2-notebook.yml', 'hcn-notebook.yml', 'scaling-notebook.yml', 'admet-pipeline.yml']:
             text = (policy.ROOT / '.github/workflows' / name).read_text()
             directories = re.findall(r'working-directory:\s*"([^"]+)"', text)
             self.assertTrue(directories, f'No working directory in {name}')
