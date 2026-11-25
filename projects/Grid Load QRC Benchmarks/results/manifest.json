@@ -1,0 +1,11 @@
+{
+  "files": {
+    "cv.json": "d2c92d24cfcabd07dd64550caf496dbefc90856e818ee90c9d1a231c29968d0d",
+    "spin.json": "f94a995be12bacacadb94730d2d9f057cde69f3f3ff97f29bd71451fd3624a52",
+    "cv.svg": "49a8f91ca44ebb5016d34ba5914c6d58af3ba0fca06a5187a91ea98bcf638b5c",
+    "spin.svg": "3de8c74faf49e7f86bed12c7619d5a6e32e15d70015276d04e8eb0609eef2939",
+    "cv_predictions.csv": "c4fd8fb46405d88d1711f6abb24689f6a3e2232e9d6cf567306cf78d6509ec92",
+    "spin_predictions.csv": "5d1d3ab14f6d40199306c4b84ffe9db91fd41163e5f502f7d57c020fd1b60a9c",
+    "physics.json": "3a13b9dce6828eda3e567bfb157f7ac1876f5e3c57c76898dcf51f3e0e772c81"
+  }
+}
