@@ -76,13 +76,18 @@ conda activate quantum-projects
 python .github/scripts/execute_notebooks.py
 ```
 
-GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Notebooks requiring Colab uploads or local forecasting spreadsheets are excluded. The ADMET scientific workflow independently acquires its pinned public dataset and runs offline tests, notebooks, and benchmarks. Live Triple Alpha calls are excluded from CI. The three chemistry studies use their dedicated scientific workflows.
+GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Legacy notebooks requiring uploads are excluded; the forecasting project has its own pinned offline scientific workflow. The ADMET scientific workflow independently acquires its pinned public dataset and runs offline tests, notebooks, and benchmarks. Live Triple Alpha calls are excluded from CI. The three chemistry studies use their dedicated scientific workflows.
 
 The QFT folder contains two scientific studies: merged cross-framework Fourier
 arithmetic and Shor order finding. Its dedicated workflow executes both notebooks,
 independent phase/matrix references and reversible-arithmetic checks. See
 [QFT arithmetic and Shor](projects/QFT/README.md) for reproducible execution and
 compiled-oracle limits. Generated artifact notebooks are excluded from discovery.
+
+The [grid-load QRC benchmarks](projects/Grid%20Load%20QRC%20Benchmarks/README.md)
+compare CV and analogue-spin reservoirs with matched classical controls. Their
+dedicated workflow verifies physics, leakage boundaries and both forecasting
+notebooks on a licensed, checksummed NESO snapshot.
 
 The [quantum chemistry studies](projects/Quanutm%20Chemistry%20/README.md) share a
 pinned environment and retain separate scientific tests and notebook CI. Their saved

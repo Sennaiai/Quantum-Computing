@@ -1,0 +1,44 @@
+name: Grid-load QRC scientific benchmark
+on:
+  pull_request:
+    paths:
+      - "projects/Grid Load QRC Benchmarks/**"
+      - ".github/workflows/forecasting-notebooks.yml"
+      - ".github/scripts/execute_notebooks.py"
+  push:
+    branches: [main]
+    paths:
+      - "projects/Grid Load QRC Benchmarks/**"
+      - ".github/workflows/forecasting-notebooks.yml"
+      - ".github/scripts/execute_notebooks.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  forecasting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: "projects/Grid Load QRC Benchmarks"
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: "projects/Grid Load QRC Benchmarks/requirements.txt"
+      - name: Install pinned experiment environment
+        run: python -m pip install -r requirements.txt
+      - name: Verify physics, causal protocol and execute both studies
+        run: python run_checks.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forecasting-executed-scientific-evidence
+          path: projects/Grid Load QRC Benchmarks/artifacts/validation/
