@@ -1,0 +1,431 @@
+{
+  "adder_comparison": [
+    {
+      "data_width": 2,
+      "modulus": 4,
+      "qft": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 18,
+        "depth": 30,
+        "optimization_level": 0,
+        "qubits": 4,
+        "u_count": 22
+      },
+      "qft_coherent_error": 5.381301587535299e-16,
+      "ripple": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 32,
+        "depth": 49,
+        "optimization_level": 0,
+        "qubits": 5,
+        "u_count": 36
+      },
+      "ripple_coherent_error": 0.0
+    },
+    {
+      "data_width": 3,
+      "modulus": 8,
+      "qft": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 36,
+        "depth": 54,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 51
+      },
+      "qft_coherent_error": 9.006781660295499e-16,
+      "ripple": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 48,
+        "depth": 73,
+        "optimization_level": 0,
+        "qubits": 7,
+        "u_count": 54
+      },
+      "ripple_coherent_error": 0.0
+    },
+    {
+      "data_width": 4,
+      "modulus": 16,
+      "qft": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 68,
+        "depth": 78,
+        "optimization_level": 0,
+        "qubits": 8,
+        "u_count": 92
+      },
+      "qft_coherent_error": 1.7071217668954995e-15,
+      "ripple": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 64,
+        "depth": 97,
+        "optimization_level": 0,
+        "qubits": 9,
+        "u_count": 72
+      },
+      "ripple_coherent_error": 0.0
+    },
+    {
+      "data_width": 5,
+      "modulus": 32,
+      "qft": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 102,
+        "depth": 102,
+        "optimization_level": 0,
+        "qubits": 10,
+        "u_count": 145
+      },
+      "qft_coherent_error": 3.0266805109515126e-15,
+      "ripple": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 80,
+        "depth": 121,
+        "optimization_level": 0,
+        "qubits": 11,
+        "u_count": 90
+      },
+      "ripple_coherent_error": 0.0
+    }
+  ],
+  "approximation": [
+    {
+      "cutoff": 0,
+      "operator_error_2": 1.999605576446615,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 9,
+        "depth": 4,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 6
+      },
+      "retained_controlled_phases": 0,
+      "roundtrip_error_2": 1.2490009027033026e-16
+    },
+    {
+      "cutoff": 1,
+      "operator_error_2": 1.9995793502381651,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 19,
+        "depth": 24,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 21
+      },
+      "retained_controlled_phases": 5,
+      "roundtrip_error_2": 4.0621554202202137e-16
+    },
+    {
+      "cutoff": 2,
+      "operator_error_2": 1.4819022507099158,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 27,
+        "depth": 40,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 33
+      },
+      "retained_controlled_phases": 9,
+      "roundtrip_error_2": 8.19474747844128e-16
+    },
+    {
+      "cutoff": 3,
+      "operator_error_2": 0.4859603598065252,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 33,
+        "depth": 40,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 42
+      },
+      "retained_controlled_phases": 12,
+      "roundtrip_error_2": 1.071025787156081e-15
+    },
+    {
+      "cutoff": 4,
+      "operator_error_2": 0.09813534865483796,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 37,
+        "depth": 40,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 48
+      },
+      "retained_controlled_phases": 14,
+      "roundtrip_error_2": 1.104828112178878e-15
+    },
+    {
+      "cutoff": 5,
+      "operator_error_2": 2.1996301879752056e-14,
+      "qubits": 6,
+      "resources": {
+        "basis": [
+          "u",
+          "cx"
+        ],
+        "connectivity": "all-to-all; no routing",
+        "cx_count": 39,
+        "depth": 40,
+        "optimization_level": 0,
+        "qubits": 6,
+        "u_count": 51
+      },
+      "retained_controlled_phases": 15,
+      "roundtrip_error_2": 1.3524127436060715e-15
+    }
+  ],
+  "coherent_arithmetic": [
+    {
+      "N": 3,
+      "data_width": 2,
+      "full_register_qubits": 4,
+      "k": 2,
+      "operation": "modular_constant_add",
+      "outside_promised_output_probability": 4.791002947235106e-31,
+      "pennylane_full_operator_error_2": 4.2601994665291157e-16,
+      "state_error_l2": 1.3740722436796238e-15,
+      "valid_basis_inputs": 3
+    },
+    {
+      "N": 5,
+      "data_width": 3,
+      "full_register_qubits": 5,
+      "k": 3,
+      "operation": "modular_constant_add",
+      "outside_promised_output_probability": 6.695122520699296e-31,
+      "pennylane_full_operator_error_2": 8.627062949965952e-16,
+      "state_error_l2": 1.3419233817248735e-15,
+      "valid_basis_inputs": 5
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 5,
+      "k": 5,
+      "operation": "modular_constant_add",
+      "outside_promised_output_probability": 3.33559394308396e-30,
+      "pennylane_full_operator_error_2": 8.147784842899344e-16,
+      "state_error_l2": 7.582185046782909e-15,
+      "valid_basis_inputs": 7
+    },
+    {
+      "N": 8,
+      "data_width": 3,
+      "full_register_qubits": 5,
+      "k": 7,
+      "operation": "modular_constant_add",
+      "outside_promised_output_probability": 1.052808975435648e-30,
+      "pennylane_full_operator_error_2": 8.34742929044393e-16,
+      "state_error_l2": 3.862182047819933e-15,
+      "valid_basis_inputs": 8
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 8,
+      "operation": "outplace_constant_add",
+      "outside_promised_output_probability": 1.240929638670064e-29,
+      "state_error_l2": 7.48352088251485e-15,
+      "valid_basis_inputs": 7
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 8,
+      "operation": "quantum_add",
+      "outside_promised_output_probability": 7.830371216535284e-30,
+      "state_error_l2": 1.2958028540992274e-14,
+      "valid_basis_inputs": 56
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 11,
+      "operation": "outplace_quantum_add",
+      "outside_promised_output_probability": 2.5689715441434043e-29,
+      "state_error_l2": 1.2449654998636191e-14,
+      "valid_basis_inputs": 56
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 8,
+      "operation": "constant_MAC",
+      "outside_promised_output_probability": 6.88066492188412e-30,
+      "state_error_l2": 1.0993050835340896e-14,
+      "valid_basis_inputs": 56
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 8,
+      "operation": "inplace_multiplier",
+      "outside_promised_output_probability": 4.035247677986061e-29,
+      "state_error_l2": 1.952332461054997e-14,
+      "valid_basis_inputs": 7
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 11,
+      "operation": "quantum_MAC",
+      "outside_promised_output_probability": 6.249625780066782e-27,
+      "state_error_l2": 1.9304888539769463e-13,
+      "valid_basis_inputs": 448
+    },
+    {
+      "N": 7,
+      "data_width": 3,
+      "full_register_qubits": 11,
+      "operation": "modular_exponentiation",
+      "outside_promised_output_probability": 2.138715395738514e-26,
+      "state_error_l2": 3.757574459270241e-13,
+      "valid_basis_inputs": 8
+    },
+    {
+      "N": 15,
+      "data_width": 4,
+      "full_register_qubits": 10,
+      "operation": "composite_modulus_multiplier",
+      "outside_promised_output_probability": 1.5803120673143539e-28,
+      "state_error_l2": 3.969181911225479e-14,
+      "valid_basis_inputs": 15
+    },
+    {
+      "N": 21,
+      "data_width": 5,
+      "full_register_qubits": 12,
+      "operation": "composite_modulus_multiplier",
+      "outside_promised_output_probability": 1.3036854263548394e-27,
+      "state_error_l2": 1.159263683822398e-13,
+      "valid_basis_inputs": 21
+    }
+  ],
+  "contracts": "valid residues and zero-initialized workspace; full complex amplitudes, not only basis output probabilities",
+  "controlled_phase_regression": {
+    "basis_probability_error": 4.440892098500626e-16,
+    "controlled_operator_error": 1.961570560806458,
+    "interpretation": "RZ substitution preserves isolated probabilities but changes the controlled branch phase"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.4.6",
+    "pennylane": "0.45.1",
+    "qiskit": "2.6.2",
+    "qiskit-aer": "0.18.4",
+    "scipy": "1.17.1"
+  },
+  "fourier": [
+    {
+      "pennylane_builtin_error_2": 8.659560562354932e-17,
+      "pennylane_matrix_error_2": 8.659560562354932e-17,
+      "qiskit_matrix_error_2": 8.659560562354932e-17,
+      "qubits": 1
+    },
+    {
+      "pennylane_builtin_error_2": 3.853935764199674e-16,
+      "pennylane_matrix_error_2": 4.27062629184846e-16,
+      "qiskit_matrix_error_2": 4.27062629184846e-16,
+      "qubits": 2
+    },
+    {
+      "pennylane_builtin_error_2": 1.923729078852129e-15,
+      "pennylane_matrix_error_2": 1.9210215728767126e-15,
+      "qiskit_matrix_error_2": 1.9210215728767126e-15,
+      "qubits": 3
+    },
+    {
+      "pennylane_builtin_error_2": 4.530043735400301e-15,
+      "pennylane_matrix_error_2": 4.496074956058545e-15,
+      "qiskit_matrix_error_2": 4.49034669261831e-15,
+      "qubits": 4
+    },
+    {
+      "pennylane_builtin_error_2": 1.0901549447612837e-14,
+      "pennylane_matrix_error_2": 1.0741594267875913e-14,
+      "qiskit_matrix_error_2": 1.0742745950904175e-14,
+      "qubits": 5
+    }
+  ],
+  "schema_version": 1,
+  "scope": "ideal simulation, bounded inputs; no general hardware or speedup claim",
+  "source_hashes": {
+    "QFT_Arithmetic_Validation.ipynb": "a3fe07f5ceeee1194b3481dcacc866584831f21e58d76e0338c2ef6d3a69e0cb",
+    "Shor_Senay_Kahsay.ipynb": "89a54a4e81f97f7ae6d2991526385e1196e62abbc478aae5c24b693b402621fc",
+    "arithmetic.py": "c845a301e21ff7182de92404b3e8e6f636cea6b70d6ae3b711bf0361ac151633",
+    "cross_backend.py": "0d879b6b6f93f78c8bfdfa4a5c240b208df65e7e6bb1cb61ec7cb3a1fca66b39",
+    "experiments.py": "1001a63d3bdbcf3a3176f1e77afd7cb322c823f469488c2e7e8025e207c6b02d",
+    "order_finding.py": "9389258c4db67e7b41acca67cc78b51f9bbfaab63fe36df452be510caa95b865",
+    "qft_core.py": "ec01df53f9df0508631efdf8c73a2f47d484ec1538c3e7e748de10ba3a8230b5",
+    "requirements.txt": "3c22b22160b497bd67a37b07475ddc26b8f7b757e168407e437fcb57a7ae1510",
+    "run_checks.py": "aeb445dc1d7da8204002c1034e9a2bcf6e43afad174a02722208fd7f4cdf4e57",
+    "test_discovery.py": "51cd639d1e16a2e3fe1f1fa2dc79e68cc9f241c210b4c4f303af9707ed59fcc7",
+    "test_evidence.py": "8d93bbd9bb3342bf7295bab4a933240c6e2bd6c392d1c64d9fa721ea5976db60",
+    "test_science.py": "bf3756f8d7e68abf6996446755bf4d6edca4322602a0da5be3342d461cb03b6a",
+    "verification.py": "af3a9e259b46b8f89c05c20b10ab19cdcac42a658c2b2c39b2483817e7244130"
+  },
+  "status": "passed"
+}

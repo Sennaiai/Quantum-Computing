@@ -78,11 +78,11 @@ python .github/scripts/execute_notebooks.py
 
 GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Notebooks requiring Colab uploads or local forecasting spreadsheets are excluded. The ADMET scientific workflow independently acquires its pinned public dataset and runs offline tests, notebooks, and benchmarks. Live Triple Alpha calls are excluded from CI. The three chemistry studies use their dedicated scientific workflows.
 
-Coursework has been consolidated under `projects/`, including `QFT/`,
-`Shor_Senay_Kahsay.ipynb`, and `Optimization/Unit_Commitment_MOPSO.ipynb`.
-QFT and Shor retain their coursework implementations and are explicitly excluded
-from automated execution pending their own refinement. A directory move does not
-establish scientific or execution validation.
+The QFT folder contains two scientific studies: merged cross-framework Fourier
+arithmetic and Shor order finding. Its dedicated workflow executes both notebooks,
+independent phase/matrix references and reversible-arithmetic checks. See
+[QFT arithmetic and Shor](projects/QFT/README.md) for reproducible execution and
+compiled-oracle limits. Generated artifact notebooks are excluded from discovery.
 
 The [quantum chemistry studies](projects/Quanutm%20Chemistry%20/README.md) share a
 pinned environment and retain separate scientific tests and notebook CI. Their saved
