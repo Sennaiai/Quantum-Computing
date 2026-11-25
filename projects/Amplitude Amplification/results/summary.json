@@ -471,11 +471,11 @@
   "scope": "ideal Aer statevector and seeded shots; no noise, hardware, or wall-clock speedup claim",
   "source_hashes": {
     "Grovers_Algorithm_for_Quantum_Search_and_Acceleration.ipynb": "82377b393346a994e1f16de5a3fdd46ffd24120a892aa7edefd0e58419b25368",
-    "amplification.py": "46888a7b7f049071df7116be98ee02b51930e42779733fddcb2423e1f12bc24c",
+    "amplification.py": "72b5f02dc3fa624f3dcf4b78d464008c8cee51a55baf6128a55d322499a309f1",
     "experiments.py": "fb6a2a793ba0975281fc76d27b8828374d0c22337d369dd72b03d762013ba316",
     "requirements.txt": "11e42cf9b8cab5f4b2cfacdae4020e7d6c44afc9e01a04f3e45701f68bb67f83",
     "run_checks.py": "f605b79c6302bd8bdbd593bac7c1fa38070a1c11abb0c59806b8671ee05d5bb4",
-    "test_amplification.py": "4ddf65cbaf7a057aaf8aa8eb146625deedecff36bdcfd7cd669ce2426cfd8644",
+    "test_amplification.py": "2e0744bff0d9ab724b342f5361009dca31af687c61f99110b2bec43f0ba4f219",
     "test_discovery.py": "b61e579f02329eb4064e8fb34d5a5d78f5e63c2ed7ffa1e1317c9673cf2d69ae"
   },
   "status": "passed",
