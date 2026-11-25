@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "max_arrival_delay_minutes": 4320,
+  "unassigned_cost": 10.0,
+  "block_hours": 12,
+  "top_k": 5,
+  "max_bqm_variables": 128,
+  "num_reads": 48,
+  "num_sweeps": 500,
+  "max_exchange_trials_per_pnr": 128,
+  "seeds": [7, 11, 29, 47, 73],
+  "scenarios": {
+    "S1_balanced": {"ARRIVAL_DELAY_MINS_NORM": 1.0, "EXCESS_TRAVEL_TIME_MINS_NORM": 0.8, "CONN_PENALTY_NORM": 0.7, "CAPACITY_STRESS_PROXY_NORM": 0.4, "BOTTLENECK_RATIO_NORM": 0.4, "CVM_NORM": -0.6, "MIXED_CABIN_FLAG": 0.15, "CABIN_DISP": 0.05},
+    "S2_highCVM": {"ARRIVAL_DELAY_MINS_NORM": 0.6, "EXCESS_TRAVEL_TIME_MINS_NORM": 0.4, "CONN_PENALTY_NORM": 0.4, "CAPACITY_STRESS_PROXY_NORM": 0.25, "BOTTLENECK_RATIO_NORM": 0.25, "CVM_NORM": -1.3, "MIXED_CABIN_FLAG": 0.1, "CABIN_DISP": 0.05},
+    "S3_capacityStability": {"ARRIVAL_DELAY_MINS_NORM": 0.6, "EXCESS_TRAVEL_TIME_MINS_NORM": 0.5, "CONN_PENALTY_NORM": 0.4, "CAPACITY_STRESS_PROXY_NORM": 1.1, "BOTTLENECK_RATIO_NORM": 1.1, "CVM_NORM": -0.5, "MIXED_CABIN_FLAG": 0.1, "CABIN_DISP": 0.05},
+    "S4_recovery": {"ARRIVAL_DELAY_MINS_NORM": 0.9, "EXCESS_TRAVEL_TIME_MINS_NORM": 0.9, "CONN_PENALTY_NORM": 0.9, "CAPACITY_STRESS_PROXY_NORM": 0.35, "BOTTLENECK_RATIO_NORM": 0.35, "CVM_NORM": -0.55, "MIXED_CABIN_FLAG": 0.2, "CABIN_DISP": 0.08}
+  },
+  "execution": "Classical simulated annealing using neal; no quantum hardware or quantum annealing execution",
+  "input_boundary": "Precomputed candidate journeys and normalized features; upstream itinerary construction and Gurobi baseline remain external"
+}
