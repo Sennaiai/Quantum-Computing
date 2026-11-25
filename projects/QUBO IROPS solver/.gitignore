@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+artifacts/
+# Supplied raw/preprocessing assets remain local; publish only de-identified catalog.
+irops_clean/
+*.csv
+*.xlsx
+*.pdf
+Decomposed_QSA_with benchmark.ipynb

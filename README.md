@@ -89,6 +89,11 @@ compare CV and analogue-spin reservoirs with matched classical controls. Their
 dedicated workflow verifies physics, leakage boundaries and both forecasting
 notebooks on a licensed, checksummed NESO snapshot.
 
+The [IROPS QUBO experiment](projects/QUBO%20IROPS%20solver/README.md)
+executes a de-identified client-provided candidate catalog with exact capacity
+encoding, decomposed simulated annealing and reproducible allocation metrics.
+The client’s Gurobi model remains the external comparison.
+
 The [quantum chemistry studies](projects/Quanutm%20Chemistry%20/README.md) share a
 pinned environment and retain separate scientific tests and notebook CI. Their saved
 notebook outputs and benchmark evidence are available for review. The shared
