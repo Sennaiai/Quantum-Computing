@@ -23,6 +23,8 @@ def skip_reason(path):
         return "relocated coursework; execution refinement pending"
     if relative.as_posix() == "Quanutm Chemistry /Molecular_Hamiltonian_Construction_Active_Space_Scaling.ipynb":
         return "validated by dedicated scaling scientific tests and notebook workflow"
+    if relative.parts[0] == "Amplitude Amplification":
+        return "validated by dedicated amplitude amplification scientific tests and notebook workflow"
     if relative.parts[0] == "Quantum Molecular Learning for ADMET":
         return "validated by the dedicated ADMET scientific experiment workflow"
     if any(parent.startswith(prefix) for parent in relative.parts[:-1]
