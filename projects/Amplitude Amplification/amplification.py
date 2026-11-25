@@ -4,12 +4,13 @@ from itertools import combinations, product
 import math
 import numbers
 import numpy as np
-from qiskit import QuantumCircuit, transpile
+from qiskit import QuantumCircuit, ClassicalRegister, transpile
 from qiskit.quantum_info import Statevector
 from qiskit_aer import AerSimulator
+from scipy.stats import binomtest
 
 MAX_SYSTEM_QUBITS = 15
-MAX_TOTAL_QUBITS = 16
+MAX_TOTAL_QUBITS = 19
 MAX_ITERATIONS = 128
 
 
@@ -157,14 +158,21 @@ def simulate(preparation, oracle, targets, iterations, *, shots=4096, seed=2718)
     exact = float(np.sum(np.abs(by_workspace[0,indices])**2))
     expected = analytic_probability(p0,iterations)
     if abs(exact-expected)>1e-10: raise ValueError('Circuit violates the two-dimensional rotation law')
-    measured = qc.copy(); measured.add_register(__import__('qiskit').ClassicalRegister(n))
+    # Ideal readout can reuse the validated final state, avoiding a second
+    # expensive coherent execution. This is a simulator-only optimization.
+    measured = QuantumCircuit(n,n)
+    measured.set_statevector(by_workspace[0])
     measured.measure(range(n),range(n))
-    counts = backend.run(transpile(measured,backend,optimization_level=1,seed_transpiler=seed),shots=shots,seed_simulator=seed).result().get_counts()
+    counts = backend.run(measured,shots=shots,seed_simulator=seed).result().get_counts()
     good = sum(counts.get(t,0) for t in targets)
+    interval=binomtest(good,shots).proportion_ci(confidence_level=.95,method='exact')
     half_width = math.sqrt(math.log(2/.001)/(2*shots))
     if abs(good/shots-exact)>half_width: raise ValueError('Sample exceeds the declared Hoeffding tolerance')
     return {'iterations':iterations,'initial_success':p0,'analytic_success':expected,'exact_success':exact,
         'sampled_success':good/shots,'shots':shots,'seed':seed,'counts':dict(sorted(counts.items())),
+        'sampling_mode':'Aer readout from the validated final system state; full coherent circuit executed once',
+        'valid_shots':good,'invalid_shots':shots-good,
+        'binomial_95_interval':[float(interval.low),float(interval.high)],
         'hoeffding_delta':.001,'hoeffding_half_width':half_width,'state_error_l2':error,
         'workspace_leakage':leakage,'system_qubits':n,'workspace_qubits':qc.num_qubits-n,
         'phase_oracle_calls':iterations,'A_calls':iterations+1,'A_inverse_calls':iterations}, qc
@@ -179,7 +187,7 @@ def valid_board(cols):
 
 
 def queens_reference(size):
-    integer(size,'board size',1,5)
+    size=integer(size,'board size',1,5)
     boards = [cols for cols in product(range(size),repeat=size) if valid_board(cols)]
     bits = max(1,(size-1).bit_length())
     targets = [''.join(format(c,f'0{bits}b') for c in cols) for cols in boards]
@@ -222,6 +230,49 @@ def queens4_constraint_oracle():
                     if bit=='0':qc.x(wire)
     compute = qc.copy()
     phase_flip(qc,list(range(8,14)),'000000')
+    qc.compose(compute.inverse(),inplace=True)
+    return qc
+
+
+
+def _increment_if(qc, controls, counter):
+    """Add one modulo 2**len(counter) under an all-one input predicate."""
+    for j in reversed(range(len(counter))):
+        qc.mcx(list(controls)+counter[:j],counter[j])
+
+
+def queens_constraint_oracle(size):
+    """Phase-mark N-Queens constraints without storing complete solutions.
+
+    Count each range/pair violation, flip phase at count zero, then uncompute.
+    The counter has enough bits for the maximum number of predicates, so zero
+    cannot alias an overflowing positive count. Pair tables only enumerate
+    local column assignments; out-of-range columns have separate predicates.
+    """
+    size=integer(size,'board size',2,5)
+    width=(size-1).bit_length(); n=size*width
+    predicates=size*(size-1)//2+(size if 2**width>size else 0)
+    counter_width=predicates.bit_length()
+    counter=list(range(n,n+counter_width))
+    qc=QuantumCircuit(n+counter_width,name=f'{size}-Queens constraints')
+    def conditional_increment(wires,value):
+        for wire,bit in zip(wires,value):
+            if bit=='0':qc.x(wire)
+        _increment_if(qc,wires,counter)
+        for wire,bit in zip(wires,value):
+            if bit=='0':qc.x(wire)
+    def row_wires(row):
+        return list(range(width*(size-1-row),width*(size-row)))
+    for row in range(size):
+        for col in range(size,2**width):
+            conditional_increment(row_wires(row),format(col,f'0{width}b')[::-1])
+    for i,j in combinations(range(size),2):
+        for ci,cj in product(range(size),repeat=2):
+            if ci==cj or abs(ci-cj)==j-i:
+                conditional_increment(row_wires(i)+row_wires(j),
+                    format(ci,f'0{width}b')[::-1]+format(cj,f'0{width}b')[::-1])
+    compute=qc.copy()
+    phase_flip(qc,counter,'0'*counter_width)
     qc.compose(compute.inverse(),inplace=True)
     return qc
 

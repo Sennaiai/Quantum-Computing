@@ -51,7 +51,7 @@ def main():
     manager=KernelManager(kernel_name='python3')
     manager.kernel_spec.argv=[sys.executable,'-m','ipykernel_launcher','-f','{connection_file}']
     try:
-        NotebookClient(notebook,km=manager,timeout=180,
+        NotebookClient(notebook,km=manager,timeout=600,
             resources={'metadata':{'path':str(ROOT)}}).execute()
     finally:
         if manager.has_kernel:manager.shutdown_kernel(now=True)
