@@ -3,12 +3,12 @@ name: ADMET scientific experiment
 on:
   pull_request:
     paths:
-      - "projects/Modular_QEML_admet_Pipeline_Senay Kahsay/**"
+      - "projects/Quantum Molecular Learning for ADMET/**"
       - ".github/workflows/admet-pipeline.yml"
   push:
     branches: [main]
     paths:
-      - "projects/Modular_QEML_admet_Pipeline_Senay Kahsay/**"
+      - "projects/Quantum Molecular Learning for ADMET/**"
       - ".github/workflows/admet-pipeline.yml"
   workflow_dispatch:
 
@@ -21,12 +21,12 @@ jobs:
     timeout-minutes: 40
     defaults:
       run:
-        working-directory: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
+        working-directory: "projects/Quantum Molecular Learning for ADMET"
     env:
       OPENBLAS_NUM_THREADS: "1"
       OMP_NUM_THREADS: "1"
       PYTHONDONTWRITEBYTECODE: "1"
-      ADMET_BBB_FILE: "${{ github.workspace }}/projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/data/bbb_martins.tab"
+      ADMET_BBB_FILE: "${{ github.workspace }}/projects/Quantum Molecular Learning for ADMET/artifacts/data/bbb_martins.tab"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -35,7 +35,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay/requirements.txt"
+          cache-dependency-path: "projects/Quantum Molecular Learning for ADMET/requirements.txt"
       - name: Install pinned scientific environment
         run: python -m pip install -r requirements.txt
       - name: Acquire and verify the pinned public BBB artifact
@@ -56,17 +56,17 @@ jobs:
         with:
           name: admet-executed-scientific-evidence
           path: |
-            projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/validation/
-            projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/benchmark_summary.json
-            projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/manifest.json
-            projects/Modular_QEML_admet_Pipeline_Senay Kahsay/artifacts/benchmarks/*.svg
+            projects/Quantum Molecular Learning for ADMET/artifacts/validation/
+            projects/Quantum Molecular Learning for ADMET/artifacts/benchmarks/benchmark_summary.json
+            projects/Quantum Molecular Learning for ADMET/artifacts/benchmarks/manifest.json
+            projects/Quantum Molecular Learning for ADMET/artifacts/benchmarks/*.svg
 
   sdk-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay"
+        working-directory: "projects/Quantum Molecular Learning for ADMET"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -75,7 +75,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: "projects/Modular_QEML_admet_Pipeline_Senay Kahsay/requirements-sdk.txt"
+          cache-dependency-path: "projects/Quantum Molecular Learning for ADMET/requirements-sdk.txt"
       - name: Install isolated pinned SDK environment
         run: |
           python -m venv .venv-sdk
