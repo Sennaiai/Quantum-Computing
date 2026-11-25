@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+artifacts/
+.DS_Store
+# Original local course assets are not public benchmark dependencies.
+*.zip
+*.xlsx
+*.pdf

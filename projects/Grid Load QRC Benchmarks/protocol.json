@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "task": "30-minute rolling one-step historical hindcast",
+  "period": "2025-01-01 through 2025-10-28",
+  "seeds": [11, 29, 47],
+  "window": 8,
+  "initial_train_fraction": 0.6,
+  "test_start_fraction": 0.8,
+  "validation": "Three expanding training folds in pre-test validation; choose lowest pooled validation RMSE",
+  "readout": "Predict residual from causal persistence anchor; all models use the same target times",
+  "ridge_alpha_grid": [0.1, 10.0, 1000.0],
+  "cv": {"modes": 2, "cutoff_per_mode": 10, "displacement_scale": 0.08, "kerr": 0.2, "boundary_acceptance": 1e-7},
+  "spin": {"qubits": 6, "tau": 0.2, "angle_scale": 0.35, "quadratic_drive": 0.1, "hamiltonian": "sum hx X + hz Z + nearest-neighbour J ZZ"},
+  "claims": "Ideal simulated benchmark; no hardware execution, operational forecast, generalisation guarantee, or quantum advantage claim",
+  "availability": "Lagged historical outturn assumed available at t-1; actual publication latency and revisions are not reproduced",
+  "selection": "No test-label tuning, seed selection or early stopping; report all fixed seeds and equal-weight ensembles",
+  "uncertainty": "Paired elapsed-24-hour block bootstrap; exploratory conditional intervals, no selection or multiplicity correction"
+}

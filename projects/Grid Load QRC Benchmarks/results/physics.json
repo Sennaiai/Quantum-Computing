@@ -1,0 +1,210 @@
+{
+  "cv_validation": [
+    {
+      "seed": 11,
+      "kerr": 0.0,
+      "max_cutoff_boundary_probability": 2.1485270667530115e-16,
+      "max_norm_error": 3.241851231905457e-14,
+      "max_feature_error_cutoff10_vs14": 1.1435297153639112e-14,
+      "pennylane_feature_error": 2.9976021664879227e-15
+    },
+    {
+      "seed": 11,
+      "kerr": 0.2,
+      "max_cutoff_boundary_probability": 2.9909747151479885e-13,
+      "max_norm_error": 3.2307490016592055e-14,
+      "max_feature_error_cutoff10_vs14": 4.746203430272544e-14
+    },
+    {
+      "seed": 29,
+      "kerr": 0.0,
+      "max_cutoff_boundary_probability": 6.765661420882883e-18,
+      "max_norm_error": 3.2529534621517087e-14,
+      "max_feature_error_cutoff10_vs14": 1.3766765505351941e-14,
+      "pennylane_feature_error": 2.5049406993105094e-15
+    },
+    {
+      "seed": 29,
+      "kerr": 0.2,
+      "max_cutoff_boundary_probability": 1.0098081864574159e-21,
+      "max_norm_error": 3.141931159689193e-14,
+      "max_feature_error_cutoff10_vs14": 1.0269562977782698e-14
+    },
+    {
+      "seed": 47,
+      "kerr": 0.0,
+      "max_cutoff_boundary_probability": 3.050348889026364e-13,
+      "max_norm_error": 3.26405569239796e-14,
+      "max_feature_error_cutoff10_vs14": 2.3359092438113294e-13,
+      "pennylane_feature_error": 4.1147640850169864e-15
+    },
+    {
+      "seed": 47,
+      "kerr": 0.2,
+      "max_cutoff_boundary_probability": 2.202624919466568e-19,
+      "max_norm_error": 3.341771304121721e-14,
+      "max_feature_error_cutoff10_vs14": 1.9040324872321435e-14
+    }
+  ],
+  "spin_validation": [
+    {
+      "seed": 11,
+      "exact_qiskit_state_error_l2": 6.801299694570619e-16,
+      "hamiltonian_hermiticity_error": 0.0,
+      "strang_product_formula": [
+        {
+          "slices_per_input": 1,
+          "state_error_l2": 0.016355287272057477,
+          "qubits": 6,
+          "depth": 145,
+          "u": 320,
+          "cx": 160
+        },
+        {
+          "slices_per_input": 2,
+          "state_error_l2": 0.004062581931115709,
+          "qubits": 6,
+          "depth": 265,
+          "u": 544,
+          "cx": 320
+        },
+        {
+          "slices_per_input": 4,
+          "state_error_l2": 0.0010140153989362161,
+          "qubits": 6,
+          "depth": 505,
+          "u": 992,
+          "cx": 640
+        },
+        {
+          "slices_per_input": 8,
+          "state_error_l2": 0.0002534021236462271,
+          "qubits": 6,
+          "depth": 985,
+          "u": 1888,
+          "cx": 1280
+        }
+      ]
+    },
+    {
+      "seed": 29,
+      "exact_qiskit_state_error_l2": 5.694690969371687e-16,
+      "hamiltonian_hermiticity_error": 0.0,
+      "strang_product_formula": [
+        {
+          "slices_per_input": 1,
+          "state_error_l2": 0.0164177954083545,
+          "qubits": 6,
+          "depth": 145,
+          "u": 320,
+          "cx": 160
+        },
+        {
+          "slices_per_input": 2,
+          "state_error_l2": 0.0040684534595483105,
+          "qubits": 6,
+          "depth": 265,
+          "u": 544,
+          "cx": 320
+        },
+        {
+          "slices_per_input": 4,
+          "state_error_l2": 0.0010148832848046723,
+          "qubits": 6,
+          "depth": 505,
+          "u": 992,
+          "cx": 640
+        },
+        {
+          "slices_per_input": 8,
+          "state_error_l2": 0.00025358174599213456,
+          "qubits": 6,
+          "depth": 985,
+          "u": 1888,
+          "cx": 1280
+        }
+      ]
+    },
+    {
+      "seed": 47,
+      "exact_qiskit_state_error_l2": 7.216204667913985e-16,
+      "hamiltonian_hermiticity_error": 0.0,
+      "strang_product_formula": [
+        {
+          "slices_per_input": 1,
+          "state_error_l2": 0.026960806302780447,
+          "qubits": 6,
+          "depth": 145,
+          "u": 320,
+          "cx": 160
+        },
+        {
+          "slices_per_input": 2,
+          "state_error_l2": 0.006679512312543408,
+          "qubits": 6,
+          "depth": 265,
+          "u": 544,
+          "cx": 320
+        },
+        {
+          "slices_per_input": 4,
+          "state_error_l2": 0.0016661119803309064,
+          "qubits": 6,
+          "depth": 505,
+          "u": 992,
+          "cx": 640
+        },
+        {
+          "slices_per_input": 8,
+          "state_error_l2": 0.0004162930376878103,
+          "qubits": 6,
+          "depth": 985,
+          "u": 1888,
+          "cx": 1280
+        }
+      ]
+    }
+  ],
+  "cv": {
+    "modes": 2,
+    "cutoff": 10,
+    "hilbert_dimension": 100,
+    "features": 6,
+    "complex128_state_bytes": 1600,
+    "dense_fixed_unitary_bytes": 160000,
+    "gates_per_window_gaussian": 40,
+    "gates_per_window_kerr": 56,
+    "measurement_settings": "X, P and number: three idealized settings; no certified CV shot bound"
+  },
+  "spin": {
+    "qubits": 6,
+    "hilbert_dimension": 64,
+    "features": 33,
+    "complex128_state_bytes": 1024,
+    "dense_fixed_unitary_bytes": 65536,
+    "exact_evolution_time_per_window_dimensionless": 1.6,
+    "measurement_settings": 3,
+    "epsilon_per_pauli": 0.02,
+    "joint_failure_probability": 0.05,
+    "hoeffding_shots_per_setting_per_forecast": 35927,
+    "total_reprepared_windows_per_forecast": 107781,
+    "bound_assumptions": "Independent ideal +/-1 Pauli outcomes; union bound across all 33 features. No noise, latency, routing or calibration model."
+  },
+  "scaling": {
+    "fock_state_bytes_cutoff10_modes1_to6": [
+      160,
+      1600,
+      16000,
+      160000,
+      1600000,
+      16000000
+    ],
+    "spin_state_bytes_qubits6_9_16_24": {
+      "6": 1024,
+      "9": 8192,
+      "16": 1048576,
+      "24": 268435456
+    },
+    "warning": "State payload lower bounds only; dense operators scale quadratically in Hilbert dimension. Batch arrays and ML memory are additional."
+  }
+}
