@@ -22,8 +22,8 @@ class DiscoveryTests(unittest.TestCase):
         self.assertIn('dedicated H2', self.reason(
             'Quanutm Chemistry /Quantum_Simulation_of_the_Hydrogen_Molecule_H2_Hamiltonian.ipynb'))
 
-    def test_relocated_coursework_keeps_its_unvalidated_status(self):
-        self.assertIn('coursework', self.reason('QFT/Qiskit Arithemtic .ipynb'))
+    def test_qft_has_scientific_workflow_and_legacy_shor_is_excluded(self):
+        self.assertIn('dedicated QFT', self.reason('QFT/QFT_Arithmetic_Validation.ipynb'))
         self.assertIn('coursework', self.reason('Shor_Senay_Kahsay.ipynb'))
 
     def test_hcn_has_a_dedicated_execution_job(self):

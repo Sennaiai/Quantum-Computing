@@ -1,0 +1,9 @@
+{
+  "files": {
+    "arithmetic.json": "cb02936ee0468beb52bfe42d62b75febe9f06b796b5013138cd83fb1889eb266",
+    "arithmetic.svg": "f4d76c88e3ca9702981a98ef7bc31faf6a77d82c75032bfd4beb6d64ad2019cb",
+    "order_finding.svg": "d679b5a415e7ed530122414da81a6334023db1dae38047949b2d5bfab6c68992",
+    "shor.json": "a90dcadee4681ac349e62633a44b9d3028fbce7e03cad83c9adcaa1ba8839084"
+  },
+  "schema_version": 1
+}
