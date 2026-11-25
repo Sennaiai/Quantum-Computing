@@ -1,0 +1,29 @@
+{
+  "source": "User-supplied processed IROPS candidate tables; public de-identified release authorized by repository owner",
+  "synthetic": false,
+  "pnrs": 7653,
+  "options": 57963,
+  "passengers": 11822,
+  "flight_cabin_resources": 6442,
+  "transform": "Replace all original identifiers by monotone anonymous labels; shift all UTC departures by a common whole-day offset; replace raw CVM by supplied normalized CVM",
+  "preserved": "Party sizes, candidate membership, scenario features/costs, flight/cabin incidence, capacities, relative times, 12-hour grouping, priority order/ties and deterministic label tie-breaking",
+  "priority_units": "Normalized CVM, unitless; captured priority is not raw client CVM",
+  "scope": "PNRs in the supplied candidate catalog; original impacted/no-candidate PNR population and upstream itinerary generation remain external",
+  "input_audit": {
+    "capacity_policy": "conservative",
+    "negative_capacities_clipped": 622,
+    "capacity_conflicts_resolved": 0,
+    "cvm_source": "CVM",
+    "departure_source": "candidates",
+    "options_with_original_duration_over_72h": 33533,
+    "options_arriving_over_72h_before_original": 28330,
+    "ranking_boundary": "Supplied normalized features are preserved; original-journey segmentation and feature quality are external to this solver"
+  },
+  "sha256": "470dcb9c0520dd4683fc93b94ff0c2f89ea81af4881ccb30c82d83226b12e6c1",
+  "original_file_hashes": {
+    "available_flights.csv": "ee948614adb3b37e8db416a08638d4605a99c1d8483da660534bcb025ecf8c9c",
+    "candidate_segments.csv": "6e103adafd72394ebdcc5c38e7f058b52da595ab4823cf94a1929262ef458b1b",
+    "pnr_candidates_clean.csv": "d034a84919fd3cf4822318a9ed13da9a11c3d2cf0dcff68545baaf4e2291f5c0",
+    "pnr_option_features_step2.csv": "66fd56623ff64762b809bdff554e7ee0e66743e20ce7a21d23f25f25906d2c08"
+  }
+}
