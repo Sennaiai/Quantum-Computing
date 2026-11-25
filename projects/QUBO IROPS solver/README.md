@@ -19,6 +19,12 @@ Mean journey time rises **7.61 → 9.13 hours**, and downgrades **4.09% → 8.55
 
 Exact-rational certificates cap the expanded instance at **5,599 PNRs (73.16%)** and **7,437 passengers (62.91%)**, separately; attainability is unproven. Added routes enlarge the feasible set without adding seats. Original-catalog bounds apply only to that control.
 
+## External airline benchmark
+
+The airline will use its own Gurobi solver as the benchmark. Under identical data/rules, separate allocation optima lie between our best feasible results and certified ceilings: **PNRs 5,526–5,599 (about 72.21–73.16%); passengers 7,252–7,437 (about 61.34–62.91%)**. These bound allocation-maximization optima, not Gurobi runtime, S3 outcomes or joint attainability. The airline’s additional business rules may differ; Gurobi is not implemented or executed here.
+
+The **72.19% result above is classical**. The optional [QAOA extension](qaoa/README.md) compares the same QUBO formulation on actual 8–13-qubit residual neighborhoods.
+
 ## Method and reproduction
 
 Whole-PNR decomposition uses exact capacity-slack QUBOs, explicit unassignment and a sufficient penalty bound. **Classical `neal` simulated annealing** precedes separately audited route improvement, bounded rerouting and passenger-preserving two-for-one exchanges. Accepted moves improve S3. Exact size estimation avoids constructing rejected BQMs; accepted chunks retain full validation and a 128-variable budget. Search remains heuristic; resource counts imply no embedding, hardware execution or quantum advantage.

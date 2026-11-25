@@ -4,10 +4,14 @@ on:
   pull_request:
     paths:
       - "projects/QUBO IROPS solver/**"
+      - "!projects/QUBO IROPS solver/qaoa/**"
+      - "!projects/QUBO IROPS solver/README.md"
   push:
     branches: [main]
     paths:
       - "projects/QUBO IROPS solver/**"
+      - "!projects/QUBO IROPS solver/qaoa/**"
+      - "!projects/QUBO IROPS solver/README.md"
   workflow_dispatch:
 permissions:
   contents: read

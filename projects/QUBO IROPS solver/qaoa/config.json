@@ -1,0 +1,22 @@
+{
+  "depths": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "seeds": [
+    7,
+    11,
+    29,
+    47,
+    73
+  ],
+  "shots": 1024,
+  "starts": 5,
+  "maxiter": 150,
+  "neal_sweeps": 500,
+  "max_qubits": 16,
+  "execution": "Ideal local QAOA statevector optimization; finite-shot final sampling; independent Qiskit circuit verification; no hardware or advantage claim"
+}
