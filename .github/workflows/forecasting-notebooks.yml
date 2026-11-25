@@ -1,16 +1,13 @@
 name: Grid-load QRC scientific benchmark
+# Scientific execution is scoped to this project's files; manual reruns remain available.
 on:
   pull_request:
     paths:
       - "projects/Grid Load QRC Benchmarks/**"
-      - ".github/workflows/forecasting-notebooks.yml"
-      - ".github/scripts/execute_notebooks.py"
   push:
     branches: [main]
     paths:
       - "projects/Grid Load QRC Benchmarks/**"
-      - ".github/workflows/forecasting-notebooks.yml"
-      - ".github/scripts/execute_notebooks.py"
   workflow_dispatch:
 permissions:
   contents: read

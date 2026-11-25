@@ -2,13 +2,14 @@
 from __future__ import annotations
 
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 import json
 from pathlib import Path
 from types import MappingProxyType
 from functools import cached_property, lru_cache
 import gzip
+import hashlib
 import math
 
 import pandas as pd
@@ -122,6 +123,7 @@ class Instance:
         if len(set(ids)) != len(ids): raise ValueError('Duplicate PNR identifier')
         for p in self.parties:
             integer(p.pax, 'party size', 1); finite(p.cvm, 'CVM', 0)
+        object.__setattr__(self, 'parties', tuple(Party(p.id, integer(p.pax, 'party size', 1), finite(p.cvm, 'CVM', 0)) for p in self.parties))
         options = [identifier(o.id) for o in self.options]
         if len(set(options)) != len(options): raise ValueError('OPTION_ID must be globally unique')
         caps = {}
@@ -142,6 +144,8 @@ class Instance:
             finite(o.delay_minutes, 'arrival delay')
             if len(o.features) != len(FEATURES): raise ValueError('Incomplete scenario feature vector')
             for x in o.features: finite(x, 'scenario feature')
+        object.__setattr__(self, 'options', tuple(replace(o, delay_minutes=float(o.delay_minutes), features=tuple(float(x) for x in o.features))
+            if type(o.delay_minutes) is not float or any(type(x) is not float for x in o.features) else o for o in self.options))
 
     @cached_property
     def eligibility(self):
@@ -161,13 +165,32 @@ class Instance:
     def eligible(self): return self.eligibility[0], dict(self.eligibility[1])
 
 
-def dump_instance(instance, path):
+def instance_payload(instance):
     value = {'name': instance.name,
              'parties': [dict(id=p.id, pax=p.pax, cvm=p.cvm) for p in instance.parties],
              'options': [dict(id=o.id, party=o.party, legs=o.legs,
                        departure=o.departure.isoformat(), delay_minutes=o.delay_minutes,
                        features=dict(zip(FEATURES, o.features))) for o in instance.options],
              'capacities': [dict(flight=f, cabin=c, seats=v) for (f, c), v in instance.capacities.items()]}
+    return value
+
+
+def instance_fingerprint(instance):
+    # Normalize numeric representations so 0 and 0.0 cannot change identity
+    # after a validated JSON round trip or across generated/loaded instances.
+    value = instance_payload(instance)
+    for party in value['parties']:
+        party['pax'] = int(party['pax']); party['cvm'] = float(party['cvm'])
+    for option in value['options']:
+        option['delay_minutes'] = float(option['delay_minutes'])
+        option['features'] = {key: float(x) for key, x in option['features'].items()}
+    for capacity in value['capacities']: capacity['seats'] = int(capacity['seats'])
+    raw = json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+    return hashlib.sha256(raw).hexdigest()
+
+
+def dump_instance(instance, path):
+    value = instance_payload(instance)
     p = Path(path)
     if p.suffix == '.gz':
         raw = json.dumps(value, separators=(',', ':'), allow_nan=False).encode()

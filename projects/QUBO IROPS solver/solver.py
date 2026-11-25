@@ -9,7 +9,7 @@ from time import perf_counter
 import neal
 
 from data_contract import CONFIG, integer
-from qubo import compile_bqm, resources
+from qubo import compile_bqm, resources, estimate_bqm_variables
 
 
 def catalog(instance, scenario):
@@ -229,10 +229,10 @@ def solve_decomposed(instance, scenario='S3_capacityStability', seed=7, *, top_k
         for p in sorted(groups[key], key=lambda p: (-parties[p].cvm, p)):
             proposed = [*chunk, p]
             opts = [o for q in proposed for o in all_choices[q][:top_k]]
-            count = compile_bqm(instance, proposed, opts, remaining, scenario).bqm.num_variables
+            count = estimate_bqm_variables(instance, proposed, opts, remaining)
             if count > budget and chunk:
                 process(chunk); chunk = []
-                count = compile_bqm(instance, [p], all_choices[p][:top_k], remaining, scenario).bqm.num_variables
+                count = estimate_bqm_variables(instance, [p], all_choices[p][:top_k], remaining)
             if count > budget: raise ValueError('One whole PNR exceeds BQM budget; raise the budget or explicitly change top K')
             chunk.append(p)
         if chunk: process(chunk)
