@@ -171,6 +171,10 @@ def simulate(preparation, oracle, targets, iterations, *, shots=4096, seed=2718)
 
 
 def valid_board(cols):
+    if not isinstance(cols,(list,tuple)) or not cols:
+        return False
+    if any(isinstance(c,bool) or not isinstance(c,numbers.Integral) or not 0 <= c < len(cols) for c in cols):
+        return False
     return all(cols[i]!=cols[j] and abs(cols[i]-cols[j])!=j-i for i,j in combinations(range(len(cols)),2))
 
 

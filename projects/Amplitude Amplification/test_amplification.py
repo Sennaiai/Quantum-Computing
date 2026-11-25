@@ -63,6 +63,11 @@ class AmplificationTests(unittest.TestCase):
             self.assertLessEqual(abs(r['sampled_success']-r['exact_success']),r['hoeffding_half_width'])
             self.assertEqual(sum(r['counts'].values()),4096)
 
+    def test_board_predicate_rejects_out_of_range_or_malformed_columns(self):
+        for cols in ([-1], [1], [True], ['0'], [], [0,0], [4,2,0,3]):
+            self.assertFalse(valid_board(cols))
+        self.assertTrue(valid_board([1,3,0,2]))
+
     def test_queens_classical_solvers_and_non_power_of_two_embedding(self):
         self.assertEqual(queens_reference(4)['boards'],[[1,3,0,2],[2,0,3,1]])
         q=queens_reference(5)
