@@ -19,6 +19,8 @@ def skip_reason(path):
         return "validated by dedicated H2 scientific tests and notebook workflow"
     if relative.as_posix() == "Quanutm Chemistry /Chemistry_HCN_VQE_Study.ipynb":
         return "validated by dedicated HCN scientific tests and notebook workflow"
+    if relative.parts[0] == "Grid Load QRC Benchmarks":
+        return "validated by dedicated forecasting scientific tests and notebook workflow"
     if relative.parts[0] == "QFT":
         return "validated by dedicated QFT arithmetic and Shor scientific workflow"
     if relative.as_posix() == "Shor_Senay_Kahsay.ipynb":

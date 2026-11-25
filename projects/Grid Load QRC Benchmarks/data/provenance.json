@@ -1,0 +1,17 @@
+{
+  "provider": "National Energy System Operator",
+  "attribution": "Supported by National Energy SO Open Data",
+  "licence": "https://www.neso.energy/data-portal/neso-open-licence",
+  "dataset": "https://www.neso.energy/data-portal/historic-demand-data",
+  "download": "https://api.neso.energy/dataset/8f2fe0af-871c-488d-8bad-960426f24601/resource/b2bde559-3455-4021-b179-dfe60c0337b0/download/demanddata_2025.csv",
+  "retrieved_utc": "2026-11-25",
+  "original_sha256": "8b8be946bbb084bc28fbf95a71fad0fceb5543b98e02755235130a42beaee4e0",
+  "file": "neso_2025_jan_oct.csv",
+  "sha256": "b1eec366de4a0062e4b3a4bafcb6b9c38ef25e9b57ec354969077a05310c6df4",
+  "rows": 14448,
+  "start_date": "2025-01-01",
+  "end_date": "2025-10-28",
+  "units": "Demand, generation, pumping and flows in MW; settlement period is local half-hour interval index.",
+  "transform": "Select inclusive date range and the nine listed columns; retain original values and chronological settlement keys.",
+  "exclusions": "Undocumented workbook temperature omitted. Data are retrospectively revised outturn, not as-of operational vintages."
+}
