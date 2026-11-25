@@ -8,7 +8,7 @@ The [executed notebook](QUBO_IROPS_Allocation_Experiment.ipynb) uses **7,653 PNR
 
 Five fixed seeds; means shown. Final solutions passed independent capacity and route-policy audits.
 
-| Candidate catalog | Options | PNR allocation | Passenger allocation | Mean variant time |
+| Candidate catalog | Options | PNRs reallocated (% of all 7,653) | Passengers reallocated (% of all 11,822) | Mean variant time |
 |---|---:|---:|---:|---:|
 | Original routes, policy filtered | 57,830 | 57.60% | 47.46% | 21.65 s |
 | Expanded routes and cabin alternatives | 439,145 | **72.19%** | **61.29%** | 27.00 s |
@@ -23,7 +23,7 @@ Exact-rational certificates cap the expanded instance at **5,599 PNRs (73.16%)**
 
 The airline will use its own Gurobi solver as the benchmark. Under identical data/rules, separate allocation optima lie between our best feasible results and certified ceilings: **PNRs 5,526–5,599 (about 72.21–73.16%); passengers 7,252–7,437 (about 61.34–62.91%)**. These bound allocation-maximization optima, not Gurobi runtime, S3 outcomes or joint attainability. The airline’s additional business rules may differ; Gurobi is not implemented or executed here.
 
-The **72.19% result above is classical**. The optional [QAOA extension](qaoa/README.md) compares the same QUBO formulation on actual 8–13-qubit residual neighborhoods.
+These are full-population reallocation rates from the **classical hybrid pipeline**, including simulated annealing and route improvement. The optional [QAOA extension](qaoa/README.md) tests actual 8–13-qubit residual neighborhoods and added **zero PNRs and zero passengers** to its fixed incumbent. Its valid-sample counts describe local candidate quality, not the share of bookings reallocated; a full-population QAOA run was not performed.
 
 ## Method and reproduction
 

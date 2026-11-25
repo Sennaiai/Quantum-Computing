@@ -4,23 +4,35 @@ A circuit-based extension of the [classical recovery pipeline](../README.md), us
 
 Four actual residual neighborhoods contain **8, 9, 12 and 13 qubits**, including dummy/slack variables. Selection uses structural size bands before algorithm outcomes; outside bookings stay fixed. These local results do not replace the parent’s full-population allocation.
 
-## Measured comparison
+## Reallocation outcome
 
-Five seeds, depths 1–5, five optimizer starts and 1,024 final samples per run. Exact enumeration, thermal SA and both untrained controls use the same QUBOs. Standard X mixing is compared with one-choice-preserving projector mixing plus slack-X mixing. The latter preserves PNR choices; flight capacities remain in the cost Hamiltonian.
+The full classical hybrid pipeline reallocates **72.19% of 7,653 PNRs and 61.29% of 11,822 passengers**, averaged over five seeds. QAOA was tested only on four local neighborhoods: its audited patches added **zero PNRs and zero passengers** to the fixed incumbent. No full-population QAOA allocation rate was measured.
 
-| Sampler | Raw physical feasibility | Raw exact-ground samples | Runs sampling the physical S3 optimum |
-|---|---:|---:|---:|
-| Uniform | 4.14% | 0.16% | 18/20 |
-| Untrained one-choice | 48.96% | 1.53% | 20/20 |
-| Thermal SA | 99.30% | 30.35% | 20/20 |
-| X-QAOA depth 1 | 14.26% | 0.85% | 20/20 |
-| X-QAOA depth 5 | 36.45% | 4.29% | 19/20 |
-| One-choice QAOA depth 1 | 71.60% | 4.78% | 20/20 |
-| One-choice QAOA depth 5 | 82.76% | 22.27% | 20/20 |
+## Local candidate quality
 
-On these cases, constrained QAOA improves sampling concentration over its untrained control and X-QAOA; thermal SA remains stronger. The untrained one-choice control already samples every physical optimum, so this study establishes no allocation or speedup advantage. All depths, raw counts, strict slack feasibility, repairs, circuit resources and independent global admission audits are in [results](results/). Higher depth does not guarantee better finite-sample solution quality. No global PNR-allocation increase was demonstrated in these neighborhoods.
+Each method generates **20,480 candidate draws**: four neighborhoods × five seeds × 1,024 samples. Draws may repeat an assignment. A valid candidate respects one route or explicit unassignment per PNR and all seat capacities, before repair. Validity does not mean every PNR is served or the solution is optimal. Counts below are neither booking reallocation rates nor coverage of all possible feasible solutions.
+
+| Sampler | Valid candidate draws / 20,480 | Runs finding a local S3 optimum / 20 |
+|---|---:|---:|
+| Uniform | 848 / 20,480 | 18 / 20 |
+| Untrained one-choice | 10,027 / 20,480 | 20 / 20 |
+| Classical simulated annealing | 20,336 / 20,480 | 20 / 20 |
+| X-QAOA depth 1 | 2,920 / 20,480 | 20 / 20 |
+| X-QAOA depth 5 | 7,464 / 20,480 | 19 / 20 |
+| One-choice QAOA depth 1 | 14,663 / 20,480 | 20 / 20 |
+| One-choice QAOA depth 5 | 16,949 / 20,480 | 20 / 20 |
+
+The last column counts runs with at least one valid draw attaining the independently enumerated local S3 optimum, before repair. These local optima optimize the business objective, not necessarily PNR count alone.
+
+Depths 1–5 use five optimizer starts. All methods share the same QUBOs and final sample counts. One-choice projector mixing plus slack-X preserves PNR choices; capacities remain penalized in the cost Hamiltonian. An untrained one-choice control separates initialization from optimization.
+
+Constrained QAOA produces more valid candidates than X-QAOA and its untrained control; classical annealing remains stronger. Both annealing and the untrained one-choice control already find a local optimum in every run. **No allocation or speedup advantage is demonstrated.** All depths, raw counts, strict slack/ground-state diagnostics, repairs and global audits remain in [results](results/). Higher depth need not improve finite-sample outcomes.
 
 **End-to-end: 76.1 seconds**, Apple M5/arm64, Python 3.11.18, one requested BLAS/OpenMP thread. Timing includes all references, samplers, optimization, circuit verification, admission audits and exports; installation, kernel startup and case generation are excluded. Training uses exact statevector expectations and final sampling is finite-shot; physical-shot/compute budgets are not equated between methods.
+
+## Larger-neighborhood follow-up
+
+The [expanded study](expanded/README.md) tests six actual 17–28-qubit neighborhoods with four to ten PNRs, depths 1–5 and exact local Pareto references. It adds no PNRs or passengers; exact enumeration confirms the fixed local catalogs have no allocation headroom. Paired S3 results distinguish occasional QAOA wins from the stronger overall annealing result.
 
 ## Reproduce
 

@@ -47,3 +47,14 @@ jobs:
             projects/QUBO IROPS solver/qaoa/artifacts/validation/qaoa_results.json
             projects/QUBO IROPS solver/qaoa/artifacts/validation/qaoa_comparison.svg
             projects/QUBO IROPS solver/qaoa/artifacts/validation/example_qaoa.qasm
+      - name: Verify larger neighbourhoods, exact subspace evolution and local Pareto references
+        run: python -m expanded.run_checks
+      - uses: actions/upload-artifact@v4
+        with:
+          name: irops-expanded-qaoa-evidence
+          path: |
+            projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/validation_summary.json
+            projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/Larger_IROPS_QAOA.ipynb
+            projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/expanded_results.json
+            projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/allocation_pareto.svg
+            projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/example_large_qaoa.qasm

@@ -81,5 +81,22 @@ class ProjectScientificScopeTests(unittest.TestCase):
         self.assertEqual(names, {'validation_summary.json','QAOA_IROPS_Neighbourhoods.ipynb',
                                  'qaoa_results.json','qaoa_comparison.svg','example_qaoa.qasm'})
 
+    def test_expanded_qaoa_artifact_and_execution_are_explicitly_scoped(self):
+        import ast
+        text = (ROOT/'.github/workflows/irops-qaoa.yml').read_text()
+        self.assertIn('run: python -m expanded.run_checks',text)
+        blocks = re.findall(r'          path: \|\n((?:            .+\n)+)',text)
+        self.assertEqual(len(blocks),2)
+        prefix='projects/QUBO IROPS solver/qaoa/expanded/artifacts/validation/'
+        names={line.strip().removeprefix(prefix) for line in blocks[1].splitlines()}
+        self.assertEqual(names,{'validation_summary.json','Larger_IROPS_QAOA.ipynb','expanded_results.json','allocation_pareto.svg','example_large_qaoa.qasm'})
+        # Check routing before CI installs notebook dependencies: stdlib only.
+        tree=ast.parse((ROOT/'.github/scripts/execute_notebooks.py').read_text())
+        function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='skip_reason')
+        namespace={'ROOT':ROOT}
+        exec(compile(ast.Module(body=[function],type_ignores=[]),'<notebook-routing>','exec'),namespace)
+        path=ROOT/'projects/QUBO IROPS solver/qaoa/expanded/Larger_IROPS_QAOA.ipynb'
+        self.assertIn('dedicated IROPS QAOA',namespace['skip_reason'](path))
+
 
 if __name__ == '__main__': unittest.main()

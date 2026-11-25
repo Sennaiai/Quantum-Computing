@@ -1,0 +1,12 @@
+{
+  "depths": [1, 2, 3, 4, 5],
+  "seeds": [7, 11, 29],
+  "shots": 1024,
+  "starts": 3,
+  "maxiter": 100,
+  "neal_sweeps": 500,
+  "max_qubits": 36,
+  "max_subspace_states": 262144,
+  "objective": "Unchanged S3 capacityStability; Pareto analysis is post hoc, not an alternative training objective",
+  "execution": "Exact one-choice invariant-subspace simulation, finite final samples; no hardware execution"
+}
