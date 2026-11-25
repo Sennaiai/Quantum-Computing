@@ -3,7 +3,7 @@ import math
 import unittest
 import numpy as np
 from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Operator, Statevector
+from qiskit.quantum_info import Operator, Statevector, partial_trace
 from qiskit_aer import AerSimulator
 from amplification import *
 
@@ -29,8 +29,10 @@ class AmplificationTests(unittest.TestCase):
             np.testing.assert_allclose(d@d,np.eye(2**n),atol=2e-12)
 
     def test_complex_nonuniform_preparation_matches_full_amplitude_reference(self):
-        a=QuantumCircuit(3);a.ry(.4,0);a.ry(.9,1);a.h(2);a.cx(1,2);a.rz(.6,0)
+        a=QuantumCircuit(3);a.ry(.4,0);a.ry(.9,1);a.h(2);a.cx(2,1);a.rz(.6,0)
         targets=['001','110'];psi=Statevector.from_instruction(a).data
+        reduced=partial_trace(Statevector(psi),[0,2]).data
+        self.assertLess(float(np.trace(reduced@reduced).real),.99)  # genuinely entangled preparation
         p=float(sum(abs(psi[int(t,2)])**2 for t in targets))
         for k in range(7):
             state=Statevector.from_instruction(build_amplification(a,oracle_for_targets(3,targets),k)).data

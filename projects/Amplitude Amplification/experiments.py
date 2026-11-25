@@ -20,7 +20,7 @@ def run_experiments():
     targets=['00011','10101'];a=uniform_preparation(5);o=oracle_for_targets(5,targets)
     uniform,circuit=simulate(a,o,targets,first_peak_iterations(2/32))
     arbitrary=QuantumCircuit(3,name='Nonuniform A')
-    arbitrary.ry(.4,0);arbitrary.ry(.9,1);arbitrary.h(2);arbitrary.cx(1,2);arbitrary.rz(.6,0)
+    arbitrary.ry(.4,0);arbitrary.ry(.9,1);arbitrary.h(2);arbitrary.cx(2,1);arbitrary.rz(.6,0)
     good=['001','110'];psi=Statevector.from_instruction(arbitrary).data
     p=float(sum(abs(psi[int(t,2)])**2 for t in good))
     nonuniform,_=simulate(arbitrary,oracle_for_targets(3,good),good,first_peak_iterations(p))
