@@ -11,7 +11,20 @@ permissions:
 
 jobs:
   notebooks:
-    uses: Sennaiai/Quality-Control-/.github/workflows/notebook-ci.yml@f39e3a601fac9890ef214b58ad02794745f2e54f
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up structure-check environment
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - name: Install schema validator
+        run: python -m pip install nbformat==5.10.4
+      - name: Validate tracked notebook structure
+        run: python .github/scripts/check_notebook_structure.py
 
   workflow-scope:
     runs-on: ubuntu-latest
