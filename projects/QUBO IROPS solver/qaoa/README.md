@@ -1,52 +1,39 @@
-# QAOA Extension for Airline-Recovery QUBOs
+# QAOA for Airline-Recovery QUBOs
 
-A circuit-based extension of the [classical recovery pipeline](../README.md), using its unchanged QUBO compiler and penalties. It generalizes the [HHL project’s](../../HHL/README.md) alternating-layer design with sparse Pauli costs, analytic adjoint gradients and independent Qiskit validation.
+Compare QAOA and annealing on the [parent solver’s](../README.md) unchanged QUBOs. The [main notebook](expanded/Larger_IROPS_QAOA.ipynb) tests **six actual neighborhoods: 4–10 PNRs, 17–28 logical qubits**, with outside bookings fixed.
 
-Four actual residual neighborhoods contain **8, 9, 12 and 13 qubits**, including dummy/slack variables. Selection uses structural size bands before algorithm outcomes; outside bookings stay fixed. These local results do not replace the parent’s full-population allocation.
+## Findings
 
-## Reallocation outcome
+**Additional PNRs: 0. Additional passengers: 0.** Exact enumeration confirms local allocation saturation; full-airline optimality is unproven. No full-population QAOA rate was measured.
 
-The full classical hybrid pipeline reallocates **72.19% of 7,653 PNRs and 61.29% of 11,822 passengers**, averaged over five seeds. QAOA was tested only on four local neighborhoods: its audited patches added **zero PNRs and zero passengers** to the fixed incumbent. No full-population QAOA allocation rate was measured.
+Six cases × three seeds = **18 runs/setting**, with 1,024 final draws each. Below: local optimum discovery and paired best feasible S3 before repair, **not booking allocation rates**. Lower S3 is better.
 
-## Local candidate quality
-
-Each method generates **20,480 candidate draws**: four neighborhoods × five seeds × 1,024 samples. Draws may repeat an assignment. A valid candidate respects one route or explicit unassignment per PNR and all seat capacities, before repair. Validity does not mean every PNR is served or the solution is optimal. Counts below are neither booking reallocation rates nor coverage of all possible feasible solutions.
-
-| Sampler | Valid candidate draws / 20,480 | Runs finding a local S3 optimum / 20 |
+| Method | Optimum found: runs / 18 | Lower / equal / higher S3 than annealing |
 |---|---:|---:|
-| Uniform | 848 / 20,480 | 18 / 20 |
-| Untrained one-choice | 10,027 / 20,480 | 20 / 20 |
-| Classical simulated annealing | 20,336 / 20,480 | 20 / 20 |
-| X-QAOA depth 1 | 2,920 / 20,480 | 20 / 20 |
-| X-QAOA depth 5 | 7,464 / 20,480 | 19 / 20 |
-| One-choice QAOA depth 1 | 14,663 / 20,480 | 20 / 20 |
-| One-choice QAOA depth 5 | 16,949 / 20,480 | 20 / 20 |
+| Untrained one-choice | 10 / 18 | — |
+| Annealing | 14 / 18 | — |
+| QAOA depth 1 | 11 / 18 | 2 / 11 / 5 |
+| QAOA depth 2 | 11 / 18 | 0 / 11 / 7 |
+| QAOA depth 3 | 12 / 18 | 2 / 12 / 4 |
+| QAOA depth 4 | 13 / 18 | 2 / 13 / 3 |
+| QAOA depth 5 | 10 / 18 | 1 / 11 / 6 |
 
-The last column counts runs with at least one valid draw attaining the independently enumerated local S3 optimum, before repair. These local optima optimize the business objective, not necessarily PNR count alone.
+Depth 4 has the highest QAOA optimum-discovery count; annealing remains stronger overall. Pareto analysis maximizing PNRs/passengers and minimizing S3 yields **one point per case**, without a tradeoff curve.
 
-Depths 1–5 use five optimizer starts. All methods share the same QUBOs and final sample counts. One-choice projector mixing plus slack-X preserves PNR choices; capacities remain penalized in the cost Hamiltonian. An untrained one-choice control separates initialization from optimization.
+## Execution and verification
 
-Constrained QAOA produces more valid candidates than X-QAOA and its untrained control; classical annealing remains stronger. Both annealing and the untrained one-choice control already find a local optimum in every run. **No allocation or speedup advantage is demonstrated.** All depths, raw counts, strict slack/ground-state diagnostics, repairs and global audits remain in [results](results/). Higher depth need not improve finite-sample outcomes.
+Exact one-choice/slack simulation retains all allowed amplitudes. Qiskit block replay verifies 90 optimized circuits; full-state references include a 22-qubit control. [Evidence](expanded/results/) separates raw samples, repair and admission; patches cannot be summed.
 
-**End-to-end: 76.1 seconds**, Apple M5/arm64, Python 3.11.18, one requested BLAS/OpenMP thread. Timing includes all references, samplers, optimization, circuit verification, admission audits and exports; installation, kernel startup and case generation are excluded. Training uses exact statevector expectations and final sampling is finite-shot; physical-shot/compute budgets are not equated between methods.
-
-## Larger-neighborhood follow-up
-
-The [expanded study](expanded/README.md) tests six actual 17–28-qubit neighborhoods with four to ten PNRs, depths 1–5 and exact local Pareto references. It adds no PNRs or passengers; exact enumeration confirms the fixed local catalogs have no allocation headroom. Paired S3 results distinguish occasional QAOA wins from the stronger overall annealing result.
-
-## Reproduce
+The [mixer ablation](QAOA_IROPS_Neighbourhoods.ipynb) and its [evidence](results/) compare X/one-choice mixing and untrained controls on 8–13-qubit cases; this is not a matched before/after comparison.
 
 Python 3.11, from this folder:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
 python run_qaoa_checks.py
+python -m expanded.run_checks
 ```
 
-The [executed notebook](QAOA_IROPS_Neighbourhoods.ipynb) exposes the Hamiltonian and audits. The [one-choice example circuit](results/example_qaoa.qasm) round-trips through Qiskit and matches the statevector. Tests independently check signs, endian conventions, offsets, gradients, dense/circuit evolution, excitation conservation and all small-case binary energies.
+Checks cover Hamiltonians, bit order, gradients, circuits and allocation audits in fresh offline notebooks. Final draw counts match; exact-expectation training compute does not. No hardware, speedup or statistical-advantage claim is made.
 
-This is ideal simulation with bounded local optimization. Gate resources assume all-to-all connectivity; no hardware, noise, speedup, industry-outperformance or globally optimal parameter claim is made. Classical repair is separate; independent patches cannot be summed.
-
-Method context: [QAOA](https://arxiv.org/abs/1411.4028), [Grover-style projectors](https://arxiv.org/abs/2006.00354), and [local constraint-preserving mixers](https://arxiv.org/abs/2606.11530). The implementation uses disjoint one-choice projectors; it does not prepare the globally capacity-feasible subspace.
+End-to-end: **71.2 s main study; 76.1 s ablation**, Apple M5/arm64, Python 3.11.18, one requested BLAS/OpenMP thread. Includes training, references, verification and exports; excludes installation, kernel startup and case generation. [Configuration](expanded/config.json) fixes budgets.
