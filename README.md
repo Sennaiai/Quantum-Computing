@@ -1,117 +1,27 @@
-# Quantum Computing Portfolio
+# Quantum Computing — Senay Kahsay
 
-**Sennai Kahssai**  
-*Quantum Computing · Molecular & Cellular Biology · Computational Drug Discovery*
+Computational studies in quantum chemistry, molecular learning and quantum algorithms. My background combines Molecular & Cellular Biology with a **master’s degree in Quantum Computing**, with a focus on molecular science and computational drug discovery.
 
----
+## Selected studies
 
-## Overview
+| Project | What the implementation demonstrates |
+|---|---|
+| [Quantum chemistry](projects/Quanutm%20Chemistry%20/README.md) | H₂, HCN and active-space studies: molecular Hamiltonian construction, fermion-to-qubit mapping, VQE, classical electronic-structure references and resource/accuracy comparisons. |
+| [Molecular learning for ADMET](projects/Quantum%20Molecular%20Learning%20for%20ADMET/README.md) | Molecular data curation, counterdiabatic control, QSVT, runtime contracts and a post-measurement learning implementation with classical controls. Private execution is author-confirmed; proprietary results remain confidential. |
+| [HHL and variational linear solvers](projects/HHL/README.md) | A bounded linear-system simulation with classical references, phase estimation and analytical post-selection checks. |
+| [Amplitude amplification](projects/Amplitude%20Amplification/README.md) | A reversible 5-Queens constraint oracle, exhaustive validation and measured amplification behavior. |
+| [QFT arithmetic and order finding](projects/QFT/README.md) | Shared Fourier circuits, cross-framework arithmetic and small-instance Shor experiments with explicit oracle limitations. |
+| [Quantum reservoir computing](projects/Grid%20Load%20QRC%20Benchmarks/README.md) | Continuous-variable and spin-reservoir forecasting, chronological evaluation, classical baselines and resource accounting. Classical gradient boosting performs best in the published comparison. |
+| [Airline recovery: QUBO and QAOA](projects/QUBO%20IROPS%20solver/README.md) | Capacity-constrained allocation, route expansion and QAOA/annealing comparisons with exact local references. QAOA demonstrates no additional allocation in the tested neighborhoods. |
 
-This repository contains my technical portfolio in **quantum computing for the life sciences**, focused on **computational drug discovery and molecular-scale modeling**.
+## Verification
 
-Quantum technology is a broad field. My work is centered on three pillars that are directly relevant to biological and chemical systems:
+Each project documents its dependencies, inputs, execution commands and limitations. Dedicated scientific workflows run project-specific checks and controlled notebook executions when that project changes. Shared notebook structure checks are separate from numerical and physical validation.
 
-- **Quantum Machine Learning (QML)**
-- **Quantum Optimization**
-- **Quantum Molecular Simulation**
+Saved outputs, classical references and machine-readable evidence support review. Ideal simulations are identified explicitly. The public ADMET checks validate the disclosed offline pipeline; they do not independently reproduce its private hardware execution. Collaborative work and data sources are credited in the relevant project guides.
 
-Together, these form a unified framework for learning, simulating, and optimizing molecular systems — from binding energies to reaction pathways and biological function.
+[Research directions](resources/roadmap.md) describe possible extensions, separately from completed results.
 
----
+## Contact
 
-## Background and Focus
-
-My training spans **Molecular & Cellular Biology, Physics, Chemistry, and Computation**.
-
-I bring wet-lab experience in molecular biology, enzymology, genetics, and biochemistry together with classical and quantum computing, numerical modeling, and machine learning. I am currently completing a **Master’s degree in Quantum Computing**, alongside advanced training in **ML/AI**, with the objective of applying quantum-enabled methods to biological and chemical problems.
-
-The guiding aim of this work is simple:
-
-> **Use quantum and hybrid quantum–classical algorithms to model, simulate, and optimize molecular systems relevant to drug discovery and biological function.**
-
----
-
-## Repository Structure
-
-This repository is organized the way a computational molecular lab works.
-
-### `projects/`
-Executable Jupyter notebooks implementing:
-- Quantum machine-learning models  
-- Quantum optimization pipelines  
-- Molecular Hamiltonians and variational solvers  
-- Hybrid quantum–classical workflows  
-
-Each notebook is self-documented via Markdown cells at the top of the file.
-Project-specific dependencies and input requirements are documented alongside each project.
-
----
-
-### `resources/theory/`
-Mathematical and physical foundations:
-- **`basics.md`** — qubits, states, operators, measurement
-- **`algorithms.md`** — VQE, QAOA, QRC, and related methods
-- **`models.md`** — reserved for Hamiltonian and encoding notes
-
----
-
-## Scientific Orientation
-
-The work here sits at the intersection of:
-
-- Quantum computation  
-- Molecular physics and chemistry  
-- Machine learning  
-- Biological systems  
-
-The three pillars — **QML, Optimization, and Molecular Simulation** — are treated as components of a single computational stack for understanding and designing molecular systems in biology and medicine.
-
-## Reproducibility and notebook checks
-
-Create the shared environment for offline notebooks from the repository root:
-
-```bash
-conda env create -f environment.yml
-conda activate quantum-projects
-python .github/scripts/execute_notebooks.py
-```
-
-GitHub Actions also executes the offline notebooks on pushes and pull requests. The shared runner uses project-specific CI configurations; the chemistry workflows execute their bounded default scientific studies. Legacy notebooks requiring uploads are excluded; the forecasting project has its own pinned offline scientific workflow. The ADMET scientific workflow independently acquires its pinned public dataset and runs offline tests, notebooks, and benchmarks. Live Triple Alpha calls are excluded from CI. The three chemistry studies use their dedicated scientific workflows.
-
-The QFT folder contains two scientific studies: merged cross-framework Fourier
-arithmetic and Shor order finding. Its dedicated workflow executes both notebooks,
-independent phase/matrix references and reversible-arithmetic checks. See
-[QFT arithmetic and Shor](projects/QFT/README.md) for reproducible execution and
-compiled-oracle limits. Generated artifact notebooks are excluded from discovery.
-
-The [grid-load QRC benchmarks](projects/Grid%20Load%20QRC%20Benchmarks/README.md)
-compare CV and analogue-spin reservoirs with matched classical controls. Their
-dedicated workflow verifies physics, leakage boundaries and both forecasting
-notebooks on a licensed, checksummed NESO snapshot.
-
-The [IROPS QUBO experiment](projects/QUBO%20IROPS%20solver/README.md)
-combines exact capacity encoding, connecting-route expansion and decomposed
-simulated annealing, with independently verified allocation, service tradeoffs
-and logical resources. The client performs the industry comparison externally.
-
-The [quantum chemistry studies](projects/Quanutm%20Chemistry%20/README.md) share a
-pinned environment and retain separate scientific tests and notebook CI. Their saved
-notebook outputs and benchmark evidence are available for review. The shared
-runner delegates chemistry execution to those dedicated workflows and excludes generated
-artifact notebooks from discovery.
-
-For the ADMET project, create its environment from that project directory so its existing `requirements.txt` is found:
-
-```bash
-cd "projects/Quantum Molecular Learning for ADMET"
-conda env create -f environment.yml
-conda activate admet-triplealpha
-```
-
-The public ADMET notebook runs offline without credentials. Optional native execution requires verified deployment settings and local `TRIPLE_ALPHA_API_KEY` and `TRIPLE_ALPHA_RUN_URL` values. Never store API credentials in a notebook or commit them.
-
-## Connect With Me
-- [LinkedIn](https://www.linkedin.com/in/senay-kahsay)
-- [Medium](https://medium.com/@kahssai.sen)
-
-> “We are the music while the music lasts.” — *T. S. Eliot*
+[LinkedIn](https://www.linkedin.com/in/senay-kahsay) · [Medium](https://medium.com/@kahssai.sen)
