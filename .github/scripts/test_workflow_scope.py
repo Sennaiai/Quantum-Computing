@@ -49,6 +49,12 @@ class ProjectScientificScopeTests(unittest.TestCase):
         self.assertIn('python3 -m unittest discover -s .github/scripts -p test_workflow_scope.py -v', text)
         self.assertNotIn('run_checks.py', text)
 
+    def test_public_structure_checks_are_independent_of_private_workflows(self):
+        text = (ROOT/'.github/workflows/quality-control.yml').read_text()
+        self.assertNotIn('Sennaiai/Quality-Control-', text)
+        self.assertIn('run: python .github/scripts/check_notebook_structure.py', text)
+        self.assertTrue((ROOT/'.github/scripts/check_notebook_structure.py').is_file())
+
     def test_shared_notebook_execution_is_manual_only(self):
         text = (ROOT/'.github/workflows/quality-control.yml').read_text()
         jobs = text.split('jobs:', 1)[1]
