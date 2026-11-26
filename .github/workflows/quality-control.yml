@@ -13,7 +13,7 @@ jobs:
   notebooks:
     uses: Sennaiai/Quality-Control-/.github/workflows/notebook-ci.yml@f39e3a601fac9890ef214b58ad02794745f2e54f
 
-  execute-notebooks:
+  workflow-scope:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -22,6 +22,15 @@ jobs:
           persist-credentials: false
       - name: Verify project-scoped scientific CI
         run: python3 -m unittest discover -s .github/scripts -p test_workflow_scope.py -v
+
+  execute-notebooks:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: Set up notebook environment
         uses: mamba-org/setup-micromamba@v2
         with:
