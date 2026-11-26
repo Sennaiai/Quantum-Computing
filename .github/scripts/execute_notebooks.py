@@ -21,6 +21,8 @@ def skip_reason(path):
         return "validated by dedicated HCN scientific tests and notebook workflow"
     if relative.parts[0] == "Grid Load QRC Benchmarks":
         return "validated by dedicated forecasting scientific tests and notebook workflow"
+    if relative.parts[:2] == ("QUBO IROPS solver", "qaoa"):
+        return "validated by dedicated IROPS QAOA circuit tests and notebook workflow"
     if relative.parts[0] == "QUBO IROPS solver":
         return "validated by dedicated IROPS actual-catalog tests and notebook workflow"
     if relative.parts[0] == "QFT":

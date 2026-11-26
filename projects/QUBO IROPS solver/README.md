@@ -1,39 +1,33 @@
-# QUBO Airline Recovery: Capacity, Connections and Allocation
+# QUBO Airline Recovery
 
-Develop an IROPS QUBO solver, measure feasible PNR/passenger allocation, and assess it against the client’s industry-standard solver. **The client performs that comparison independently, with matched populations and rules.**
+Develop and assess an airline reallocation solver against the client’s external Gurobi benchmark. The [executed study](QUBO_IROPS_Allocation_Experiment.ipynb) uses **7,653 bookings (PNRs) and 11,822 passengers** from an authorized, de-identified catalog.
 
-The [executed notebook](QUBO_IROPS_Allocation_Experiment.ipynb) uses **7,653 PNRs and 11,822 passengers**. Both experiments share inventory, S3 weights/scales, recovery constraints and optimization budgets.
+## Results
 
-## Results and runtime
+Five-seed means; all final assignments passed capacity and route-policy audits.
 
-Five fixed seeds; means shown. Final solutions passed independent capacity and route-policy audits.
-
-| Candidate catalog | Options | PNR allocation | Passenger allocation | Mean variant time |
+| Candidate catalog | Options | PNRs reallocated | Passengers reallocated | Mean run |
 |---|---:|---:|---:|---:|
-| Original routes, policy filtered | 57,830 | 57.60% | 47.46% | 21.65 s |
-| Expanded routes and cabin alternatives | 439,145 | **72.19%** | **61.29%** | 27.00 s |
+| Original, policy filtered | 57,830 | 57.60% | 47.46% | 21.65 s |
+| Expanded routes/cabins | 439,145 | **72.19%** | **61.29%** | 27.00 s |
 
-**End-to-end: 265.1 seconds** for both catalogs across all five seeds. Apple M5/arm64, Python 3.11.18; BLAS/OpenMP threads set to 1. This includes loading, route generation, certificate verification, optimization, audits and exports; installation, kernel startup and precomputed certificate generation are excluded. [Results](results/) retain assignments, stage timings, variability and resources.
+Percentages use the full populations above. **End-to-end: 265.1 s** across both catalogs and all five seeds, Apple M5/arm64, Python 3.11.18, one BLAS/OpenMP thread. Includes loading, route generation, optimization, certificate verification, audits and exports; excludes installation, kernel startup and precomputed certificate generation.
 
-Mean journey time rises **7.61 → 9.13 hours**, and downgrades **4.09% → 8.55%** of allocated PNRs. These compare different served cohorts, not measured satisfaction.
+Mean journey time increased **7.61→9.13 hours**; downgrades increased **4.09→8.55% of served PNRs**. Served cohorts differ; these are not satisfaction measurements.
 
-Exact-rational certificates cap the expanded instance at **5,599 PNRs (73.16%)** and **7,437 passengers (62.91%)**, separately; attainability is unproven. Added routes enlarge the feasible set without adding seats. Original-catalog bounds apply only to that control.
+Under identical rules, separate allocation optima are bounded by best feasible results and exact-rational certificates: **PNRs 72.21–73.16%; passengers 61.34–62.91%**. Joint attainability, Gurobi runtime and S3 outcomes are not established. The airline performs the benchmark independently.
 
 ## Method and reproduction
 
-Whole-PNR decomposition uses exact capacity-slack QUBOs, explicit unassignment and a sufficient penalty bound. **Classical `neal` simulated annealing** precedes separately audited route improvement, bounded rerouting and passenger-preserving two-for-one exchanges. Accepted moves improve S3. Exact size estimation avoids constructing rejected BQMs; accepted chunks retain full validation and a 128-variable budget. Search remains heuristic; resource counts imply no embedding, hardware execution or quantum advantage.
+The classical hybrid uses whole-PNR capacity-slack QUBOs, explicit unassignment, sufficient penalties, `neal` simulated annealing and audited route improvement. Accepted moves improve S3; chunks have a 128-variable budget. The [QAOA comparison](qaoa/README.md) tests local quantum circuits separately and demonstrates no additional allocations.
 
-Expansion reconstructs original features on frozen scales, excludes 133 routes exceeding the 72-hour final-arrival window, and includes connecting routes and feasible cabin patterns. Negative inventory is conservatively floored at zero.
-
-Python 3.11, from this folder:
+Python 3.11, in this folder:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
 python run_checks.py
 ```
 
-Acceptance runs scientific tests and the full notebook in a fresh offline kernel. Raw inputs and reversible mappings remain local; [provenance](data/provenance.json) and anonymous network metadata support reproduction. Private processed-table execution supports `run_private.py --expand-connections`.
+Checks execute scientific tests and a fresh offline notebook. [Results](results/) retain assignments, variability, timings and resources; [provenance](data/provenance.json) identifies public inputs. Raw data/mappings remain local; private execution uses `run_private.py --expand-connections`.
 
-The prototype assumes 45-minute transfers, at most 18-hour layovers and two stops; airport-specific certification remains external. Original-journey/ranking anomalies and bookings outside the candidate population remain limitations. S3 is a business proxy, with no monetary-profit claim.
+Limits: 45-minute transfers, 18-hour layovers, at most two stops and a 72-hour recovery window; negative inventory is floored at zero. Airport-specific rules, source ranking anomalies and excluded bookings remain external limitations. S3 is a business proxy; search is heuristic. No monetary-profit, hardware or quantum-advantage claim is made.

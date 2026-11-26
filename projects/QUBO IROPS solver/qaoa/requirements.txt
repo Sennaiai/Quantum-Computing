@@ -1,0 +1,4 @@
+-r ../requirements.txt
+# Independent circuit reference and bounded analytic-gradient optimization.
+qiskit==2.6.2
+scipy==1.16.3
