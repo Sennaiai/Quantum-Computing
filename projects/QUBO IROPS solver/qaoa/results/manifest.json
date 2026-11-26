@@ -1,0 +1,7 @@
+{
+  "files": {
+    "qaoa_results.json": "b1647a2e3fa4db0ff10a80cab42ff11a5ede7c39bb54e9fe73d77b3b6cb0f58a",
+    "qaoa_comparison.svg": "199b0e1928725532afcfa6d2b8de2edd9c9fddfeb750cf371964220af8291b1c",
+    "example_qaoa.qasm": "76391f77a85707ccd26f5a2aa959a04b00d41bf122fea95ed935eec438d84575"
+  }
+}

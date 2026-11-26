@@ -1,0 +1,5 @@
+{
+  "sha256": "e483602155008e0e1507694e2fbc6606c1b9174d637d5d11805b76ea354a55de",
+  "selection": "First disjoint case per declared (PNRs, qubit band): (4,16\u201318),(5,19\u201320),(6,21\u201322). Roots sorted by ID; first five S3 routes; connected neighbours ordered unassigned first, then party size/CVM/ID; at most two options per PNR including incumbent. No solver or exact-reference outcomes used.",
+  "source": "Authorized de-identified actual catalog and published seed-7 incumbent"
+}

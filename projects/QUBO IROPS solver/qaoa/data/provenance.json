@@ -1,0 +1,6 @@
+{
+  "sha256": "c412d4ab8d5cf14d6af8e823a7ded10cf0df5d77e91a3c1c7c4dea423839ee7a",
+  "source": "Authorized public de-identified actual catalog and published seed-7 incumbent; no synthetic main experiment",
+  "selection": "First disjoint-PNR case in each 6\u20138/9\u201310/11\u201312/13\u201316-qubit band; root PNR IDs ascending, first five S3 routes, first one/two blocking occupants by party size/CVM/ID. No QAOA or exact-solution outcomes used in selection.",
+  "expanded_fingerprint": "e461405849395603d800f5820eec191b5be86cc50583f7988d08ef787df34e94"
+}
