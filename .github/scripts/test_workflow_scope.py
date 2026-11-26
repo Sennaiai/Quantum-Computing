@@ -49,6 +49,18 @@ class ProjectScientificScopeTests(unittest.TestCase):
         self.assertIn('python3 -m unittest discover -s .github/scripts -p test_workflow_scope.py -v', text)
         self.assertNotIn('run_checks.py', text)
 
+    def test_shared_notebook_execution_is_manual_only(self):
+        text = (ROOT/'.github/workflows/quality-control.yml').read_text()
+        jobs = text.split('jobs:', 1)[1]
+        execution = jobs.split('  execute-notebooks:', 1)[1]
+        self.assertIn("    if: github.event_name == 'workflow_dispatch'", execution)
+        self.assertIn('run: python .github/scripts/execute_notebooks.py', execution)
+        automatic = jobs.split('  execute-notebooks:', 1)[0]
+        self.assertIn('  workflow-scope:', automatic)
+        self.assertIn('run: python3 -m unittest discover', automatic)
+        self.assertNotIn('execute_notebooks.py', automatic)
+        self.assertNotIn('setup-micromamba', automatic)
+
     def test_irops_artifact_contains_only_scientific_evidence(self):
         text = (ROOT/'.github/workflows/irops-qubo.yml').read_text()
         match = re.search(r'          path: \|\n((?:            .+\n)+)', text)
