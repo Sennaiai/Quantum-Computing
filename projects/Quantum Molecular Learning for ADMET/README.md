@@ -6,6 +6,12 @@ The Hamiltonian is a **dimensionless data-derived encoding**, with a chosen ener
 
 **Private execution confirmation:** The project author confirms an end-to-end hardware run using Horizon Quantum's Triple Alpha workflow. This confirmation strengthens ADMET’s execution signal: **successful private compilation and execution, with proprietary results kept confidential**. Public CI validates the disclosed offline pipeline; it does not reproduce the private hardware run or disclose its results.
 
+## Collaboration and authorship
+
+The reusable Triple Alpha/Beryllium simulation library was co-developed by **Senay Kahsay, Amoy Ashesh, Davide Bincoletto and Javier Sanchez**. The library collaboration covered the broader quantum-simulation implementation.
+
+**Senay Kahsay developed the ADMET application**, including its molecular-data preparation, Hamiltonian/control pipeline and application integration. These credits distinguish the shared library from the application work.
+
 ## Reproduce
 
 Use Python 3.11 from this directory:
